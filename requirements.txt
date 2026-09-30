@@ -1,0 +1,17 @@
+requests
+python-dotenv
+pandas
+numpy
+scipy
+scikit-learn
+joblib
+matplotlib
+seaborn
+networkx
+fastapi
+uvicorn
+pydantic
+streamlit
+typer
+rich
+anthropic
