@@ -1,0 +1,35 @@
+# CNCF / Go
+kubernetes/kubernetes
+kubernetes/minikube
+kubernetes-sigs/kind
+kubernetes-sigs/kustomize
+kubernetes-sigs/controller-runtime
+kubernetes-sigs/kubebuilder
+prometheus/prometheus
+prometheus/client_golang
+etcd-io/etcd
+containerd/containerd
+helm/helm
+argoproj/argo-cd
+cilium/cilium
+coredns/coredns
+cert-manager/cert-manager
+jaegertracing/jaeger
+open-telemetry/opentelemetry-go
+grpc/grpc-go
+# Go libraries
+spf13/cobra
+gin-gonic/gin
+go-chi/chi
+uber-go/zap
+sirupsen/logrus
+urfave/cli
+# Python
+psf/requests
+pallets/flask
+tiangolo/fastapi
+encode/httpx
+pytest-dev/pytest
+scikit-learn/scikit-learn
+pandas-dev/pandas
+django/django
