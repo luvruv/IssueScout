@@ -1,0 +1,104 @@
+{
+  "difficulty": {
+    "baseline: majority": {
+      "test_f1": 0.231
+    },
+    "baseline: good-first-issue label": {
+      "test_f1": 0.25
+    },
+    "LogisticRegression": {
+      "cv_f1": 0.332,
+      "test_f1": 0.46
+    },
+    "DecisionTree": {
+      "cv_f1": 0.376,
+      "test_f1": 0.387
+    },
+    "RandomForest": {
+      "cv_f1": 0.353,
+      "test_f1": 0.425
+    },
+    "GradientBoosting": {
+      "cv_f1": 0.311,
+      "test_f1": 0.348
+    },
+    "LinearSVM": {
+      "cv_f1": 0.328,
+      "test_f1": 0.432
+    },
+    "RandomForest (tuned)": {
+      "test_f1": 0.401,
+      "f1_95ci": [
+        0.296,
+        0.5
+      ],
+      "params": {
+        "clf__max_depth": null,
+        "clf__min_samples_leaf": 3,
+        "clf__n_estimators": 400
+      }
+    }
+  },
+  "merge": {
+    "LogisticRegression": {
+      "cv_ap": 0.905,
+      "test_ap": 0.932,
+      "test_roc_auc": 0.712
+    },
+    "RandomForest": {
+      "cv_ap": 0.927,
+      "test_ap": 0.898,
+      "test_roc_auc": 0.657
+    },
+    "GradientBoosting": {
+      "cv_ap": 0.882,
+      "test_ap": 0.87,
+      "test_roc_auc": 0.572
+    },
+    "baseline: merge rate": {
+      "test_ap": 0.838
+    }
+  },
+  "time_to_close": {
+    "Linear": {
+      "test_r2": -1.398,
+      "nonzero_coefs": 3019,
+      "coef_l2": 43.19
+    },
+    "Ridge a=0.1": {
+      "test_r2": -1.265,
+      "nonzero_coefs": 3019,
+      "coef_l2": 34.16
+    },
+    "Ridge a=1": {
+      "test_r2": -1.089,
+      "nonzero_coefs": 3019,
+      "coef_l2": 15.8
+    },
+    "Ridge a=10": {
+      "test_r2": -1.201,
+      "nonzero_coefs": 3019,
+      "coef_l2": 3.37
+    },
+    "Ridge a=100": {
+      "test_r2": -1.335,
+      "nonzero_coefs": 3019,
+      "coef_l2": 0.89
+    },
+    "Lasso a=0.001": {
+      "test_r2": -1.268,
+      "nonzero_coefs": 247,
+      "coef_l2": 43.42
+    },
+    "Lasso a=0.01": {
+      "test_r2": -1.243,
+      "nonzero_coefs": 17,
+      "coef_l2": 2.12
+    },
+    "Lasso a=0.1": {
+      "test_r2": -1.298,
+      "nonzero_coefs": 7,
+      "coef_l2": 1.04
+    }
+  }
+}

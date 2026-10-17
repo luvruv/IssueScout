@@ -1,0 +1,71 @@
+{
+  "plan": [
+    {
+      "rank": 1,
+      "id": "kubernetes/minikube#23196",
+      "repo": "kubernetes/minikube",
+      "number": 23196,
+      "title": "ci: tracking issue - CI workflows without enough run history for computed timeouts",
+      "url": "https://github.com/kubernetes/minikube/issues/23196",
+      "difficulty": "Easy",
+      "diff_conf": 0.58,
+      "p_merge": 0.87,
+      "est_hours": 7.2,
+      "reply_days": 0.2,
+      "skills": [
+        "yaml"
+      ],
+      "rules": [
+        "R4: CONTRIBUTING.md present and replies under 3 days -> priority +0.15"
+      ],
+      "snippet": "### What Happened?\n\n## Description\n\nWhile adding step-level `timeout-minutes` to all CI workflows in #23168, some workflows didn't have enough run history for `workflow-stats` (#23043) to compute a timeout, because they're just rarely triggered or recently changed. \n\nThey were left unmodified. Tracking them here so they aren't forgotten and can be revisited once they have enough runs.\n\n`workflow-stats` needs real samples (checked at 30/90/180-day windows) to compute `P95 x 3`. A workflow has no usable data when it's new, rarely triggered, or was recently changed enough that older runs' step names no longer match the current file.\n\n## Known instances\n\n- [ ] `functional_extra.yml` : 0 runs in 30 days, only 4 in 180 days, and those 4 are from an older version of the workflow with different st",
+      "csp_check": {
+        "skills": true,
+        "time": true,
+        "unclaimed": true,
+        "no_open_pr": true,
+        "max_2_per_repo": true,
+        "not_abandoned": true
+      },
+      "explanation": "Predicted Easy (58% confidence), about 7.2h, merge probability 87%. Needs: yaml. Rules: R4: CONTRIBUTING.md present and replies under 3 days -> priority +0.15."
+    },
+    {
+      "rank": 2,
+      "id": "kubernetes/minikube#23091",
+      "repo": "kubernetes/minikube",
+      "number": 23091,
+      "title": "image load: remote images may buffer layer data in memory via `tarball.Write`",
+      "url": "https://github.com/kubernetes/minikube/issues/23091",
+      "difficulty": "Easy",
+      "diff_conf": 0.7,
+      "p_merge": 0.8,
+      "est_hours": 5.9,
+      "reply_days": 0.2,
+      "skills": [
+        "go"
+      ],
+      "rules": [
+        "R4: CONTRIBUTING.md present and replies under 3 days -> priority +0.15"
+      ],
+      "snippet": "### What Happened?\n\nWhen loading from a remote registry (`minikube image load --remote <image>`), the path is:\n`remote.Image(ref) \u2192 tarball.Write(ref, img, tempFile)`\n\nUnlike the daemon OOM (#17785), remote.Image is lazy and fetches layers on demand over HTTP. However `tarball.Write` may still buffer individual layers in memory as it writes them, which can be significant for images with large layers.\n\nThis needs its own investigation, the root cause and fix are different from the daemon case. Maybe involving streaming each layer directly to the output tar without intermediate buffering.\n\n\n\n### Attach the log file\n\nN/A\n\n### Operating System\n\nNone\n\n### Driver\n\nNone",
+      "csp_check": {
+        "skills": true,
+        "time": true,
+        "unclaimed": true,
+        "no_open_pr": true,
+        "max_2_per_repo": true,
+        "not_abandoned": true
+      },
+      "explanation": "Predicted Easy (70% confidence), about 5.9h, merge probability 80%. Needs: go. Rules: R4: CONTRIBUTING.md present and replies under 3 days -> priority +0.15."
+    }
+  ],
+  "budget_hours": 18.0,
+  "planned_hours": 13.1,
+  "rejected": {
+    "too hard for level": 209,
+    "already assigned": 91,
+    "missing skills": 6
+  },
+  "csp_nodes_fc_mrv": 2,
+  "csp_nodes_plain": 2
+}
