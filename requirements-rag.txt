@@ -1,0 +1,7 @@
+langchain
+chromadb
+openai
+anthropic
+pydantic
+fastapi
+uvicorn
