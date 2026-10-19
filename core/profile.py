@@ -9,3 +9,4 @@ class Profile(BaseModel):
     k: int = 3
     avoid: list[str] = Field(default_factory=list)
     use_llm: bool = False
+    include_uncertain: bool = True       # False hides issues where the model's top probability is under 50%
