@@ -1,4 +1,4 @@
-import re
+import os, re
 import datetime as dt
 from collector.github_client import GitHubClient
 from collector.db import conn, upsert
@@ -6,6 +6,10 @@ from collector.db import conn, upsert
 gh = GitHubClient()
 FMT = "%Y-%m-%dT%H:%M:%SZ"
 LINK = re.compile(r"(?i)\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s*:?\s*(?:[\w.\-]+/[\w.\-]+)?#(\d+)")
+# how many pages (100 items each) to read per repo; raise these to collect more data
+CLOSED_PAGES = int(os.getenv("CLOSED_PAGES", "3"))
+OPEN_PAGES = int(os.getenv("OPEN_PAGES", "2"))
+PR_PAGES = int(os.getenv("PR_PAGES", "3"))
 
 
 def linked_numbers(text):
@@ -39,12 +43,15 @@ def base_row(full, i):
     }
 
 
-def collect_repo(c, full):
+def collect_repo(c, full, closed_pages=None, open_pages=None, pr_pages=None):
+    closed_pages = closed_pages or CLOSED_PAGES
+    open_pages = open_pages or OPEN_PAGES
+    pr_pages = pr_pages or PR_PAGES
     q = lambda st: {"state": st, "sort": "created", "direction": "desc"}
-    closed = [i for i in gh.paginate(f"/repos/{full}/issues", q("closed"), 3) if "pull_request" not in i]
-    opened = [i for i in gh.paginate(f"/repos/{full}/issues", q("open"), 2) if "pull_request" not in i]
-    closed_prs = gh.paginate(f"/repos/{full}/pulls", q("closed"), 3)
-    open_prs = gh.paginate(f"/repos/{full}/pulls", {"state": "open"}, 2)
+    closed = [i for i in gh.paginate(f"/repos/{full}/issues", q("closed"), closed_pages) if "pull_request" not in i]
+    opened = [i for i in gh.paginate(f"/repos/{full}/issues", q("open"), open_pages) if "pull_request" not in i]
+    closed_prs = gh.paginate(f"/repos/{full}/pulls", q("closed"), pr_pages)
+    open_prs = gh.paginate(f"/repos/{full}/pulls", {"state": "open"}, open_pages)
 
     pr_for_issue = {}
     for pr in closed_prs:
@@ -70,6 +77,8 @@ def collect_repo(c, full):
             "pr_merged": int(bool(pr.get("merged_at"))),
             "pr_author_assoc": pr.get("author_association"),
             "first_response_hours": first_response_hours(i),
+            "pr_review_comments": d.get("review_comments"),
+            "pr_comments": d.get("comments"), "pr_commits": d.get("commits"),
         })
         upsert(c, "issues", row)
         n_closed += 1
@@ -81,15 +90,16 @@ def collect_repo(c, full):
 
     c.commit()
     print(f"{full}: {n_closed} labelled closed, {len(opened)} open")
+    return n_closed, len(opened)
 
 
-def main(repos_file="repos.txt"):
+def main(repos_file="repos.txt", closed_pages=None, open_pages=None, pr_pages=None):
     c = conn()
     for line in open(repos_file):
         full = line.strip()
         if not full or full.startswith("#"):
             continue
         try:
-            collect_repo(c, full)
+            collect_repo(c, full, closed_pages, open_pages, pr_pages)
         except Exception as e:
             print("FAILED", full, e)
