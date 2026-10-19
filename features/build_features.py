@@ -1,12 +1,15 @@
+import os
 import numpy as np
 import pandas as pd
 from collector.db import conn
+from features.text_features import add_struct, STRUCT
+from features.labels import assign_labels
 
 NUM = ["body_len", "title_len", "n_labels", "is_gfi", "is_help_wanted", "is_bug", "is_docs",
        "n_code_blocks", "has_link", "log_stars", "log_contributors", "has_contributing",
-       "repo_age_days"]
+       "repo_age_days"] + STRUCT
 CAT = ["language", "author_assoc"]
-FEATURES = NUM + CAT + ["text"]
+FEATURES = NUM + CAT + ["text", "repo"]
 # LEAKAGE RULE: 'comments', 'has_assignee' and every pr_* column are NOT features.
 
 
@@ -40,29 +43,51 @@ def add_features(df):
     df["repo_age_days"] = (pd.Timestamp.now(tz="UTC") - pd.to_datetime(df["repo_created"], utc=True)).dt.days
     df["language"] = df["language"].fillna("unknown")
     df["author_assoc"] = df["author_assoc"].fillna("NONE")
+    df = add_struct(df)
     df[NUM] = df[NUM].fillna(0)
     return df
 
 
 def add_labels(df):
-    """Labels come from the RESOLVED PR. Use them only as targets, never as inputs."""
+    """Labels come from the RESOLVED PR (merged only). Targets only, never inputs."""
     df = df.copy()
-    lines = df["pr_additions"].fillna(0) + df["pr_deletions"].fillna(0)
-    files = df["pr_files"].fillna(0)
-    df["difficulty"] = np.where((lines <= 30) & (files <= 2), "Easy",
-                        np.where((lines > 200) | (files > 6), "Hard", "Medium"))
     df["hours_to_close"] = (pd.to_datetime(df["closed_at"], utc=True)
                             - pd.to_datetime(df["created_at"], utc=True)).dt.total_seconds() / 3600
+    df["difficulty"] = pd.Series([None] * len(df), index=df.index, dtype=object)   # object dtype: pandas 3 is strict
+    df["effort"] = np.nan
+    m = (df["pr_merged"] == 1) & df["pr_files"].notna()
+    if m.sum() >= 10:
+        lab = assign_labels(df[m])
+        df.loc[m, "difficulty"] = lab["difficulty"]
+        df.loc[m, "effort"] = lab["effort"]
     return df
 
 
-def main():
+def labelled():
+    """The training table: closed issues whose merged PR gives a difficulty label."""
     df = add_labels(add_features(load(state="closed")))
-    df = df[df.pr_merged == 1]
+    return df[df["difficulty"].notna()].copy()
+
+
+def main(n_manual=200):
+    df = labelled()
+    print(f"Labelled issues: {len(df)} from {df.repo.nunique()} repos")
     print("Difficulty distribution:\n", df["difficulty"].value_counts(normalize=True).round(3))
-    print("Tune the thresholds in add_labels() if one class is under 15%.")
-    sample = df.sample(min(200, len(df)), random_state=1)[["id", "repo", "number", "title", "difficulty"]].copy()
-    sample["url"] = "https://github.com/" + sample["repo"] + "/issues/" + sample["number"].astype(str)
-    sample["my_difficulty"] = ""
-    sample.to_csv("data/processed/manual_label_sample.csv", index=False)
-    print("Wrote data/processed/manual_label_sample.csv. Open it, read each issue, and fill my_difficulty with Easy/Medium/Hard.")
+    path = "data/processed/manual_label_sample.csv"
+    os.makedirs("data/processed", exist_ok=True)
+    keep = pd.DataFrame()
+    if os.path.exists(path):                         # never throw away labels you already typed
+        old = pd.read_csv(path)
+        keep = old[old["my_difficulty"].astype(str).str.strip().isin(["Easy", "Medium", "Hard"])]
+    rest = df[~df["id"].isin(keep["id"] if len(keep) else [])]
+    need = max(0, n_manual - len(keep))
+    new = rest.sample(min(need, len(rest)), random_state=1)[["id", "repo", "number", "title", "difficulty"]].copy()
+    new["url"] = "https://github.com/" + new["repo"] + "/issues/" + new["number"].astype(str)
+    new["my_difficulty"] = ""
+    if len(keep):
+        k = keep[["id", "my_difficulty"]].merge(df[["id", "repo", "number", "title", "difficulty"]], on="id")
+        k["url"] = "https://github.com/" + k["repo"] + "/issues/" + k["number"].astype(str)
+        new = pd.concat([k[new.columns], new])
+    new.to_csv(path, index=False)
+    print(f"Wrote {path}: {len(new)} rows, {int((new.my_difficulty.astype(str).str.strip() != '').sum())} already labelled by you.")
+    print("Label them with:  python cli.py label")
