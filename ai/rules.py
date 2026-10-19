@@ -1,42 +1,75 @@
-class Rule:
-    def __init__(self, name, cond, effect):
-        self.name, self.cond, self.effect = name, cond, effect
+# Responsible AI rule definitions (PEAS table)
+# This file is imported by docs and benchmarks.
 
+PEAS = {
+    "Performance": ["Accurate difficulty prediction", "Robust merge prediction"],
+    "Environment": ["Open‑source repositories", "GitHub API"],
+    "Actuators": ["Recommendation CLI", "GitHub comment bot"],
+    "Sensors": ["Issue text, tags, repository metadata"]
+}
 
-def _add(x):
-    def f(s): s["priority"] += x
-    return f
-
-
-def _flag(name):
-    def f(s): s["flags"].append(name)
-    return f
-
-
-def _exclude(s): s["excluded"] = True
-
-
-def _slow(f): return f["reply_days"] is not None and f["reply_days"] > 60
-def _fast(f): return f["reply_days"] is not None and f["reply_days"] < 3
-
-
+# Example rule list used by the benchmark reports
 RULES = [
-    Rule("R1: open PR already exists -> EXCLUDE", lambda f, s: f["has_open_pr"], _exclude),
-    Rule("R2: maintainers reply slower than 60 days -> priority -0.30", lambda f, s: _slow(f), _add(-0.30)),
-    Rule("R3: 'help wanted' and unassigned -> priority +0.20", lambda f, s: f["help_wanted"] and f["unassigned"], _add(0.20)),
-    Rule("R4: CONTRIBUTING.md present and replies under 3 days -> priority +0.15",
-         lambda f, s: f["has_contributing"] and _fast(f), _add(0.15)),
-    Rule("R5: older than 1 year with no activity -> flag STALE", lambda f, s: f["age_days"] > 365 and f["comments"] == 0, _flag("stale")),
-    Rule("R6: flagged stale -> priority -0.20 (chained from R5)", lambda f, s: "stale" in s["flags"], _add(-0.20)),
+    "No data leakage: only features available at issue creation are used.",
+    "Repo‑prior must be learned on training data only (leave‑one‑out).",
+    "Use calibrated probabilities for downstream cost calculations.",
+    "When a model predicts Hard as Easy the cost is highest (3).",
+    "Budget bound in CSP reduces expansion dramatically."
 ]
 
+def get_rules():
+    """Return the rule list for reporting purposes."""
+    return RULES
 
-def run_rules(facts):
-    state = {"priority": 0.0, "excluded": False, "flags": [], "trace": []}
-    fired, changed = set(), True
-    while changed:                        # forward chaining: repeat until nothing new fires
-        changed = False
-        for r in RULES:
-            if r.name not in fired and r.cond(facts, state):
-                r.effect(state); fired.add(r.name); state["trace"].append(r.name); changed = True
-    return state
+
+def is_noise(title: str, labels: str | None = None) -> bool:
+    """Simple heuristic to identify noisy issues.
+    Args:
+        title: Issue title.
+        labels: Comma‑separated label string (optional).
+    Returns:
+        True if the issue is considered noise, False otherwise.
+    """
+    t = title.lower()
+    if "dashboard" in t or t.startswith("tracking issue"):
+        return True
+    if labels:
+        lbl = labels.lower()
+        if "epic" in lbl or "kind/epic" in lbl:
+            return True
+    return False
+
+
+def run_rules(facts: dict) -> dict:
+    """Evaluate a set of simple rules on the provided fact dictionary.
+    Returns a dict with keys: excluded (bool), flags (list), priority (float), trace (list).
+    """
+    result = {
+        "excluded": False,
+        "flags": [],
+        "priority": 0.0,
+        "trace": []
+    }
+    # Exclusion rules
+    if facts.get("has_open_pr"):
+        result["excluded"] = True
+        result["trace"].append("has_open_pr")
+    title = facts.get("title", "").lower()
+    if title.startswith("tracking issue"):
+        result["excluded"] = True
+        result["trace"].append("tracking_title")
+    if "wontfix" in facts.get("labels", "").lower():
+        result["excluded"] = True
+        result["trace"].append("wontfix_label")
+    # Flags and priority adjustments
+    if facts.get("age_days", 0) > 365 and facts.get("comments", 0) == 0:
+        result["flags"].append("stale")
+        result["priority"] -= 0.1
+        result["trace"].extend(["stale_rule", "priority_adjust"])
+    if facts.get("gfi") and facts.get("help_wanted"):
+        result["priority"] += 0.5
+        result["trace"].append("gfi_help_wanted")
+    if facts.get("conf", 1.0) < 0.5:
+        result["flags"].append("uncertain")
+        result["trace"].append("uncertain_confidence")
+    return result
