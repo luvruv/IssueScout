@@ -1,6 +1,13 @@
 .env
 .venv/
-data/
-models/
 __pycache__/
 *.pyc
+*.log
+data/raw/
+data/*.db
+data/docs/
+data/kits/
+data/emb_cache.pkl
+data/last_plan.json
+models/
+# KEEP in git so reviewers can see your evidence: report/, data/processed/, data/eval/, data/outcomes.jsonl, data/feedback.jsonl
