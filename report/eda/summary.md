@@ -1,21 +1,21 @@
 # EDA summary
 
-- issues in DB: 2709 (closed 551, open 2158)
-- repos: 31; languages: {'Go': 24, 'Python': 7}
-- labelled (merged PR) issues used for training: 466 in 30 repos
-- duplicate ids: 0; duplicate titles within a repo: 5
-- missing share: {'body': 0.0, 'labels': 0.0, 'first_response_hours': 0.883, 'pr_files': 0.797, 'pr_review_comments': 1.0}
-- class distribution: {'Easy': 0.401, 'Medium': 0.399, 'Hard': 0.2}  (imbalance ratio max/min = 2.00)
-- 'good first issue' share: open 0.012, labelled 0.049
-- top repo holds 14.6% of labelled issues (repo skew)
-- features most correlated with effort: kw_big (+0.14), is_docs (+0.14), is_gfi (+0.09), has_repro (+0.09), n_labels (+0.08)
-- maintainer first reply: median 12.8 h, 90th pct 485 h (n=316)
-- extreme body-length outliers (3xIQR): 7; kept (real issues), log-scaled in plots
+- issues in DB: 8655 (closed 1576, open 7079)
+- repos: 83; languages: {'Go': 67, 'Python': 11, 'TypeScript': 1, 'Shell': 1, 'Jinja': 1, 'C++': 1, 'Rust': 1}
+- labelled (merged PR) issues used for training: 1359 in 77 repos
+- duplicate ids: 0; duplicate titles within a repo: 24
+- missing share: {'body': 0.0, 'labels': 0.0, 'first_response_hours': 0.909, 'pr_files': 0.818, 'pr_review_comments': 0.818}
+- class distribution: {'Easy': 0.401, 'Medium': 0.397, 'Hard': 0.202}  (imbalance ratio max/min = 1.99)
+- 'good first issue' share: open 0.009, labelled 0.023
+- top repo holds 12.7% of labelled issues (repo skew)
+- features most correlated with effort: is_docs (+0.12), kw_big (+0.11), n_labels (+0.08), kw_lint (+0.07), n_words (+0.06)
+- maintainer first reply: median 13.6 h, 90th pct 459 h (n=789)
+- extreme body-length outliers (3xIQR): 47; kept (real issues), log-scaled in plots
 - difficulty split by 'good first issue' label:
 difficulty   Easy  Medium   Hard
 is_gfi                          
-0           0.391   0.409  0.201
-1           0.609   0.217  0.174
-- top terms Easy: github, cli, https, com, version, v3, test, http, urfave, error
-- top terms Medium: cli, github, https, com, v3, command, cmd, version, flag, context
-- top terms Hard: github, cli, https, com, helm, help, command, webhook, manager, pytest
+0           0.398   0.398  0.204
+1           0.516   0.355  0.129
+- top terms Easy: goreleaser, github, https, com, version, audit, test, blob, file, error
+- top terms Medium: github, cli, https, com, version, http, error, file, test, v3
+- top terms Hard: goreleaser, audit, github, com, https, 628c889d7f2a34066649833be419fdb9abe01174, agents, blob, source, example
