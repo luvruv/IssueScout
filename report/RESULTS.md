@@ -2,86 +2,86 @@
 
 ## 1. Dataset
 - repos: 127
-- issues: 8655 (open 7079)
-- labelled (merged PR): 1359
+- issues: 9276 (open 7620)
+- labelled (merged PR): 1397
 
 ### EDA summary
 
-- issues in DB: 8655 (closed 1576, open 7079)
-- repos: 83; languages: {'Go': 67, 'Python': 11, 'TypeScript': 1, 'Shell': 1, 'Jinja': 1, 'C++': 1, 'Rust': 1}
-- labelled (merged PR) issues used for training: 1359 in 77 repos
+- issues in DB: 9276 (closed 1656, open 7620)
+- repos: 87; languages: {'Go': 68, 'Python': 14, 'TypeScript': 1, 'Shell': 1, 'Jinja': 1, 'C++': 1, 'Rust': 1}
+- labelled (merged PR) issues used for training: 1397 in 81 repos
 - duplicate ids: 0; duplicate titles within a repo: 24
-- missing share: {'body': 0.0, 'labels': 0.0, 'first_response_hours': 0.909, 'pr_files': 0.818, 'pr_review_comments': 0.818}
+- missing share: {'body': 0.0, 'labels': 0.0, 'first_response_hours': 0.908, 'pr_files': 0.821, 'pr_review_comments': 0.821}
 - class distribution: {'Easy': 0.401, 'Medium': 0.397, 'Hard': 0.202}  (imbalance ratio max/min = 1.99)
-- 'good first issue' share: open 0.009, labelled 0.023
-- top repo holds 12.7% of labelled issues (repo skew)
-- features most correlated with effort: is_docs (+0.12), kw_big (+0.11), n_labels (+0.08), kw_lint (+0.07), n_words (+0.06)
-- maintainer first reply: median 13.6 h, 90th pct 459 h (n=789)
-- extreme body-length outliers (3xIQR): 47; kept (real issues), log-scaled in plots
+- 'good first issue' share: open 0.008, labelled 0.022
+- top repo holds 12.3% of labelled issues (repo skew)
+- features most correlated with effort: kw_big (+0.11), is_docs (+0.09), n_labels (+0.08), kw_lint (+0.06), is_help_wanted (+0.05)
+- maintainer first reply: median 11.5 h, 90th pct 421 h (n=854)
+- extreme body-length outliers (3xIQR): 50; kept (real issues), log-scaled in plots
 - difficulty split by 'good first issue' label:
 difficulty   Easy  Medium   Hard
 is_gfi                          
 0           0.398   0.398  0.204
 1           0.516   0.355  0.129
 - top terms Easy: goreleaser, github, https, com, version, audit, test, blob, file, error
-- top terms Medium: github, cli, https, com, version, http, error, file, test, v3
+- top terms Medium: github, https, com, cli, version, http, error, file, test, command
 - top terms Hard: goreleaser, audit, github, com, https, 628c889d7f2a34066649833be419fdb9abe01174, agents, blob, source, example
 
 
 ## 2. Difficulty label validation
 "no manual labels yet"
-label-threshold sensitivity: {"0.35/0.75": 0.431, "0.4/0.8": 0.425, "0.45/0.85": 0.412}
+label-threshold sensitivity: {"0.35/0.75": 0.431, "0.4/0.8": 0.388, "0.45/0.85": 0.383}
 
 ## 3. Difficulty classification: model comparison
 (grouped CV = unseen repos; test = newest 20%; chance for 3 balanced classes is about 0.33)
 
 | model | test_f1_macro | test_accuracy | test_precision_macro | test_recall_macro | test_f1_weighted | test_cost | hard_called_easy | train_s | infer_ms_each | test_roc_auc_ovr | cv_f1_grouped | cv_f1_std | cv_train_f1 | overfit_gap | f1_95ci |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| baseline: majority | 0.183 | 0.379 |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| baseline: good-first-issue label | 0.183 | 0.379 |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| LogisticRegression | 0.416 | 0.445 | 0.415 | 0.423 | 0.448 | 0.721 | 0.289 | 0.379 | 0.146 | 0.611 | 0.368 | 0.037 | 0.816 | 0.447 | [0.345, 0.475] |
-| DecisionTree | 0.389 | 0.460 | 0.439 | 0.406 | 0.438 | 0.647 | 0.044 | 0.331 | 0.146 | 0.546 | 0.205 | 0.005 | 0.406 | 0.202 | [0.331, 0.447] |
-| RandomForest | 0.364 | 0.496 | 0.555 | 0.391 | 0.442 | 0.566 | 0.178 | 0.780 | 0.275 | 0.620 | 0.328 | 0.026 | 0.989 | 0.661 | [0.309, 0.418] |
-| SVM(linear) | 0.340 | 0.467 | 0.315 | 0.375 | 0.427 | 0.754 | 0.667 | 1.765 | 0.343 | 0.595 | 0.327 | 0.033 | 0.634 | 0.307 | [0.296, 0.377] |
-| KNN(cosine) | 0.365 | 0.449 | 0.374 | 0.371 | 0.431 | 0.732 | 0.422 | 0.789 | 0.402 | 0.565 | 0.321 | 0.059 | 0.999 | 0.678 | [0.305, 0.428] |
-| GradientBoosting | 0.336 | 0.452 | 0.345 | 0.358 | 0.416 | 0.640 | 0.244 | 4.186 | 0.153 | 0.553 | 0.288 | 0.051 | 0.629 | 0.341 | [0.284, 0.378] |
-| MLP(64) | 0.371 | 0.445 | 0.374 | 0.375 | 0.434 | 0.735 | 0.400 | 39.159 | 0.276 | 0.589 | 0.392 | 0.047 | 0.999 | 0.607 | [0.313, 0.422] |
+| baseline: majority | 0.184 | 0.382 |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| baseline: good-first-issue label | 0.184 | 0.382 |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| LogisticRegression | 0.413 | 0.446 | 0.412 | 0.415 | 0.448 | 0.707 | 0.255 | 0.416 | 0.140 | 0.605 | 0.343 | 0.024 | 0.821 | 0.477 | [0.352, 0.471] |
+| DecisionTree | 0.271 | 0.389 | 0.343 | 0.311 | 0.330 | 0.693 | 0.043 | 0.323 | 0.146 | 0.470 | 0.202 | 0.008 | 0.370 | 0.168 | [0.228, 0.314] |
+| RandomForest | 0.334 | 0.489 | 0.339 | 0.378 | 0.424 | 0.561 | 0.149 | 0.845 | 0.277 | 0.596 | 0.334 | 0.022 | 0.990 | 0.655 | [0.292, 0.374] |
+| SVM(linear) | 0.333 | 0.464 | 0.305 | 0.367 | 0.420 | 0.721 | 0.553 | 0.921 | 0.145 | 0.561 | 0.309 | 0.020 | 0.625 | 0.316 | [0.293, 0.37] |
+| KNN(cosine) | 0.359 | 0.439 | 0.366 | 0.366 | 0.423 | 0.750 | 0.426 | 0.302 | 0.175 | 0.572 | 0.295 | 0.051 | 0.999 | 0.704 | [0.31, 0.411] |
+| GradientBoosting | 0.317 | 0.436 | 0.294 | 0.347 | 0.397 | 0.654 | 0.255 | 4.410 | 0.149 | 0.511 | 0.278 | 0.066 | 0.669 | 0.391 | [0.273, 0.356] |
+| MLP(64) | 0.383 | 0.461 | 0.384 | 0.388 | 0.449 | 0.714 | 0.383 | 18.565 | 0.145 | 0.575 | 0.385 | 0.032 | 0.999 | 0.614 | [0.327, 0.435] |
 
-Chosen: **MLP(64)** (n=1359, repos=77, calibration ECE=0.034).
+Chosen: **MLP(64)** (n=1397, repos=81, calibration ECE=0.053).
 
 **Honest reading:** best grouped-CV macro-F1 is 0.39. This is close to chance: say so, and explain that more repos are needed.
 
 ## 4. Merge prediction
 | model | cv_ap_grouped | test_ap | test_roc_auc | test_base_rate |
 |---|---|---|---|---|
-| LogisticRegression | 0.924 | 0.962 | 0.703 | 0.918 |
-| RandomForest | 0.922 | 0.955 | 0.671 | 0.918 |
-| GradientBoosting | 0.920 | 0.948 | 0.649 | 0.918 |
-| baseline: merge rate |  | 0.918 |  |  |
+| LogisticRegression | 0.908 | 0.955 | 0.755 | 0.886 |
+| RandomForest | 0.915 | 0.945 | 0.737 | 0.886 |
+| GradientBoosting | 0.902 | 0.944 | 0.724 | 0.886 |
+| baseline: merge rate |  | 0.886 |  |  |
 
 ## 5. Time-to-close regression
 | model | test_r2 | test_mae_logh | test_rmse_logh | cv_r2_grouped | nonzero_coefs | coef_l2 |
 |---|---|---|---|---|---|---|
-| baseline: global median | -0.809 | 1.395 |  |  |  |  |
-| baseline: repo median | -0.619 | 1.301 |  |  |  |  |
-| Linear | -3.903 | 2.334 | 2.951 | -1.404 | 2030.000 | 117.705 |
-| Ridge a=1 | -0.845 | 1.414 | 1.810 | 0.006 | 2030.000 | 23.990 |
-| Ridge a=10 | -0.781 | 1.407 | 1.778 | 0.044 | 2030.000 | 6.039 |
-| Ridge a=100 | -0.728 | 1.373 | 1.752 | -0.001 | 2030.000 | 1.690 |
-| Ridge a=300 | -0.670 | 1.338 | 1.722 | -0.032 | 2030.000 | 1.096 |
-| Lasso a=0.01 | -0.925 | 1.464 | 1.849 | 0.035 | 23.000 | 6.658 |
-| Lasso a=0.03 | -0.802 | 1.413 | 1.789 | 0.003 | 22.000 | 3.596 |
-| Lasso a=0.1 | -0.692 | 1.373 | 1.733 | -0.046 | 13.000 | 1.226 |
+| baseline: global median | -0.859 | 1.434 |  |  |  |  |
+| baseline: repo median | -0.591 | 1.307 |  |  |  |  |
+| Linear | -4.337 | 2.474 | 3.123 | -1.822 | 2030.000 | 122.610 |
+| Ridge a=1 | -0.824 | 1.440 | 1.826 | 0.021 | 2030.000 | 24.094 |
+| Ridge a=10 | -0.773 | 1.426 | 1.800 | 0.044 | 2030.000 | 6.117 |
+| Ridge a=100 | -0.717 | 1.396 | 1.771 | 0.005 | 2030.000 | 1.702 |
+| Ridge a=300 | -0.653 | 1.357 | 1.738 | -0.008 | 2030.000 | 1.096 |
+| Lasso a=0.01 | -0.917 | 1.485 | 1.872 | 0.028 | 24.000 | 6.724 |
+| Lasso a=0.03 | -0.795 | 1.436 | 1.811 | 0.004 | 24.000 | 3.667 |
+| Lasso a=0.1 | -0.701 | 1.402 | 1.763 | -0.022 | 13.000 | 1.219 |
 
 beats repo-median baseline: False
 
 ## 6. Repository clustering
 cluster,log_stars,log_forks,log_contrib,log_open,log_push,age_years,log_reply_h,merge_rate,has_contributing,n_repos
-0,10.46,8.74,5.9,5.23,3.05,12.89,3.08,0.32,0.5,10
-1,9.29,7.58,5.96,4.87,1.2,10.12,2.44,0.88,0.93,28
-2,10.68,8.82,6.0,6.57,1.16,11.61,2.7,0.86,1.0,51
-3,10.24,8.72,5.99,6.6,0.97,13.31,2.54,0.88,0.0,15
-4,9.84,7.45,5.28,5.39,2.48,10.26,3.48,0.81,0.7,23
+0,10.16,8.04,5.43,5.12,4.98,11.58,3.37,0.75,0.71,14
+1,10.23,8.68,5.93,5.85,2.54,13.17,2.29,0.81,0.0,20
+2,9.38,7.44,5.76,5.17,2.49,9.99,2.84,0.86,0.9,39
+3,10.7,8.83,6.0,6.63,2.44,11.6,2.55,0.87,1.0,47
+4,10.56,8.65,5.94,6.4,2.65,11.74,3.1,0.2,0.86,7
 
 
 ## 7. CSP benchmark
@@ -93,22 +93,22 @@ Nodes explored / seconds (lower is better; all methods find a plan whenever one 
 | synthetic n=30 | 5 | 20 | 36 / 0.00s | 36 / 0.00s | 36 / 0.00s | 36 / 0.00s | 9 / 0.00s |
 | synthetic n=30 | 6 | 22 | 627 / 0.01s | 627 / 0.01s | 627 / 0.01s | 627 / 0.01s | 10 / 0.00s |
 | synthetic n=30 | 6 | 19 | 2920 (no plan) / 0.04s | 2920 (no plan) / 0.03s | 2920 (no plan) / 0.04s | 2920 (no plan) / 0.03s | 30 (no plan) / 0.00s |
-| synthetic n=30 | 7 | 24 | 4056 / 0.08s | 4056 / 0.06s | 4056 / 0.08s | 4056 / 0.06s | 19 / 0.00s |
+| synthetic n=30 | 7 | 24 | 4056 / 0.07s | 4056 / 0.05s | 4056 / 0.07s | 4056 / 0.05s | 19 / 0.00s |
 | synthetic n=40 | 4 | 16 | 19 / 0.00s | 19 / 0.00s | 19 / 0.00s | 19 / 0.00s | 7 / 0.00s |
 | synthetic n=40 | 5 | 20 | 312 / 0.01s | 312 / 0.00s | 312 / 0.01s | 312 / 0.00s | 10 / 0.00s |
 | synthetic n=40 | 6 | 22 | 694 / 0.02s | 694 / 0.01s | 694 / 0.02s | 694 / 0.01s | 12 / 0.00s |
 | synthetic n=40 | 6 | 19 | 909 / 0.02s | 909 / 0.01s | 909 / 0.02s | 909 / 0.01s | 11 / 0.00s |
-| synthetic n=40 | 7 | 24 | 8878 / 0.23s | 8878 / 0.13s | 8878 / 0.23s | 8878 / 0.13s | 110 / 0.01s |
+| synthetic n=40 | 7 | 24 | 8878 / 0.21s | 8878 / 0.12s | 8878 / 0.21s | 8878 / 0.12s | 110 / 0.01s |
 | synthetic n=25 | 4 | 16 | 15 / 0.00s | 15 / 0.00s | 15 / 0.00s | 15 / 0.00s | 5 / 0.00s |
 | synthetic n=25 | 5 | 20 | 71 / 0.00s | 71 / 0.00s | 71 / 0.00s | 71 / 0.00s | 8 / 0.00s |
 | synthetic n=25 | 6 | 22 | 2970 (no plan) / 0.04s | 2970 (no plan) / 0.03s | 2970 (no plan) / 0.04s | 2970 (no plan) / 0.03s | 185 (no plan) / 0.01s |
 | synthetic n=25 | 6 | 19 | 1394 (no plan) / 0.02s | 1394 (no plan) / 0.01s | 1394 (no plan) / 0.02s | 1394 (no plan) / 0.01s | 25 (no plan) / 0.00s |
-| synthetic n=25 | 7 | 24 | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.06s | 25 (no plan) / 0.00s |
-| your data (top 40) | 4 | 16 | 92 (no plan) / 0.00s | 92 (no plan) / 0.00s | 92 (no plan) / 0.00s | 92 (no plan) / 0.00s | 40 (no plan) / 0.00s |
-| your data (top 40) | 5 | 20 | 719 (no plan) / 0.01s | 719 (no plan) / 0.01s | 719 (no plan) / 0.01s | 719 (no plan) / 0.01s | 40 (no plan) / 0.00s |
+| synthetic n=25 | 7 | 24 | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.05s | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.05s | 25 (no plan) / 0.00s |
+| your data (top 40) | 4 | 16 | 171 (no plan) / 0.00s | 171 (no plan) / 0.00s | 171 (no plan) / 0.00s | 171 (no plan) / 0.00s | 40 (no plan) / 0.00s |
+| your data (top 40) | 5 | 20 | 765 (no plan) / 0.01s | 765 (no plan) / 0.01s | 765 (no plan) / 0.01s | 765 (no plan) / 0.01s | 40 (no plan) / 0.00s |
 | your data (top 40) | 6 | 22 | 820 (no plan) / 0.01s | 820 (no plan) / 0.01s | 820 (no plan) / 0.01s | 820 (no plan) / 0.01s | 40 (no plan) / 0.00s |
-| your data (top 40) | 6 | 19 | 587 (no plan) / 0.01s | 587 (no plan) / 0.01s | 587 (no plan) / 0.01s | 587 (no plan) / 0.01s | 40 (no plan) / 0.00s |
-| your data (top 40) | 7 | 24 | 1098 (no plan) / 0.02s | 1098 (no plan) / 0.02s | 1098 (no plan) / 0.02s | 1098 (no plan) / 0.02s | 40 (no plan) / 0.00s |
+| your data (top 40) | 6 | 19 | 682 (no plan) / 0.01s | 682 (no plan) / 0.01s | 682 (no plan) / 0.01s | 682 (no plan) / 0.01s | 40 (no plan) / 0.00s |
+| your data (top 40) | 7 | 24 | 1711 (no plan) / 0.03s | 1711 (no plan) / 0.02s | 1711 (no plan) / 0.03s | 1711 (no plan) / 0.02s | 40 (no plan) / 0.00s |
 
 ## 8. A* benchmark
 | instance | A* cost | UCS cost | A* expanded | UCS expanded | h admissible? |
