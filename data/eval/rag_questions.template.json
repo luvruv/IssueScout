@@ -1,15 +1,85 @@
 [
   {
-    "template": true,
-    "repo": "owner/name",
-    "question": "How do I run the unit tests?",
-    "must_include": ["the exact command you read in that repo's CONTRIBUTING.md, e.g. make test"],
+    "repo": "encode/httpx",
+    "question": "How do I run the linters and auto-format the code?",
+    "must_include": [
+      "scripts/lint"
+    ],
     "answerable": true
   },
   {
-    "template": true,
-    "repo": "owner/name",
-    "question": "What is the company's stock price?",
+    "repo": "encode/httpx",
+    "question": "How do I clone my fork of HTTPX?",
+    "must_include": [
+      "git clone https://github.com/YOUR-USERNAME/httpx"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "encode/httpx",
+    "question": "Which scripts are used to run the tests?",
+    "must_include": [
+      "scripts/test"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "pytest-dev/pytest",
+    "question": "How do I run the tests with tox?",
+    "must_include": [
+      "tox -e linting,py"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "pytest-dev/pytest",
+    "question": "How do I install the pre-commit hook?",
+    "must_include": [
+      "pre-commit install"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "pytest-dev/pytest",
+    "question": "How do I build the documentation?",
+    "must_include": [
+      "tox -e docs"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "pytest-dev/pytest",
+    "question": "How do I run a single test file directly with pytest?",
+    "must_include": [
+      "pytest testing/test_config.py"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "pytest-dev/pytest",
+    "question": "How is the changelog entry file named?",
+    "must_include": [
+      "<issueid>.<type>.rst"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "psf/requests",
+    "question": "Which make targets exist for the project?",
+    "must_include": [
+      "test"
+    ],
+    "answerable": true
+  },
+  {
+    "repo": "psf/requests",
+    "question": "What is the stock price of the company that maintains this project?",
+    "must_include": [],
+    "answerable": false
+  },
+  {
+    "repo": "encode/httpx",
+    "question": "What is the favourite colour of the maintainers' pets?",
     "must_include": [],
     "answerable": false
   }
