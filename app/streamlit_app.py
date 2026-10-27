@@ -1,4 +1,11 @@
-import glob, json, os
+import glob, json, os, sys
+from pathlib import Path
+
+# Ensure project root is in sys.path when running via streamlit
+ROOT = str(Path(__file__).resolve().parent.parent)
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
 import pandas as pd
 import streamlit as st
 
