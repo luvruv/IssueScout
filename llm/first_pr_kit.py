@@ -38,11 +38,13 @@ def build_kit(ref, docs=None, issue=None, use_llm=False):
     tmpl = next((d["text"] for d in docs if "pull_request_template" in d["path"].lower()), "")
     sections = [l.strip("# ").strip() for l in tmpl.splitlines() if l.startswith("#")][:8]
     checklist = [l.strip() for l in tmpl.splitlines() if re.match(r"\s*[-*] \[[ x]\]", l)][:8]
+    mk = next((d["text"] for d in docs if d["path"] == "Makefile"), "")
+    mk_targets = [t.strip() for t in mk.replace("Makefile targets:", "").split(",") if t.strip() and not t.strip().startswith(".")]
     kit = {
         "issue": f"{repo}#{number}", "title": title, "url": f"https://github.com/{repo}/issues/{number}",
         "requires_cla": bool(CLA.search(allt)), "requires_dco_signoff": bool(DCO.search(allt)),
         "claim_style": (ASSIGN.search(allt).group(1) if ASSIGN.search(allt) else "comment on the issue and wait for a maintainer to reply"),
-        "setup_commands": _uniq(SETUP, allt), "test_commands": _uniq(TEST, allt),
+        "setup_commands": _uniq(SETUP, allt), "test_commands": _uniq(TEST, allt) or [f"make {t}" for t in mk_targets if t in ("test", "check", "lint", "ci")][:3],
         "commit_style": "Conventional Commits (feat:, fix:, docs:)" if CONV.search(allt) else "follow recent commit messages in `git log`",
         "pr_template_sections": sections, "pr_checklist": checklist, "docs_found": [d["path"] for d in docs],
         "files_mentioned": files, "search_hints": [f'git grep -n "{i}"' for i in idents] or ([f'git grep -n "{w}"' for w in re.findall(r"\b[a-z]+[A-Z]\w+|\b\w+_\w+\b", title)[:3]]),

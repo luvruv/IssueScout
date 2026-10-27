@@ -16,16 +16,17 @@ def main(path="data/eval/rag_questions.json", use_llm=True):
         if q["repo"] not in cache:
             cache[q["repo"]] = RepoRAG(q["repo"], fetch_docs(q["repo"]))
         t = time.time(); r = cache[q["repo"]].ask(q["question"], use_llm=use_llm); dt = time.time() - t
-        blob = (r["answer"] + " " + " ".join(s["snippet"] for s in r["sources"])).lower()
+        retrieved = " ".join(s.get("text", s["snippet"]) for s in r["sources"]).lower()
         if q.get("answerable", True):
-            hit = all(m.lower() in blob for m in q.get("must_include", []))
-            ok = hit and r["answer"] != NOT_FOUND
+            ret_hit = all(m.lower() in retrieved for m in q.get("must_include", []))
+            ok = all(m.lower() in r["answer"].lower() for m in q.get("must_include", [])) and r["answer"] != NOT_FOUND
         else:
-            ok = NOT_FOUND in r["answer"]
-        rows.append({"repo": q["repo"], "q": q["question"], "pass": bool(ok), "grounded": r["grounded"], "mode": r["mode"], "sec": round(dt, 2)})
+            ret_hit, ok = None, NOT_FOUND in r["answer"]
+        rows.append({"repo": q["repo"], "q": q["question"], "pass": bool(ok), "retrieval_hit": ret_hit, "grounded": r["grounded"], "mode": r["mode"], "sec": round(dt, 2)})
         print(("PASS " if ok else "FAIL ") + f"{q['repo']}: {q['question'][:60]}  (grounded {r['grounded']})")
     ans = [r for r, q in zip(rows, qs) if q.get("answerable", True)]
     summ = {"n": len(rows), "accuracy": round(sum(r["pass"] for r in rows) / len(rows), 3),
+            "retrieval_recall@4": round(sum(bool(r["retrieval_hit"]) for r in ans) / max(len(ans), 1), 3),
             "mean_groundedness": round(sum(r["grounded"] for r in ans) / max(len(ans), 1), 3),
             "refusal_correct": round(sum(r["pass"] for r, q in zip(rows, qs) if not q.get("answerable", True)) / max(sum(1 for q in qs if not q.get("answerable", True)), 1), 3),
             "backend": cache[qs[0]["repo"]].backend, "mode": rows[0]["mode"], "mean_seconds": round(sum(r["sec"] for r in rows) / len(rows), 2)}

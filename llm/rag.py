@@ -8,13 +8,25 @@ answer (best sentences from the docs), so the feature still works with no LLM at
 Every answer carries sources and a groundedness score."""
 import base64, json, os, re
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 from llm.client import complete, provider
 
 DOC_PATHS = ["CONTRIBUTING.md", ".github/CONTRIBUTING.md", "docs/CONTRIBUTING.md", "docs/contributing.md", "CONTRIBUTING.rst",
              "README.md", "DEVELOPMENT.md", "docs/development.md", "docs/DEVELOPMENT.md", "docs/dev/README.md", "HACKING.md",
              ".github/PULL_REQUEST_TEMPLATE.md", ".github/pull_request_template.md", "PULL_REQUEST_TEMPLATE.md", "Makefile"]
 NOT_FOUND = "NOT FOUND IN DOCS"
+GENERIC = {"run", "use", "using", "file", "files", "project", "code", "help", "need", "make", "work", "does", "used", "exist", "install", "build"}
+CMD = re.compile(r"^\s*\$|`[^`]+`|\b(?:tox|pip|pytest|make|git|npm|cargo|go test)\b|scripts/")
+MIN_COVERAGE = 0.34      # refuse when under a third of the question's content words appear in the retrieved text (tuned on 11 questions: re-check on yours)
+
+
+def coverage(question, text):
+    """Share of the question's content words found in the retrieved text (crude, language-independent refusal signal)."""
+    words = [w for w in re.findall(r"[a-z][a-z\-]+", question.lower()) if w not in ENGLISH_STOP_WORDS and w not in GENERIC and len(w) > 2]
+    if not words:
+        return 1.0
+    toks = {w[:5] for w in re.findall(r"[a-z][a-z\-]+", text.lower())}
+    return sum(1 for w in words if w[:5] in toks) / len(words)
 
 
 def fetch_docs(repo, refresh=False):
@@ -124,8 +136,10 @@ class RepoRAG:
         qt = _terms(q); sents = []
         for h in hits[:3]:
             for s in re.split(r"(?<=[.!?])\s+|\n", h["text"]):
-                if len(s.strip()) > 25:
-                    sents.append((len(qt & _terms(s)), s.strip(), h))
+                s = s.strip()
+                if len(s) > 12:
+                    ov = len(qt & _terms(s))
+                    sents.append((ov + (2 if ov and CMD.search(s) else 0), s, h))      # commands that match the question rank higher
         sents.sort(key=lambda t: -t[0])
         return " ".join(s for _, s, _ in sents[:4]) or NOT_FOUND
 
@@ -133,6 +147,9 @@ class RepoRAG:
         hits = self.retrieve(question, k)
         if not hits:
             return {"answer": NOT_FOUND, "sources": [], "grounded": 1.0, "mode": "none", "backend": self.backend}
+        cov = coverage(question, " ".join(h["text"] for h in hits))
+        if cov < MIN_COVERAGE:
+            return {"answer": NOT_FOUND, "sources": [], "grounded": 1.0, "mode": "refused (low coverage)", "backend": self.backend, "coverage": round(cov, 2)}
         ctx = "\n".join(f"[{i}] ({h['path']} > {h['heading']})\n{h['text']}" for i, h in enumerate(hits, 1))
         ans, mode = None, "extractive"
         if use_llm and provider() != "none":
@@ -143,8 +160,8 @@ class RepoRAG:
         if not ans:
             ans = self._extractive(question, hits)
         g, n = grounded_score(ans, ctx)
-        return {"answer": ans.strip(), "sources": [{"path": h["path"], "heading": h["heading"], "score": round(h["score"], 3), "snippet": h["text"][:240]} for h in hits],
-                "grounded": g, "checked_tokens": n, "mode": mode, "backend": self.backend,
+        return {"answer": ans.strip(), "sources": [{"path": h["path"], "heading": h["heading"], "score": round(h["score"], 3), "snippet": h["text"][:240], "text": h["text"]} for h in hits],
+                "coverage": round(cov, 2), "grounded": g, "checked_tokens": n, "mode": mode, "backend": self.backend,
                 "warning": "low groundedness: verify against the linked docs" if g < 0.7 else None}
 
 
