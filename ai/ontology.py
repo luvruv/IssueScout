@@ -86,9 +86,12 @@ def skills_to_learn(user_skills, required):
     return out
 
 
+_COMPILED = {k: re.compile(p) for k, p in PATTERNS.items()}      # compile once: this runs for every issue
+
+
 def extract_keywords(text, language):
-    t = text.lower()
-    found = {k for k, p in PATTERNS.items() if re.search(p, t)}
+    t = text[:4000].lower()
+    found = {k for k, rx in _COMPILED.items() if rx.search(t)}
     lang = (language or "").lower()
     if lang in G and not (found and found <= {"markdown", "yaml", "json"}):
         found.add(lang)
