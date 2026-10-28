@@ -19,6 +19,7 @@ class GitHubClient:
             "X-GitHub-Api-Version": "2022-11-28",
         })
         os.makedirs(CACHE, exist_ok=True)
+        self.remaining = None          # requests left this hour, updated after every real API call
 
     def _path(self, url, params):
         raw = url + json.dumps(params or {}, sort_keys=True)
@@ -34,8 +35,10 @@ class GitHubClient:
                 return json.load(f)
 
         missing = {"body": None, "next": None, "last": None}
+        cache_it = True
         while True:
             r = self.s.get(url, params=params, timeout=30)
+            self.remaining = r.headers.get("X-RateLimit-Remaining", self.remaining)
             if r.status_code in (403, 429):
                 msg = r.text.lower()
                 if r.headers.get("X-RateLimit-Remaining") == "0":
@@ -43,9 +46,9 @@ class GitHubClient:
                 elif "retry-after" in r.headers or "rate limit" in msg or "abuse" in msg:
                     wait = int(r.headers.get("Retry-After", 60))
                 else:
-                    out = missing          # forbidden for another reason, skip it
+                    out, cache_it = missing, False     # forbidden for another reason: skip it but do NOT remember it forever
                     break
-                print(f"Rate limited. Sleeping {wait:.0f}s")
+                print(f"Rate limited. Sleeping {wait:.0f}s ({wait/60:.0f} min). Do NOT press Ctrl+C: it resumes by itself.", flush=True)
                 time.sleep(wait)
                 continue
             if r.status_code in (404, 410, 451):
@@ -57,8 +60,9 @@ class GitHubClient:
                    "last": r.links.get("last", {}).get("url")}
             break
 
-        with open(path, "w") as f:
-            json.dump(out, f)
+        if cache_it:
+            with open(path, "w") as f:
+                json.dump(out, f)
         return out
 
     def paginate(self, url, params=None, max_pages=3):
