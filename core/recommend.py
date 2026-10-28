@@ -1,4 +1,4 @@
-import json, os
+import json, os, pickle
 from collections import Counter
 import joblib
 import numpy as np
@@ -32,7 +32,39 @@ def _meta():
     return json.load(open(p)) if os.path.exists(p) else {}
 
 
-def score_open():
+_MEM = {}
+_CACHE_FILES = ["data/issuescout.db", "models/difficulty.joblib", "models/merge.joblib", "data/processed/repo_flags.csv"]
+
+
+def _stamp():
+    return tuple(os.path.getmtime(p) if os.path.exists(p) else 0 for p in _CACHE_FILES)
+
+
+def score_open(force=False):
+    """Scoring 7000+ open issues takes ~1 minute and does NOT depend on the user's profile, so it is cached:
+    in memory, and on disk (data/scored_open.pkl). The cache refreshes itself when the database or a model changes."""
+    st = _stamp()
+    if not force and _MEM.get("stamp") == st:
+        return _MEM["df"]
+    path = "data/scored_open.pkl"
+    if not force and os.path.exists(path):
+        try:
+            stamp, df = pickle.load(open(path, "rb"))
+            if stamp == st:
+                _MEM.update(stamp=st, df=df)
+                return df
+        except Exception:
+            pass
+    df = _score_open_uncached()
+    _MEM.update(stamp=st, df=df)
+    try:
+        pickle.dump((st, df), open(path, "wb"))
+    except Exception:
+        pass
+    return df
+
+
+def _score_open_uncached():
     df = load(state="open")
     if df.empty:
         return df
