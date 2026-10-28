@@ -2,8 +2,8 @@
 
 ## 1. Dataset
 - repos: 127
-- issues: 9276 (open 7620)
-- labelled (merged PR): 1397
+- issues: 21224 (open 16425)
+- labelled (merged PR): 3991
 
 ### EDA summary
 
@@ -30,58 +30,58 @@ is_gfi
 
 ## 2. Difficulty label validation
 "no manual labels yet"
-label-threshold sensitivity: {"0.35/0.75": 0.431, "0.4/0.8": 0.388, "0.45/0.85": 0.383}
+label-threshold sensitivity: {"0.35/0.75": 0.419, "0.4/0.8": 0.432, "0.45/0.85": 0.421}
 
 ## 3. Difficulty classification: model comparison
 (grouped CV = unseen repos; test = newest 20%; chance for 3 balanced classes is about 0.33)
 
-| model | test_f1_macro | test_accuracy | test_precision_macro | test_recall_macro | test_f1_weighted | test_cost | hard_called_easy | train_s | infer_ms_each | test_roc_auc_ovr | cv_f1_grouped | cv_f1_std | cv_train_f1 | overfit_gap | f1_95ci |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| baseline: majority | 0.184 | 0.382 |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| baseline: good-first-issue label | 0.184 | 0.382 |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| LogisticRegression | 0.413 | 0.446 | 0.412 | 0.415 | 0.448 | 0.707 | 0.255 | 0.416 | 0.140 | 0.605 | 0.343 | 0.024 | 0.821 | 0.477 | [0.352, 0.471] |
-| DecisionTree | 0.271 | 0.389 | 0.343 | 0.311 | 0.330 | 0.693 | 0.043 | 0.323 | 0.146 | 0.470 | 0.202 | 0.008 | 0.370 | 0.168 | [0.228, 0.314] |
-| RandomForest | 0.334 | 0.489 | 0.339 | 0.378 | 0.424 | 0.561 | 0.149 | 0.845 | 0.277 | 0.596 | 0.334 | 0.022 | 0.990 | 0.655 | [0.292, 0.374] |
-| SVM(linear) | 0.333 | 0.464 | 0.305 | 0.367 | 0.420 | 0.721 | 0.553 | 0.921 | 0.145 | 0.561 | 0.309 | 0.020 | 0.625 | 0.316 | [0.293, 0.37] |
-| KNN(cosine) | 0.359 | 0.439 | 0.366 | 0.366 | 0.423 | 0.750 | 0.426 | 0.302 | 0.175 | 0.572 | 0.295 | 0.051 | 0.999 | 0.704 | [0.31, 0.411] |
-| GradientBoosting | 0.317 | 0.436 | 0.294 | 0.347 | 0.397 | 0.654 | 0.255 | 4.410 | 0.149 | 0.511 | 0.278 | 0.066 | 0.669 | 0.391 | [0.273, 0.356] |
-| MLP(64) | 0.383 | 0.461 | 0.384 | 0.388 | 0.449 | 0.714 | 0.383 | 18.565 | 0.145 | 0.575 | 0.385 | 0.032 | 0.999 | 0.614 | [0.327, 0.435] |
+| model | test_f1_macro | test_accuracy | test_precision_macro | test_recall_macro | test_f1_weighted | test_cost | hard_called_easy | train_s | infer_ms_each | test_roc_auc_ovr | cv_f1_grouped | cv_f1_std | cv_train_f1 | overfit_gap | f1_95ci | params |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| baseline: majority | 0.196 | 0.416 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| baseline: good-first-issue label | 0.196 | 0.416 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| LogisticRegression | 0.444 | 0.472 | 0.445 | 0.445 | 0.473 | 0.683 | 0.261 | 2.224 | 0.248 | 0.620 | 0.398 | 0.020 | 0.726 | 0.327 | [0.408, 0.479] |  |
+| DecisionTree | 0.371 | 0.423 | 0.427 | 0.409 | 0.387 | 0.702 | 0.113 | 1.777 | 0.241 | 0.553 | 0.165 | 0.032 | 0.314 | 0.148 | [0.336, 0.409] |  |
+| RandomForest | 0.437 | 0.492 | 0.528 | 0.432 | 0.476 | 0.638 | 0.345 | 4.523 | 0.359 | 0.612 | 0.389 | 0.018 | 0.983 | 0.593 | [0.398, 0.48] |  |
+| SVM(linear) | 0.365 | 0.498 | 0.333 | 0.404 | 0.450 | 0.642 | 0.394 | 6.120 | 0.273 | 0.620 | 0.338 | 0.018 | 0.525 | 0.187 | [0.341, 0.386] |  |
+| KNN(cosine) | 0.345 | 0.411 | 0.358 | 0.352 | 0.394 | 0.758 | 0.394 | 1.945 | 0.457 | 0.539 | 0.348 | 0.016 | 0.999 | 0.652 | [0.311, 0.374] |  |
+| GradientBoosting | 0.352 | 0.439 | 0.381 | 0.367 | 0.412 | 0.730 | 0.430 | 16.478 | 0.147 | 0.570 | 0.290 | 0.047 | 0.474 | 0.184 | [0.319, 0.383] |  |
+| MLP(64) | 0.383 | 0.433 | 0.386 | 0.383 | 0.427 | 0.745 | 0.373 | 54.732 | 0.145 | 0.571 | 0.388 | 0.027 | 0.999 | 0.611 | [0.348, 0.416] |  |
+| LogisticRegression (tuned) | 0.403 | 0.418 | 0.409 | 0.415 | 0.427 | 0.773 | 0.218 | 1.848 | 0.159 | 0.606 | 0.401 |  |  |  | [0.368, 0.434] | {'clf__C': 0.1} |
 
-Chosen: **MLP(64)** (n=1397, repos=81, calibration ECE=0.053).
+Chosen: **LogisticRegression (tuned)** (n=3991, repos=120, calibration ECE=0.046).
 
-**Honest reading:** best grouped-CV macro-F1 is 0.39. This is close to chance: say so, and explain that more repos are needed.
+**Honest reading:** best grouped-CV macro-F1 is 0.40. This is close to chance: say so, and explain that more repos are needed.
 
 ## 4. Merge prediction
 | model | cv_ap_grouped | test_ap | test_roc_auc | test_base_rate |
 |---|---|---|---|---|
-| LogisticRegression | 0.908 | 0.955 | 0.755 | 0.886 |
-| RandomForest | 0.915 | 0.945 | 0.737 | 0.886 |
-| GradientBoosting | 0.902 | 0.944 | 0.724 | 0.886 |
-| baseline: merge rate |  | 0.886 |  |  |
+| LogisticRegression | 0.884 | 0.940 | 0.755 | 0.865 |
+| RandomForest | 0.888 | 0.939 | 0.744 | 0.865 |
+| GradientBoosting | 0.876 | 0.940 | 0.741 | 0.865 |
+| baseline: merge rate |  | 0.865 |  |  |
 
 ## 5. Time-to-close regression
 | model | test_r2 | test_mae_logh | test_rmse_logh | cv_r2_grouped | nonzero_coefs | coef_l2 |
 |---|---|---|---|---|---|---|
-| baseline: global median | -0.859 | 1.434 |  |  |  |  |
-| baseline: repo median | -0.591 | 1.307 |  |  |  |  |
-| Linear | -4.337 | 2.474 | 3.123 | -1.822 | 2030.000 | 122.610 |
-| Ridge a=1 | -0.824 | 1.440 | 1.826 | 0.021 | 2030.000 | 24.094 |
-| Ridge a=10 | -0.773 | 1.426 | 1.800 | 0.044 | 2030.000 | 6.117 |
-| Ridge a=100 | -0.717 | 1.396 | 1.771 | 0.005 | 2030.000 | 1.702 |
-| Ridge a=300 | -0.653 | 1.357 | 1.738 | -0.008 | 2030.000 | 1.096 |
-| Lasso a=0.01 | -0.917 | 1.485 | 1.872 | 0.028 | 24.000 | 6.724 |
-| Lasso a=0.03 | -0.795 | 1.436 | 1.811 | 0.004 | 24.000 | 3.667 |
-| Lasso a=0.1 | -0.701 | 1.402 | 1.763 | -0.022 | 13.000 | 1.219 |
+| baseline: global median | -1.133 | 1.754 |  |  |  |  |
+| baseline: repo median | -0.992 | 1.685 |  |  |  |  |
+| Linear | -3.990 | 2.559 | 3.316 | -2.389 | 2033.000 | 609.249 |
+| Ridge a=1 | -0.885 | 1.629 | 2.038 | -0.039 | 2033.000 | 36.696 |
+| Ridge a=10 | -0.719 | 1.570 | 1.946 | 0.076 | 2033.000 | 10.355 |
+| Ridge a=100 | -0.740 | 1.581 | 1.958 | 0.061 | 2033.000 | 2.441 |
+| Ridge a=300 | -0.736 | 1.576 | 1.956 | 0.052 | 2033.000 | 1.367 |
+| Lasso a=0.01 | -0.814 | 1.614 | 2.000 | 0.061 | 26.000 | 6.372 |
+| Lasso a=0.03 | -0.762 | 1.593 | 1.971 | 0.054 | 22.000 | 2.597 |
+| Lasso a=0.1 | -0.697 | 1.559 | 1.934 | 0.043 | 9.000 | 0.814 |
 
 beats repo-median baseline: False
 
 ## 6. Repository clustering
 cluster,log_stars,log_forks,log_contrib,log_open,log_push,age_years,log_reply_h,merge_rate,has_contributing,n_repos
-0,10.16,8.04,5.43,5.12,4.98,11.58,3.37,0.75,0.71,14
-1,10.23,8.68,5.93,5.85,2.54,13.17,2.29,0.81,0.0,20
-2,9.38,7.44,5.76,5.17,2.49,9.99,2.84,0.86,0.9,39
-3,10.7,8.83,6.0,6.63,2.44,11.6,2.55,0.87,1.0,47
-4,10.56,8.65,5.94,6.4,2.65,11.74,3.1,0.2,0.86,7
+0,10.73,8.94,6.01,6.71,2.66,11.86,2.27,0.84,0.83,52
+1,9.42,7.58,5.81,5.27,2.57,10.73,3.2,0.87,0.8,49
+2,10.59,8.75,5.95,5.54,2.9,12.26,3.0,0.27,0.58,12
+3,10.19,7.87,5.31,5.21,4.67,10.91,3.57,0.79,0.64,14
 
 
 ## 7. CSP benchmark
@@ -124,7 +124,16 @@ Nodes explored / seconds (lower is better; all methods find a plan whenever one 
 A* always matched the optimal UCS cost: True
 
 ## 9. RAG evaluation
-"not run"
+{
+ "n": 11,
+ "accuracy": 0.545,
+ "retrieval_recall@4": 0.889,
+ "mean_groundedness": 0.912,
+ "refusal_correct": 0.5,
+ "backend": "langchain",
+ "mode": "extractive",
+ "mean_seconds": 0.01
+}
 ## 10. LLM evaluation
 "not run"
 
