@@ -95,11 +95,13 @@ def collect_repo(c, full, closed_pages=None, open_pages=None, pr_pages=None):
 
 def main(repos_file="repos.txt", closed_pages=None, open_pages=None, pr_pages=None):
     c = conn()
-    for line in open(repos_file):
-        full = line.strip()
-        if not full or full.startswith("#"):
-            continue
+    repos = [l.strip() for l in open(repos_file) if l.strip() and not l.startswith("#")]
+    failed = []
+    for n, full in enumerate(repos, 1):
         try:
+            print(f"[{n}/{len(repos)}] (API requests left this hour: {gh.remaining})", end=" ", flush=True)
             collect_repo(c, full, closed_pages, open_pages, pr_pages)
         except Exception as e:
-            print("FAILED", full, e)
+            print("FAILED", full, type(e).__name__, str(e)[:150], flush=True)
+            failed.append(full)
+    print(f"\nDone. {len(repos) - len(failed)} repos ok, {len(failed)} failed: {failed}")
