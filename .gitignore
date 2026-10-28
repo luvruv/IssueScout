@@ -10,4 +10,8 @@ data/kits/
 data/emb_cache.pkl
 data/last_plan.json
 models/
+.claude/
+.agents/
+.pytest_cache/
+collect.log
 # KEEP in git so reviewers can see your evidence: report/, data/processed/, data/eval/, data/outcomes.jsonl, data/feedback.jsonl

@@ -59,8 +59,11 @@ with tabs[0]:
             st.progress(min(1.0, i["probs"]["Easy"]), text=f"P(Easy)={i['probs']['Easy']:.0%}  P(Medium)={i['probs']['Medium']:.0%}  P(Hard)={i['probs']['Hard']:.0%}")
             st.link_button("Open on GitHub", i["url"])
             with st.expander("Why this issue? (rules, CSP check, similar solved issues)"):
-                st.markdown("**Rules fired**\n" + "\n".join("- " + r for r in (i["rules"] or ["none"])))
-                st.markdown("**CSP check**  " + "  ".join(f"{'✅' if v else '❌'} {kk}" for kk, v in i["csp_check"].items()))
+                #st.markdown("**Rules fired**\n" + "\n".join("- " + r for r in (i["rules"] or ["none"])))
+                #st.markdown("**CSP check**  " + "  ".join(f"{'✅' if v else '❌'} {kk}" for kk, v in i["csp_check"].items()))
+                a.metric("Predicted difficulty", i["difficulty"]); a.caption(f"top probability {i['diff_conf']:.0%}")
+                b.metric("P(merged | PR opened)", f"{i['p_merge']:.0%}"); b.caption("if someone opens a PR, not your own odds")
+                c.metric("Expected effort", f"{i['est_hours']} h"); c.caption("weighted guess: Easy 3h, Medium 8h, Hard 20h")
                 st.markdown("**Skills needed:** " + (", ".join(i["skills"]) or "none"))
                 st.write(i["explanation"]); st.caption(f"explanation source: {i['explanation_meta']['source']}")
                 for s in i.get("similar_solved", []):

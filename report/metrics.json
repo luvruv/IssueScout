@@ -275,6 +275,6 @@
     "refusal_correct": 0.5,
     "backend": "langchain",
     "mode": "extractive",
-    "mean_seconds": 0.01
+    "mean_seconds": 0.03
   }
 }
