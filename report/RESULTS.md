@@ -7,56 +7,56 @@
 
 ### EDA summary
 
-- issues in DB: 9276 (closed 1656, open 7620)
-- repos: 87; languages: {'Go': 68, 'Python': 14, 'TypeScript': 1, 'Shell': 1, 'Jinja': 1, 'C++': 1, 'Rust': 1}
-- labelled (merged PR) issues used for training: 1397 in 81 repos
-- duplicate ids: 0; duplicate titles within a repo: 24
-- missing share: {'body': 0.0, 'labels': 0.0, 'first_response_hours': 0.908, 'pr_files': 0.821, 'pr_review_comments': 0.821}
-- class distribution: {'Easy': 0.401, 'Medium': 0.397, 'Hard': 0.202}  (imbalance ratio max/min = 1.99)
-- 'good first issue' share: open 0.008, labelled 0.022
-- top repo holds 12.3% of labelled issues (repo skew)
-- features most correlated with effort: kw_big (+0.11), is_docs (+0.09), n_labels (+0.08), kw_lint (+0.06), is_help_wanted (+0.05)
-- maintainer first reply: median 11.5 h, 90th pct 421 h (n=854)
-- extreme body-length outliers (3xIQR): 50; kept (real issues), log-scaled in plots
+- issues in DB: 21224 (closed 4799, open 16425)
+- repos: 125; languages: {'Go': 68, 'Python': 35, 'Rust': 9, 'JavaScript': 6, 'TypeScript': 4, 'Shell': 1, 'Jinja': 1, 'C++': 1}
+- labelled (merged PR) issues used for training: 3991 in 120 repos
+- duplicate ids: 0; duplicate titles within a repo: 53
+- missing share: {'body': 0.0, 'labels': 0.0, 'first_response_hours': 0.864, 'pr_files': 0.774, 'pr_review_comments': 0.774}
+- class distribution: {'Easy': 0.4, 'Medium': 0.398, 'Hard': 0.202}  (imbalance ratio max/min = 1.98)
+- 'good first issue' share: open 0.006, labelled 0.027
+- top repo holds 5.3% of labelled issues (repo skew)
+- features most correlated with effort: kw_big (+0.15), n_labels (+0.13), repo_age_days (+0.11), has_contributing (+0.09), has_link (+0.08)
+- maintainer first reply: median 13.3 h, 90th pct 591 h (n=2896)
+- extreme body-length outliers (3xIQR): 135; kept (real issues), log-scaled in plots
 - difficulty split by 'good first issue' label:
 difficulty   Easy  Medium   Hard
 is_gfi                          
-0           0.398   0.398  0.204
-1           0.516   0.355  0.129
-- top terms Easy: goreleaser, github, https, com, version, audit, test, blob, file, error
-- top terms Medium: github, https, com, cli, version, http, error, file, test, command
-- top terms Hard: goreleaser, audit, github, com, https, 628c889d7f2a34066649833be419fdb9abe01174, agents, blob, source, example
+0           0.399   0.399  0.202
+1           0.450   0.376  0.174
+- top terms Easy: github, https, com, version, test, file, error, python, mocha, bug
+- top terms Medium: https, github, com, version, error, file, python, bug, test, cli
+- top terms Hard: goreleaser, github, audit, https, com, pylint, 628c889d7f2a34066649833be419fdb9abe01174, version, error, blob
 
 
 ## 2. Difficulty label validation
 "no manual labels yet"
-label-threshold sensitivity: {"0.35/0.75": 0.418, "0.4/0.8": 0.431, "0.45/0.85": 0.42}
+label-threshold sensitivity: {"0.35/0.75": 0.48, "0.4/0.8": 0.462, "0.45/0.85": 0.443}
 
 ## 3. Difficulty classification: model comparison
 (grouped CV = unseen repos; test = newest 20%; chance for 3 balanced classes is about 0.33)
 
 | model | test_f1_macro | test_accuracy | test_precision_macro | test_recall_macro | test_f1_weighted | test_cost | hard_called_easy | train_s | infer_ms_each | test_roc_auc_ovr | cv_f1_grouped | cv_f1_std | cv_train_f1 | overfit_gap | f1_95ci | params |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| baseline: majority | 0.196 | 0.416 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| baseline: good-first-issue label | 0.196 | 0.416 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| LogisticRegression | 0.446 | 0.474 | 0.447 | 0.447 | 0.475 | 0.680 | 0.261 | 1.100 | 0.138 | 0.619 | 0.399 | 0.020 | 0.726 | 0.327 | [0.41, 0.481] |  |
-| DecisionTree | 0.371 | 0.423 | 0.427 | 0.409 | 0.387 | 0.702 | 0.113 | 0.892 | 0.130 | 0.553 | 0.165 | 0.032 | 0.314 | 0.148 | [0.336, 0.409] |  |
-| RandomForest | 0.439 | 0.494 | 0.530 | 0.434 | 0.478 | 0.636 | 0.345 | 1.592 | 0.177 | 0.612 | 0.389 | 0.019 | 0.983 | 0.593 | [0.401, 0.481] |  |
-| SVM(linear) | 0.365 | 0.498 | 0.333 | 0.404 | 0.450 | 0.640 | 0.387 | 2.710 | 0.132 | 0.620 | 0.338 | 0.019 | 0.525 | 0.187 | [0.341, 0.386] |  |
-| KNN(cosine) | 0.345 | 0.411 | 0.358 | 0.352 | 0.394 | 0.758 | 0.394 | 0.811 | 0.215 | 0.538 | 0.347 | 0.016 | 0.999 | 0.652 | [0.311, 0.374] |  |
-| GradientBoosting | 0.352 | 0.439 | 0.381 | 0.367 | 0.412 | 0.730 | 0.430 | 11.057 | 0.135 | 0.570 | 0.290 | 0.047 | 0.474 | 0.184 | [0.319, 0.383] |  |
-| MLP(64) | 0.394 | 0.439 | 0.397 | 0.393 | 0.434 | 0.737 | 0.366 | 36.471 | 0.132 | 0.571 | 0.388 | 0.026 | 0.999 | 0.612 | [0.359, 0.431] |  |
-| LogisticRegression (tuned) | 0.403 | 0.418 | 0.409 | 0.415 | 0.427 | 0.773 | 0.218 | 0.891 | 0.130 | 0.606 | 0.401 |  |  |  | [0.368, 0.434] | {'clf__C': 0.1} |
+| baseline: majority | 0.184 | 0.382 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| baseline: good-first-issue label | 0.184 | 0.382 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| LogisticRegression | 0.460 | 0.474 | 0.459 | 0.469 | 0.478 | 0.637 | 0.155 | 2.817 | 0.267 | 0.661 | 0.414 | 0.022 | 0.755 | 0.341 | [0.425, 0.496] |  |
+| DecisionTree | 0.376 | 0.379 | 0.388 | 0.418 | 0.378 | 0.793 | 0.162 | 2.071 | 0.322 | 0.543 | 0.267 | 0.076 | 0.486 | 0.219 | [0.338, 0.406] |  |
+| RandomForest | 0.490 | 0.531 | 0.533 | 0.479 | 0.521 | 0.537 | 0.169 | 5.457 | 0.546 | 0.673 | 0.371 | 0.030 | 0.983 | 0.612 | [0.453, 0.527] |  |
+| SVM(linear) | 0.403 | 0.499 | 0.494 | 0.418 | 0.468 | 0.581 | 0.218 | 8.335 | 0.386 | 0.655 | 0.365 | 0.032 | 0.676 | 0.311 | [0.368, 0.436] |  |
+| KNN(cosine) | 0.432 | 0.479 | 0.445 | 0.429 | 0.471 | 0.640 | 0.261 | 1.932 | 0.423 | 0.601 | 0.371 | 0.021 | 0.999 | 0.628 | [0.392, 0.467] |  |
+| GradientBoosting | 0.421 | 0.454 | 0.439 | 0.415 | 0.449 | 0.666 | 0.268 | 12.420 | 0.140 | 0.595 | 0.328 | 0.019 | 0.594 | 0.266 | [0.385, 0.456] |  |
+| MLP(64) | 0.447 | 0.477 | 0.447 | 0.447 | 0.476 | 0.650 | 0.218 | 37.677 | 0.142 | 0.623 | 0.394 | 0.028 | 1.000 | 0.605 | [0.413, 0.481] |  |
+| LogisticRegression (tuned) | 0.461 | 0.466 | 0.462 | 0.486 | 0.470 | 0.656 | 0.134 | 1.098 | 0.155 | 0.655 | 0.417 |  |  |  | [0.424, 0.495] | {'clf__C': 0.1} |
 
-Chosen: **LogisticRegression (tuned)** (n=3991, repos=120, calibration ECE=0.046).
+Chosen: **LogisticRegression (tuned)** (n=3991, repos=120, calibration ECE=0.04).
 
-**Honest reading:** best grouped-CV macro-F1 is 0.40. This is close to chance: say so, and explain that more repos are needed.
+**Honest reading:** best grouped-CV macro-F1 is 0.42. This is close to chance: say so, and explain that more repos are needed.
 
 ## 4. Merge prediction
 | model | cv_ap_grouped | test_ap | test_roc_auc | test_base_rate |
 |---|---|---|---|---|
 | LogisticRegression | 0.884 | 0.940 | 0.755 | 0.865 |
-| RandomForest | 0.888 | 0.939 | 0.743 | 0.865 |
+| RandomForest | 0.888 | 0.939 | 0.744 | 0.865 |
 | GradientBoosting | 0.876 | 0.940 | 0.741 | 0.865 |
 | baseline: merge rate |  | 0.865 |  |  |
 
@@ -65,12 +65,12 @@ Chosen: **LogisticRegression (tuned)** (n=3991, repos=120, calibration ECE=0.046
 |---|---|---|---|---|---|---|
 | baseline: global median | -1.133 | 1.754 |  |  |  |  |
 | baseline: repo median | -0.992 | 1.685 |  |  |  |  |
-| Linear | -3.990 | 2.559 | 3.316 | -2.388 | 2033.000 | 609.034 |
+| Linear | -3.990 | 2.559 | 3.316 | -2.390 | 2033.000 | 609.249 |
 | Ridge a=1 | -0.885 | 1.629 | 2.038 | -0.039 | 2033.000 | 36.696 |
 | Ridge a=10 | -0.719 | 1.570 | 1.946 | 0.076 | 2033.000 | 10.355 |
 | Ridge a=100 | -0.740 | 1.581 | 1.958 | 0.061 | 2033.000 | 2.441 |
 | Ridge a=300 | -0.736 | 1.576 | 1.956 | 0.052 | 2033.000 | 1.367 |
-| Lasso a=0.01 | -0.814 | 1.614 | 2.000 | 0.061 | 26.000 | 6.373 |
+| Lasso a=0.01 | -0.814 | 1.614 | 2.000 | 0.061 | 26.000 | 6.372 |
 | Lasso a=0.03 | -0.762 | 1.593 | 1.971 | 0.054 | 22.000 | 2.597 |
 | Lasso a=0.1 | -0.697 | 1.559 | 1.934 | 0.043 | 9.000 | 0.814 |
 
@@ -78,10 +78,8 @@ beats repo-median baseline: False
 
 ## 6. Repository clustering
 cluster,log_stars,log_forks,log_contrib,log_open,log_push,age_years,log_reply_h,merge_rate,has_contributing,n_repos
-0,10.73,8.94,6.01,6.71,2.66,11.86,2.27,0.84,0.83,52
-1,9.42,7.58,5.81,5.27,2.57,10.73,3.2,0.87,0.8,49
-2,10.59,8.75,5.95,5.54,2.9,12.26,3.0,0.27,0.58,12
-3,10.19,7.87,5.31,5.21,4.67,10.91,3.57,0.79,0.64,14
+0,10.7,8.9,5.99,6.52,2.79,12.1,2.51,0.76,0.82,66
+1,9.55,7.62,5.7,5.19,3.12,10.57,3.2,0.83,0.72,61
 
 
 ## 7. CSP benchmark
@@ -93,22 +91,22 @@ Nodes explored / seconds (lower is better; all methods find a plan whenever one 
 | synthetic n=30 | 5 | 20 | 36 / 0.00s | 36 / 0.00s | 36 / 0.00s | 36 / 0.00s | 9 / 0.00s |
 | synthetic n=30 | 6 | 22 | 627 / 0.01s | 627 / 0.01s | 627 / 0.01s | 627 / 0.01s | 10 / 0.00s |
 | synthetic n=30 | 6 | 19 | 2920 (no plan) / 0.04s | 2920 (no plan) / 0.03s | 2920 (no plan) / 0.04s | 2920 (no plan) / 0.03s | 30 (no plan) / 0.00s |
-| synthetic n=30 | 7 | 24 | 4056 / 0.07s | 4056 / 0.05s | 4056 / 0.07s | 4056 / 0.05s | 19 / 0.00s |
+| synthetic n=30 | 7 | 24 | 4056 / 0.07s | 4056 / 0.05s | 4056 / 0.07s | 4056 / 0.06s | 19 / 0.00s |
 | synthetic n=40 | 4 | 16 | 19 / 0.00s | 19 / 0.00s | 19 / 0.00s | 19 / 0.00s | 7 / 0.00s |
 | synthetic n=40 | 5 | 20 | 312 / 0.01s | 312 / 0.00s | 312 / 0.01s | 312 / 0.00s | 10 / 0.00s |
 | synthetic n=40 | 6 | 22 | 694 / 0.02s | 694 / 0.01s | 694 / 0.02s | 694 / 0.01s | 12 / 0.00s |
 | synthetic n=40 | 6 | 19 | 909 / 0.02s | 909 / 0.01s | 909 / 0.02s | 909 / 0.01s | 11 / 0.00s |
-| synthetic n=40 | 7 | 24 | 8878 / 0.21s | 8878 / 0.12s | 8878 / 0.21s | 8878 / 0.12s | 110 / 0.01s |
+| synthetic n=40 | 7 | 24 | 8878 / 0.22s | 8878 / 0.13s | 8878 / 0.23s | 8878 / 0.15s | 110 / 0.01s |
 | synthetic n=25 | 4 | 16 | 15 / 0.00s | 15 / 0.00s | 15 / 0.00s | 15 / 0.00s | 5 / 0.00s |
 | synthetic n=25 | 5 | 20 | 71 / 0.00s | 71 / 0.00s | 71 / 0.00s | 71 / 0.00s | 8 / 0.00s |
 | synthetic n=25 | 6 | 22 | 2970 (no plan) / 0.04s | 2970 (no plan) / 0.03s | 2970 (no plan) / 0.04s | 2970 (no plan) / 0.03s | 185 (no plan) / 0.01s |
 | synthetic n=25 | 6 | 19 | 1394 (no plan) / 0.02s | 1394 (no plan) / 0.01s | 1394 (no plan) / 0.02s | 1394 (no plan) / 0.01s | 25 (no plan) / 0.00s |
-| synthetic n=25 | 7 | 24 | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.05s | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.05s | 25 (no plan) / 0.00s |
-| your data (top 40) | 4 | 16 | 171 (no plan) / 0.00s | 171 (no plan) / 0.00s | 171 (no plan) / 0.00s | 171 (no plan) / 0.00s | 40 (no plan) / 0.00s |
-| your data (top 40) | 5 | 20 | 765 (no plan) / 0.01s | 765 (no plan) / 0.01s | 765 (no plan) / 0.01s | 765 (no plan) / 0.01s | 40 (no plan) / 0.00s |
-| your data (top 40) | 6 | 22 | 820 (no plan) / 0.01s | 820 (no plan) / 0.01s | 820 (no plan) / 0.01s | 820 (no plan) / 0.01s | 40 (no plan) / 0.00s |
-| your data (top 40) | 6 | 19 | 682 (no plan) / 0.01s | 682 (no plan) / 0.01s | 682 (no plan) / 0.01s | 682 (no plan) / 0.01s | 40 (no plan) / 0.00s |
-| your data (top 40) | 7 | 24 | 1711 (no plan) / 0.03s | 1711 (no plan) / 0.02s | 1711 (no plan) / 0.03s | 1711 (no plan) / 0.02s | 40 (no plan) / 0.00s |
+| synthetic n=25 | 7 | 24 | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.05s | 4736 (no plan) / 0.06s | 4736 (no plan) / 0.06s | 25 (no plan) / 0.00s |
+| your data (top 40) | 4 | 16 | 151 (no plan) / 0.00s | 151 (no plan) / 0.00s | 151 (no plan) / 0.00s | 151 (no plan) / 0.00s | 40 (no plan) / 0.00s |
+| your data (top 40) | 5 | 20 | 525 (no plan) / 0.01s | 525 (no plan) / 0.01s | 525 (no plan) / 0.01s | 525 (no plan) / 0.01s | 40 (no plan) / 0.00s |
+| your data (top 40) | 6 | 22 | 824 (no plan) / 0.01s | 824 (no plan) / 0.01s | 824 (no plan) / 0.01s | 824 (no plan) / 0.01s | 40 (no plan) / 0.00s |
+| your data (top 40) | 6 | 19 | 405 (no plan) / 0.01s | 405 (no plan) / 0.00s | 405 (no plan) / 0.01s | 405 (no plan) / 0.01s | 40 (no plan) / 0.00s |
+| your data (top 40) | 7 | 24 | 1520 (no plan) / 0.03s | 1520 (no plan) / 0.02s | 1520 (no plan) / 0.03s | 1520 (no plan) / 0.02s | 40 (no plan) / 0.00s |
 
 ## 8. A* benchmark
 | instance | A* cost | UCS cost | A* expanded | UCS expanded | h admissible? |
@@ -125,17 +123,43 @@ A* always matched the optimal UCS cost: True
 
 ## 9. RAG evaluation
 {
- "n": 11,
- "accuracy": 0.545,
- "retrieval_recall@4": 0.889,
- "mean_groundedness": 0.912,
- "refusal_correct": 0.5,
- "backend": "langchain",
- "mode": "extractive",
- "mean_seconds": 0.03
+ "tuned-on set": {
+  "n": 11,
+  "accuracy": 0.727,
+  "retrieval_recall@4": 1.0,
+  "mean_groundedness": 0.976,
+  "refusal_correct": 1.0,
+  "backend": "tfidf",
+  "mode": "extractive",
+  "mean_seconds": 0.0
+ },
+ "held-out set": {
+  "n": 12,
+  "accuracy": 0.5,
+  "retrieval_recall@4": 1.0,
+  "mean_groundedness": 1.0,
+  "refusal_correct": 1.0,
+  "backend": "tfidf",
+  "mode": "extractive",
+  "mean_seconds": 0.0
+ }
 }
 ## 10. LLM evaluation
-"not run"
+{
+ "issues": 30,
+ "provider": "ollama",
+ "model": "qwen2.5:0.5b",
+ "json_valid_rate": 0.767,
+ "mean_jaccard_vs_keywords (agreement, not accuracy)": 0.244,
+ "mean_latency_s": 4.14,
+ "last_error": null,
+ "explanations": {
+  "n": 3,
+  "llm_passed_guardrail": 3,
+  "fell_back_to_template": 0,
+  "reasons": []
+ }
+}
 
 ## 11. Real-world outcomes (your own attempts)
 {
