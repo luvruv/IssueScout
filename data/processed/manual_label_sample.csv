@@ -3,9 +3,9 @@ python-pillow/Pillow#10193,python-pillow/Pillow,10193,Pillow 12.3.0 Windows whee
 python-pillow/Pillow#10206,python-pillow/Pillow,10206,ImageDraw2 ignores Pen.width for shape outlines,Easy,https://github.com/python-pillow/Pillow/issues/10206,Easy
 eslint/eslint#21281,eslint/eslint,21281,Bug: no-control-regex does not detect \c control letter escapes,Easy,https://github.com/eslint/eslint/issues/21281,Medium
 grafana/grafana#134717,grafana/grafana,134717,Azure Monitor: Metrics query without an azureMonitor object panics in buildQuery (nil pointer),Easy,https://github.com/grafana/grafana/issues/134717,Hard
-prometheus/prometheus#19203,prometheus/prometheus,19203,Native histograms: improve trim function implementation,Hard,https://github.com/prometheus/prometheus/issues/19203,
-pylint-dev/pylint#11647,pylint-dev/pylint,11647,False-positive `undefined-variable` with `:=` and blank type annotation,Medium,https://github.com/pylint-dev/pylint/issues/11647,
-open-policy-agent/opa#9289,open-policy-agent/opa,9289,bundle verify: `*signatures.json` filename lookup is too permissive,Hard,https://github.com/open-policy-agent/opa/issues/9289,
+prometheus/prometheus#19203,prometheus/prometheus,19203,Native histograms: improve trim function implementation,Hard,https://github.com/prometheus/prometheus/issues/19203,Easy
+pylint-dev/pylint#11647,pylint-dev/pylint,11647,False-positive `undefined-variable` with `:=` and blank type annotation,Medium,https://github.com/pylint-dev/pylint/issues/11647,Medium
+open-policy-agent/opa#9289,open-policy-agent/opa,9289,bundle verify: `*signatures.json` filename lookup is too permissive,Hard,https://github.com/open-policy-agent/opa/issues/9289,Hard
 jaegertracing/jaeger#9524,jaegertracing/jaeger,9524,"[Bug]: es-index-cleaner reads --index-prefix as a regular expression, so a prefix with regex characters panics or matches nothing",Easy,https://github.com/jaegertracing/jaeger/issues/9524,
 open-policy-agent/opa#9187,open-policy-agent/opa,9187,sprintf's float formater casts .0 decimals to int64 and fails to format (since 1.20.0),Medium,https://github.com/open-policy-agent/opa/issues/9187,
 kubernetes-sigs/metrics-server#1267,kubernetes-sigs/metrics-server,1267,Multiple Vulnerabilities found in metrics-server v0.6.3,Easy,https://github.com/kubernetes-sigs/metrics-server/issues/1267,
