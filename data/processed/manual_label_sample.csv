@@ -6,196 +6,196 @@ grafana/grafana#134717,grafana/grafana,134717,Azure Monitor: Metrics query witho
 prometheus/prometheus#19203,prometheus/prometheus,19203,Native histograms: improve trim function implementation,Hard,https://github.com/prometheus/prometheus/issues/19203,Easy
 pylint-dev/pylint#11647,pylint-dev/pylint,11647,False-positive `undefined-variable` with `:=` and blank type annotation,Medium,https://github.com/pylint-dev/pylint/issues/11647,Medium
 open-policy-agent/opa#9289,open-policy-agent/opa,9289,bundle verify: `*signatures.json` filename lookup is too permissive,Hard,https://github.com/open-policy-agent/opa/issues/9289,Hard
-jaegertracing/jaeger#9524,jaegertracing/jaeger,9524,"[Bug]: es-index-cleaner reads --index-prefix as a regular expression, so a prefix with regex characters panics or matches nothing",Easy,https://github.com/jaegertracing/jaeger/issues/9524,
-open-policy-agent/opa#9187,open-policy-agent/opa,9187,sprintf's float formater casts .0 decimals to int64 and fails to format (since 1.20.0),Medium,https://github.com/open-policy-agent/opa/issues/9187,
-kubernetes-sigs/metrics-server#1267,kubernetes-sigs/metrics-server,1267,Multiple Vulnerabilities found in metrics-server v0.6.3,Easy,https://github.com/kubernetes-sigs/metrics-server/issues/1267,
-tokio-rs/tokio#8042,tokio-rs/tokio,8042,x86_64-pc-cygwin: tokio::process stdout/stderr stop after the first chunk,Hard,https://github.com/tokio-rs/tokio/issues/8042,
-pylint-dev/pylint#11028,pylint-dev/pylint,11028,`IndexError: list index out of range` with empty len() in boolean context,Hard,https://github.com/pylint-dev/pylint/issues/11028,
-kubernetes-sigs/metrics-server#1329,kubernetes-sigs/metrics-server,1329,Make sure metrics server works with SidecarContainers feature,Hard,https://github.com/kubernetes-sigs/metrics-server/issues/1329,
-home-assistant/core#188568,home-assistant/core,188568,[aw] quality-scale-reviewer exceeded daily AI credits budget,Easy,https://github.com/home-assistant/core/issues/188568,
-BurntSushi/ripgrep#3453,BurntSushi/ripgrep,3453,[ignore] Include depth in WithPath error.,Easy,https://github.com/BurntSushi/ripgrep/issues/3453,
-spf13/cobra#2257,spf13/cobra,2257,Completions modify os.Args,Medium,https://github.com/spf13/cobra/issues/2257,
-numpy/numpy#32491,numpy/numpy,32491,"ENH: make ""no"" and ""equiv"" casting consistent for Python scalars in ufuncs and copyto",Hard,https://github.com/numpy/numpy/issues/32491,
-BurntSushi/ripgrep#2956,BurntSushi/ripgrep,2956,Can't source zsh completions directly,Medium,https://github.com/BurntSushi/ripgrep/issues/2956,
-astral-sh/ruff#28989,astral-sh/ruff,28989,SLF001 false positives in __new__,Medium,https://github.com/astral-sh/ruff/issues/28989,
-eslint/eslint#21255,eslint/eslint,21255,Bug: prototype collusion in new-cap rule,Medium,https://github.com/eslint/eslint/issues/21255,
-mochajs/mocha#6297,mochajs/mocha,6297,🛠️ Repo: `--watch` dir-add test flakes waiting for the first mkdir rerun,Easy,https://github.com/mochajs/mocha/issues/6297,
-spf13/cobra#2060,spf13/cobra,2060,Completion should not complete the --help/-h and --version/-v flags if DisableFlagParsing==true ,Easy,https://github.com/spf13/cobra/issues/2060,
-kubernetes-sigs/kubespray#13177,kubernetes-sigs/kubespray,13177,Bump: etcd to v3.6.10,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13177,
-kubernetes-sigs/external-dns#6270,kubernetes-sigs/external-dns,6270,nodesExternalTrafficPolicyTypeLocal produces wrong node IP set when multiple pods share a node,Medium,https://github.com/kubernetes-sigs/external-dns/issues/6270,
-jaegertracing/jaeger#9689,jaegertracing/jaeger,9689,[Bug]: ES/OS backward-compat suite expects an attribute range filter to be refused over an index without the numeric sub-field,Hard,https://github.com/jaegertracing/jaeger/issues/9689,
-starship/starship#7639,starship/starship,7639,Swift module is slow because swift --version is slow,Medium,https://github.com/starship/starship/issues/7639,
-kubernetes-sigs/external-dns#6565,kubernetes-sigs/external-dns,6565,Upgrade Go runtime to 1.26.2 or later to remediate CVE-2026-33810,Medium,https://github.com/kubernetes-sigs/external-dns/issues/6565,
-kubernetes-sigs/external-dns#6670,kubernetes-sigs/external-dns,6670,"pdns provider: PowerDNS API calls have no request timeout, so an unresponsive API server hangs the reconcile loop forever",Medium,https://github.com/kubernetes-sigs/external-dns/issues/6670,
-jaegertracing/jaeger#8947,jaegertracing/jaeger,8947,Remove support for Elasticsearch v6,Hard,https://github.com/jaegertracing/jaeger/issues/8947,
-goreleaser/goreleaser#6937,goreleaser/goreleaser,6937,exec: command debug fields bypass secret redaction,Hard,https://github.com/goreleaser/goreleaser/issues/6937,
-sveltejs/svelte#18438,sveltejs/svelte,18438,Componentizing svelte boundary causes many unexpected remote functions bugs,Medium,https://github.com/sveltejs/svelte/issues/18438,
-goreleaser/goreleaser#6979,goreleaser/goreleaser,6979,aur: binary-mode package command ignores the download alias,Hard,https://github.com/goreleaser/goreleaser/issues/6979,
-sharkdp/fd#1407,sharkdp/fd,1407,[BUG] - complete: nosort: invalid option name,Easy,https://github.com/sharkdp/fd/issues/1407,
-vuejs/core#15673,vuejs/core,15673,[Vapor] a child's `flush: 'sync'` watcher re-reads a prop after the `v-if` guarding it turns false,Hard,https://github.com/vuejs/core/issues/15673,
-goreleaser/goreleaser#6638,goreleaser/goreleaser,6638,homebrew_casks: documented private-repo download pattern broken by Homebrew 5.1.14 env scrubbing,Easy,https://github.com/goreleaser/goreleaser/issues/6638,
-celery/celery#10400,celery/celery,10400,Control command can't handle preload options,Easy,https://github.com/celery/celery/issues/10400,
-jaegertracing/jaeger#9104,jaegertracing/jaeger,9104,[Bug]: gRPC storage v2: configured Timeout is never applied to client calls,Medium,https://github.com/jaegertracing/jaeger/issues/9104,
-caddyserver/caddy#7518,caddyserver/caddy,7518,Index out of range error when using {block},Medium,https://github.com/caddyserver/caddy/issues/7518,
-sqlalchemy/sqlalchemy#13706,sqlalchemy/sqlalchemy,13706,Add Redis ADBC to the external dialects documentation,Easy,https://github.com/sqlalchemy/sqlalchemy/issues/13706,
-celery/celery#10320,celery/celery,10320,Make default worker_concurrency cgroup-aware on Linux (opt-in via --concurrency=auto),Hard,https://github.com/celery/celery/issues/10320,
-python-poetry/poetry#10635,python-poetry/poetry,10635,Error message for incorrect configs is unclear,Medium,https://github.com/python-poetry/poetry/issues/10635,
-kubernetes-sigs/kubespray#13215,kubernetes-sigs/kubespray,13215,Support Kubernetes 1.36,Hard,https://github.com/kubernetes-sigs/kubespray/issues/13215,
-uber-go/zap#1034,uber-go/zap,1034,feat: Custom `interface{}` object Encoder,Hard,https://github.com/uber-go/zap/issues/1034,
-scikit-learn/scikit-learn#34511,scikit-learn/scikit-learn,34511,Inconsistent `_check_initialized` method: only present on gradient boosting estimators,Easy,https://github.com/scikit-learn/scikit-learn/issues/34511,
-vuejs/core#15257,vuejs/core,15257,[Vapor] compiler: generated template HTML omits the space between quoted attributes (HTML parse error per spec),Medium,https://github.com/vuejs/core/issues/15257,
-tokio-rs/tokio#8209,tokio-rs/tokio,8209,Add `poll_to_block` to `tokio_test::task::Spawn` to advance futures as far as possible,Medium,https://github.com/tokio-rs/tokio/issues/8209,
-gohugoio/hugo#15066,gohugoio/hugo,15066,Aliases with .htm extension are published to the wrong path,Medium,https://github.com/gohugoio/hugo/issues/15066,
-BurntSushi/ripgrep#3194,BurntSushi/ripgrep,3194,Line buffering appears broken in 15.0.0,Easy,https://github.com/BurntSushi/ripgrep/issues/3194,
-goreleaser/goreleaser#6815,goreleaser/goreleaser,6815,Undocumented: aur_sources fails if source isn't enabled,Easy,https://github.com/goreleaser/goreleaser/issues/6815,
-jaegertracing/jaeger#8966,jaegertracing/jaeger,8966,esmapping-generator: OpenSearch template rendering works but is undiscoverable and mislabeled,Hard,https://github.com/jaegertracing/jaeger/issues/8966,
-kubernetes-sigs/kubespray#13236,kubernetes-sigs/kubespray,13236,Bump: containerd to v2.3.0 (first annual LTS),Medium,https://github.com/kubernetes-sigs/kubespray/issues/13236,
-tqdm/tqdm#1102,tqdm/tqdm,1102,It is not correct to take the average of speed; tqdm needs to use two EMAs.,Hard,https://github.com/tqdm/tqdm/issues/1102,
-apache/airflow#75419,apache/airflow,75419,"SnowflakeHook: autocommit=False and final COMMIT silently skipped when any session_parameters is set (e.g. QUERY_TAG), since 6.12.2",Medium,https://github.com/apache/airflow/issues/75419,
-python-pillow/Pillow#9851,python-pillow/Pillow,9851,Reading n_frames corrupts subsequent loading of mixed RGB/P LZW TIFF frames,Easy,https://github.com/python-pillow/Pillow/issues/9851,
-statsmodels/statsmodels#10546,statsmodels/statsmodels,10546,BUG: ARDL/UECM bounds_test asymptotic critical values use k = number of variables including y (off by one),Medium,https://github.com/statsmodels/statsmodels/issues/10546,
-kubernetes-sigs/controller-runtime#3322,kubernetes-sigs/controller-runtime,3322,Feature: Able to set WithContextFunc in WebhookBuilder,Easy,https://github.com/kubernetes-sigs/controller-runtime/issues/3322,
-prometheus/alertmanager#5404,prometheus/alertmanager,5404,Api silences add parameter like alerts,Hard,https://github.com/prometheus/alertmanager/issues/5404,
-tqdm/tqdm#1213,tqdm/tqdm,1213,VS Code now support ipywidgets,Easy,https://github.com/tqdm/tqdm/issues/1213,
-pandas-dev/pandas#69037,pandas-dev/pandas,69037,BUG: rolling().skew()/.kurt() return NaN once an earlier window's nobs hits 0,Medium,https://github.com/pandas-dev/pandas/issues/69037,
-networkx/networkx#8802,networkx/networkx,8802,Wrong description for communicability and communicability_exp,Easy,https://github.com/networkx/networkx/issues/8802,
-urfave/cli#2285,urfave/cli,2285,Dynamic fish completions breaks fish completions,Medium,https://github.com/urfave/cli/issues/2285,
-gin-gonic/gin#4473,gin-gonic/gin,4473,"Instead of using hardcoded ""127.0.0.1"" use a const for it named localhostIP",Easy,https://github.com/gin-gonic/gin/issues/4473,
-gohugoio/hugo#15142,gohugoio/hugo,15142,check.sh can fail after installing staticcheck when Go bin is not on PATH,Easy,https://github.com/gohugoio/hugo/issues/15142,
-celery/celery#10322,celery/celery,10322,make_aware() silently mishandles spring-forward DST gap — crontab tasks scheduled in a non-existent local time are skipped or run with wrong UTC offset,Medium,https://github.com/celery/celery/issues/10322,
-kubernetes-sigs/kubespray#13277,kubernetes-sigs/kubespray,13277,Worker node kubelet crash-loop after upgrade: lineinfile task writes `server:` at wrong YAML indentation in kubelet.conf,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13277,
-kubernetes-sigs/kubebuilder#5821,kubernetes-sigs/kubebuilder,5821,Add missing test coverage for the --ssa workflow,Medium,https://github.com/kubernetes-sigs/kubebuilder/issues/5821,
-go-chi/chi#484,go-chi/chi,484,rewrite of compressor breaks DX (for me),Easy,https://github.com/go-chi/chi/issues/484,
-kubernetes-sigs/cluster-api#14003,kubernetes-sigs/cluster-api,14003,Expose 'defer' field of cloud-init write_files in kubeadmConfigSpec.files,Hard,https://github.com/kubernetes-sigs/cluster-api/issues/14003,
-urfave/cli#2373,urfave/cli,2373,completion subcommands appear in non-deterministic order in help output,Medium,https://github.com/urfave/cli/issues/2373,
-operator-framework/operator-sdk#6578,operator-framework/operator-sdk,6578,Dockerhub rate limiting causes `run bundle` to fail,Medium,https://github.com/operator-framework/operator-sdk/issues/6578,
-tokio-rs/tokio#8607,tokio-rs/tokio,8607,Default worker count misses CPU limits set outside the container's cgroup namespace (ECS EC2),Easy,https://github.com/tokio-rs/tokio/issues/8607,
-kubernetes-sigs/kubebuilder#5922,kubernetes-sigs/kubebuilder,5922,create webhook test: also assert the domain is preserved when external flags are not re-supplied,Easy,https://github.com/kubernetes-sigs/kubebuilder/issues/5922,
-python-poetry/poetry#10423,python-poetry/poetry,10423,Discovered shell 'bash' doesn't have an activator in virtual environment,Easy,https://github.com/python-poetry/poetry/issues/10423,
-sveltejs/svelte#18621,sveltejs/svelte,18621,Private `$state` field: ++/-- through a non-this receiver emits invalid JavaScript,Medium,https://github.com/sveltejs/svelte/issues/18621,
-go-chi/chi#587,go-chi/chi,587,Possible regression in 1.5.2: middleware got instantiated and invoked twice,Easy,https://github.com/go-chi/chi/issues/587,
-goreleaser/goreleaser#6947,goreleaser/goreleaser,6947,winget: package_identifier templates are validated without rendering,Hard,https://github.com/goreleaser/goreleaser/issues/6947,
-mochajs/mocha#6265,mochajs/mocha,6265,🐛 Bug: `--parallel` worker death loses spec file path on synthetic failure,Medium,https://github.com/mochajs/mocha/issues/6265,
-pallets/werkzeug#3105,pallets/werkzeug,3105,duplicate rule check needs to consider more,Medium,https://github.com/pallets/werkzeug/issues/3105,
-python-pillow/Pillow#9963,python-pillow/Pillow,9963,"Image.copy() aliases mutable .info values (e.g. list-valued ""Comment"" in IM/IPTC) between original and copy",Easy,https://github.com/python-pillow/Pillow/issues/9963,
-matplotlib/matplotlib#32521,matplotlib/matplotlib,32521,[Bug]: Recent date conversion error in CI,Easy,https://github.com/matplotlib/matplotlib/issues/32521,
-kubernetes-sigs/kubespray#13252,kubernetes-sigs/kubespray,13252,cilium_operator_image_repo references wrong image name for offline registry sync (`cilium/operator` vs chart-required `cilium/operator-generic`),Easy,https://github.com/kubernetes-sigs/kubespray/issues/13252,
-tqdm/tqdm#966,tqdm/tqdm,966,How to use tqdm to log progress bars in cloudwatch logs?,Medium,https://github.com/tqdm/tqdm/issues/966,
-gohugoio/hugo#15112,gohugoio/hugo,15112,Add css.ChromaStyles,Hard,https://github.com/gohugoio/hugo/issues/15112,
-prometheus/client_golang#1666,prometheus/client_golang,1666,Flaky test: `TestSummaryDecay `,Medium,https://github.com/prometheus/client_golang/issues/1666,
-statsmodels/statsmodels#10256,statsmodels/statsmodels,10256,Possible bug in PCA GLS implementation,Medium,https://github.com/statsmodels/statsmodels/issues/10256,
-clap-rs/clap#6236,clap-rs/clap,6236,Confusing `Usage: <...>` suggestion when using an argument together with an argument from a conflicting argument group,Medium,https://github.com/clap-rs/clap/issues/6236,
-containerd/containerd#13534,containerd/containerd,13534,ImageVolumeMountFailed using erofs in v2.3.1,Medium,https://github.com/containerd/containerd/issues/13534,
-caddyserver/caddy#8141,caddyserver/caddy,8141,ECH: `retry_configs` are never sent when ECH is rejected,Medium,https://github.com/caddyserver/caddy/issues/8141,
-gorilla/mux#464,gorilla/mux,464,Serve React Router,Medium,https://github.com/gorilla/mux/issues/464,
-pingcap/tidb#70711,pingcap/tidb,70711,planner: scalar subquery registry leaks across statement and optimistic replay boundaries,Medium,https://github.com/pingcap/tidb/issues/70711,
-gohugoio/hugo#15040,gohugoio/hugo,15040,modules: Mount .mjs and .cjs config files from modules into assets/_jsconfig/,Hard,https://github.com/gohugoio/hugo/issues/15040,
-urfave/cli#1883,urfave/cli,1883,How do I define Usage for BoolWithInverseFlag?,Medium,https://github.com/urfave/cli/issues/1883,
-prometheus/client_golang#1617,prometheus/client_golang,1617,Consider supporting constant native histograms,Hard,https://github.com/prometheus/client_golang/issues/1617,
-vuejs/core#15792,vuejs/core,15792,isShallow() returns false for shallow collection proxies (shallowReactive(new Map())),Easy,https://github.com/vuejs/core/issues/15792,
-starship/starship#7561,starship/starship,7561,Add support for build.gradle.kts files in package module,Easy,https://github.com/starship/starship/issues/7561,
-moby/moby#53939,moby/moby,53939,Docker Swarm published ports refused over IPv6 when docker_gwbridge has IPv6 enabled,Easy,https://github.com/moby/moby/issues/53939,
-kubernetes-sigs/metrics-server#1704,kubernetes-sigs/metrics-server,1704,"""Failed to scrape node"" errors after node termination or newly created",Easy,https://github.com/kubernetes-sigs/metrics-server/issues/1704,
-scikit-image/scikit-image#8303,scikit-image/scikit-image,8303,SIFT crashes with ValueError when sigma_in exceeds sigma_min,Easy,https://github.com/scikit-image/scikit-image/issues/8303,
-statsmodels/statsmodels#10307,statsmodels/statsmodels,10307,BUG: fit(use_t=True) silently ignored with nonrobust covariance in several discrete models,Easy,https://github.com/statsmodels/statsmodels/issues/10307,
-goreleaser/goreleaser#7040,goreleaser/goreleaser,7040,docs(blog): keep blob destinations in the first YAML document,Hard,https://github.com/goreleaser/goreleaser/issues/7040,
-ansible/ansible#87020,ansible/ansible,87020,Tree plugin deprecation notice,Medium,https://github.com/ansible/ansible/issues/87020,
-mkdocs/mkdocs#3259,mkdocs/mkdocs,3259,Repo Link missing in readthedocs theme if custom repo_name used,Easy,https://github.com/mkdocs/mkdocs/issues/3259,
-gohugoio/hugo#14817,gohugoio/hugo,14817,commands: Improve description of noHTTPcache and ignoreCache flags,Easy,https://github.com/gohugoio/hugo/issues/14817,
-scrapy/scrapy#7820,scrapy/scrapy,7820,Settings imports module for every component-dict key incl. None — ModuleNotFoundError on removed/disabled modules (2.17 regression),Easy,https://github.com/scrapy/scrapy/issues/7820,
-pytest-dev/pytest#15005,pytest-dev/pytest,15005,pytest.approx returns False for in-tolerance finite Decimal values above the float range,Medium,https://github.com/pytest-dev/pytest/issues/15005,
-jesseduffield/lazygit#5302,jesseduffield/lazygit,5302,Fails to add to .git/info/exclude when .git/info directory is missing,Easy,https://github.com/jesseduffield/lazygit/issues/5302,
-tokio-rs/tokio#8567,tokio-rs/tokio,8567,Taskdump duplicates a notification while block_in_place returns,Medium,https://github.com/tokio-rs/tokio/issues/8567,
-kubernetes-sigs/metrics-server#1816,kubernetes-sigs/metrics-server,1816,Storage readiness check is loose,Hard,https://github.com/kubernetes-sigs/metrics-server/issues/1816,
-axios/axios#10818,axios/axios,10818,fix(http): timeout not honored during TCP connect phase when maxRedirects=0,Medium,https://github.com/axios/axios/issues/10818,
-gofiber/fiber#4423,gofiber/fiber,4423,🐛 [Bug]: Logger middleware invokes ErrorHandler with MethodNotAllowed during fasthttp parser error recovery,Easy,https://github.com/gofiber/fiber/issues/4423,
-Textualize/rich#3115,Textualize/rich,3115,[BUG] Rich markdown printed to console only shows a single link in a column/ table cell,Medium,https://github.com/Textualize/rich/issues/3115,
-vitessio/vitess#21109,vitessio/vitess,21109,Feature Request: Allow ERS callers to require a minimum GTID set on the new primary,Hard,https://github.com/vitessio/vitess/issues/21109,
-kubernetes-sigs/kubespray#13455,kubernetes-sigs/kubespray,13455,CI: run Ansible controller unprivileged,Hard,https://github.com/kubernetes-sigs/kubespray/issues/13455,
-kubernetes-sigs/kubespray#13351,kubernetes-sigs/kubespray,13351,[plugins/modules/kube.py] Remove dangling 'list' from mutually_exclusive — references non-existent parameter,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13351,
-sharkdp/fd#1592,sharkdp/fd,1592,"debian package installs fd under the name fd, not fdfind",Easy,https://github.com/sharkdp/fd/issues/1592,
-gorilla/mux#238,gorilla/mux,238,Mux not properly parsing ampersand in url query paramters,Medium,https://github.com/gorilla/mux/issues/238,
-jesseduffield/lazygit#5837,jesseduffield/lazygit,5837,"Crash when switch to fullscreen mode, with `delta` as custom pager on Windows.",Medium,https://github.com/jesseduffield/lazygit/issues/5837,
-pingcap/tidb#71070,pingcap/tidb,71070,Flaky test: TestLoadDataLowPrioritySetsKVLowPriority in pkg/executor/test/loaddatatest,Easy,https://github.com/pingcap/tidb/issues/71070,
-kubernetes-sigs/metrics-server#1275,kubernetes-sigs/metrics-server,1275,The RoleBinding k8s namespace should be the same namespace as a role ,Easy,https://github.com/kubernetes-sigs/metrics-server/issues/1275,
-coredns/coredns#8521,coredns/coredns,8521,plugin/https: Make HTTP/2 max concurrent streams configurable,Hard,https://github.com/coredns/coredns/issues/8521,
-pingcap/tidb#70932,pingcap/tidb,70932,ADD [UNIQUE] INDEX ... GLOBAL can leave an incomplete global index on a partitioned table after EXCHANGE PARTITION ... WITHOUT VALIDATION duplicates a primary key,Medium,https://github.com/pingcap/tidb/issues/70932,
-coredns/coredns#8252,coredns/coredns,8252,plugin/hosts: data race between A/AAAA lookups and hosts-file reload,Easy,https://github.com/coredns/coredns/issues/8252,
-gohugoio/hugo#15171,gohugoio/hugo,15171,Remove -embedded from the default exec.allow,Easy,https://github.com/gohugoio/hugo/issues/15171,
-vuejs/core#15264,vuejs/core,15264,Vapor: two v-on listeners for the same event on a component are merged into an array and thrown at withModifiers,Easy,https://github.com/vuejs/core/issues/15264,
-urfave/cli#2326,urfave/cli,2326,Expose Flag.SchemaType() for typed flag introspection,Medium,https://github.com/urfave/cli/issues/2326,
-mochajs/mocha#6272,mochajs/mocha,6272,🛠️ Repo: Not testing against Node 26,Easy,https://github.com/mochajs/mocha/issues/6272,
-etcd-io/etcd#21775,etcd-io/etcd,21775,In Antithesis Dockerfile build replace contents of MustVerifyIfEnabled function with Unreachable assertion,Easy,https://github.com/etcd-io/etcd/issues/21775,
-hashicorp/terraform#38968,hashicorp/terraform,38968,Failing `TestPlan_WithPolicyUnknown` test,Medium,https://github.com/hashicorp/terraform/issues/38968,
-tokio-rs/tokio#8056,tokio-rs/tokio,8056,regression in `spawn_blocking` caused by #7757 causes tests to hang,Medium,https://github.com/tokio-rs/tokio/issues/8056,
-python-pillow/Pillow#9817,python-pillow/Pillow,9817,Oversized JPEG 2000 box length leaks `OverflowError` from `Image.open()`,Easy,https://github.com/python-pillow/Pillow/issues/9817,
-eslint/eslint#21303,eslint/eslint,21303,Ecosystem tests failure,Easy,https://github.com/eslint/eslint/issues/21303,
-traefik/traefik#13824,traefik/traefik,13824,Support Dragonfly for ratelimit,Easy,https://github.com/traefik/traefik/issues/13824,
-pallets/werkzeug#3271,pallets/werkzeug,3271,deprecate `UserAgent`,Medium,https://github.com/pallets/werkzeug/issues/3271,
-prometheus/node_exporter#3333,prometheus/node_exporter,3333,Darwin network metrics reset at 4GB,Easy,https://github.com/prometheus/node_exporter/issues/3333,
-sharkdp/bat#3513,sharkdp/bat,3513,support shebang line recognition for tclsh and expect,Hard,https://github.com/sharkdp/bat/issues/3513,
-BurntSushi/ripgrep#2767,BurntSushi/ripgrep,2767,ignore: WalkBuilder::build_parallel() example does not compile,Easy,https://github.com/BurntSushi/ripgrep/issues/2767,
-statsmodels/statsmodels#10109,statsmodels/statsmodels,10109,DOC: Broken links to https://stats.oecd.org/glossary/,Easy,https://github.com/statsmodels/statsmodels/issues/10109,
-kubernetes-sigs/kubebuilder#5574,kubernetes-sigs/kubebuilder,5574,helm/v2-alpha: .github/workflows/test-chart.yml trying to install different image than the one build,Medium,https://github.com/kubernetes-sigs/kubebuilder/issues/5574,
-celery/celery#10211,celery/celery,10211,"chain(group([t1, t2]), group(), group()) crashes with AttributeError on NoneType",Medium,https://github.com/celery/celery/issues/10211,
-jestjs/jest#15756,jestjs/jest,15756,[Bug]: Jest snapshots still being generated with goo.gl links.,Easy,https://github.com/jestjs/jest/issues/15756,
-kubernetes/minikube#23788,kubernetes/minikube,23788,"Remove HelmInstall, HelmVersion and related tests",Hard,https://github.com/kubernetes/minikube/issues/23788,
-tqdm/tqdm#1231,tqdm/tqdm,1231,"Using generator with process_map crashes, despite passing `total` parameter to tqdm_class",Easy,https://github.com/tqdm/tqdm/issues/1231,
-urfave/cli#1875,urfave/cli,1875,Shell completion is suggesting aliases,Medium,https://github.com/urfave/cli/issues/1875,
-tektoncd/pipeline#10314,tektoncd/pipeline,10314,Release Rekor UUIDs appear shortened,Easy,https://github.com/tektoncd/pipeline/issues/10314,
-celery/celery#10760,celery/celery,10760,`saferepr` drops the closing bracket when the last element is truncated (affects task `argsrepr/kwargsrepr` ),Medium,https://github.com/celery/celery/issues/10760,
-psf/black#4843,psf/black,4843,`black==25.11.0` removing `%% [markdown]` comments,Medium,https://github.com/psf/black/issues/4843,
-gohugoio/hugo#15046,gohugoio/hugo,15046,Strange behaviour while rendering uglyURLs = true,Easy,https://github.com/gohugoio/hugo/issues/15046,
-tokio-rs/tokio#8175,tokio-rs/tokio,8175,Inconsistent cancel safety documentation,Hard,https://github.com/tokio-rs/tokio/issues/8175,
-hashicorp/nomad#28093,hashicorp/nomad,28093,nodes can't stop allocations if they've changed node pools,Medium,https://github.com/hashicorp/nomad/issues/28093,
-pallets/werkzeug#3189,pallets/werkzeug,3189,uri_to_iri and iri_to_uri drop an empty username or password,Easy,https://github.com/pallets/werkzeug/issues/3189,
-python-pillow/Pillow#9917,python-pillow/Pillow,9917,JPEG `qtables` iteration failure causes a NULL dereference in `Image.save()`,Easy,https://github.com/python-pillow/Pillow/issues/9917,
-encode/httpx#3411,encode/httpx,3411,Zstandard data is incomplete on HEAD requests,Medium,https://github.com/encode/httpx/issues/3411,
-goreleaser/goreleaser#6880,goreleaser/goreleaser,6880,Docker v2 overwrites AMD64 variants in build contexts,Medium,https://github.com/goreleaser/goreleaser/issues/6880,
-encode/httpx#3111,encode/httpx,3111,0.27.0: replacing `app=app` with `transport=ASGITransport(app)` doesn't type check,Easy,https://github.com/encode/httpx/issues/3111,
-gofiber/fiber#4403,gofiber/fiber,4403,📝 [Proposal]: skip group/prefix middleware when no child route matches,Hard,https://github.com/gofiber/fiber/issues/4403,
-caddyserver/caddy#8208,caddyserver/caddy,8208,fastcgi: a response with `Location` and no `Status` is sent as 200 instead of 302,Easy,https://github.com/caddyserver/caddy/issues/8208,
-Textualize/rich#3729,Textualize/rich,3729,[BUG] Incorrect type hint for `RichHandler.tracebacks_code_width`,Easy,https://github.com/Textualize/rich/issues/3729,
-caddyserver/caddy#8171,caddyserver/caddy,8171,"fastcgi transport: dial errors are not wrapped as DialError, so lb_try_duration never retries non-GET requests",Easy,https://github.com/caddyserver/caddy/issues/8171,
-jaegertracing/jaeger#9460,jaegertracing/jaeger,9460,Move the structured-filter validator out of jaeger-idl into jaeger,Easy,https://github.com/jaegertracing/jaeger/issues/9460,
-caddyserver/caddy#8157,caddyserver/caddy,8157,reverseproxy: weighted_round_robin panics when there are fewer weights than upstreams and one is down,Easy,https://github.com/caddyserver/caddy/issues/8157,
-docker/compose#13772,docker/compose,13772,Add stop hook support for external providers,Hard,https://github.com/docker/compose/issues/13772,
-pingcap/tidb#70759,pingcap/tidb,70759,Prepared statement incorrectly materializes a single-reference CTE after unrelated DDL,Medium,https://github.com/pingcap/tidb/issues/70759,
-docker/compose#13850,docker/compose,13850,[BUG] Docs about 'docker compose ps --format json' is wrong,Medium,https://github.com/docker/compose/issues/13850,
-tqdm/tqdm#1161,tqdm/tqdm,1161,Poor time estimation for concurrent processing,Easy,https://github.com/tqdm/tqdm/issues/1161,
-cert-manager/cert-manager#9119,cert-manager/cert-manager,9119,issuing controller panics (nil deref) on a CertificateRequest with FailureTime but no Ready condition,Medium,https://github.com/cert-manager/cert-manager/issues/9119,
-Textualize/textual#5728,Textualize/textual,5728,`OptionList` not fully updating on options being cleared (since v2.0.0),Medium,https://github.com/Textualize/textual/issues/5728,
-pingcap/tidb#70673,pingcap/tidb,70673,objstore: KS3 concurrent uploader overrides the configured part size,Medium,https://github.com/pingcap/tidb/issues/70673,
-Textualize/rich#3881,Textualize/rich,3881,[BUG] PromptBase.on_validate_error should explicitly enable markup,Easy,https://github.com/Textualize/rich/issues/3881,
-kubernetes-sigs/controller-runtime#3422,kubernetes-sigs/controller-runtime,3422,`IndexField()` unintentionally blocks until informer is synced,Easy,https://github.com/kubernetes-sigs/controller-runtime/issues/3422,
-jestjs/jest#16291,jestjs/jest,16291,Update several subpackages from glob 10.5.0 to glob 13,Medium,https://github.com/jestjs/jest/issues/16291,
-kubernetes-sigs/kubespray#13364,kubernetes-sigs/kubespray,13364,Unneeded bpf fstab entry added when using Cilium,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13364,
-kubernetes-sigs/cluster-api#14021,kubernetes-sigs/cluster-api,14021,ClusterClass metadata patches silently drop topology-declared labels/annotations,Easy,https://github.com/kubernetes-sigs/cluster-api/issues/14021,
-matplotlib/matplotlib#32186,matplotlib/matplotlib,32186,[Bug]: GIF frames become skewed when using PillowWriter in matplotlib 3.11.1,Medium,https://github.com/matplotlib/matplotlib/issues/32186,
-grpc/grpc-go#8860,grpc/grpc-go,8860,metadata.FromOutgoingContext is too slow,Medium,https://github.com/grpc/grpc-go/issues/8860,
-mochajs/mocha#6362,mochajs/mocha,6362,"🛠️ Repo: flaky test: ""--exit ... should not force exit after root suite completion""",Easy,https://github.com/mochajs/mocha/issues/6362,
-kubernetes-sigs/controller-runtime#3518,kubernetes-sigs/controller-runtime,3518,Envtest Fails to Stop Control Plane on Windows,Easy,https://github.com/kubernetes-sigs/controller-runtime/issues/3518,
-docker/compose#13785,docker/compose,13785,[BUG] Network's IPAM options not working,Easy,https://github.com/docker/compose/issues/13785,
-python-poetry/poetry#10315,python-poetry/poetry,10315,Re-locking fails with transitive dependency from alternative source,Easy,https://github.com/python-poetry/poetry/issues/10315,
-caddyserver/caddy#7992,caddyserver/caddy,7992,admin: host allow-list rejects hosts that differ only in letter case (checkHost),Easy,https://github.com/caddyserver/caddy/issues/7992,
-pallets/click#3822,pallets/click,3822,`click.Path` should be generic on `path_type`,Medium,https://github.com/pallets/click/issues/3822,
-cilium/cilium#48948,cilium/cilium,48948,cilium connectivity perf fails on 60s measurement,Medium,https://github.com/cilium/cilium/issues/48948,
-minio/minio#20781,minio/minio,20781,List-part API call returns incorrect Size field for multi-part upload when compression is enabled,Easy,https://github.com/minio/minio/issues/20781,
-labstack/echo#2531,labstack/echo,2531,Unsafe attachments can corrupt user's local files,Easy,https://github.com/labstack/echo/issues/2531,
-spf13/viper#1851,spf13/viper,1851,"Make features.BindStruct a Variable or an Option, Instead of Build Constraints",Easy,https://github.com/spf13/viper/issues/1851,
-jaegertracing/jaeger#9628,jaegertracing/jaeger,9628,TracesData.MarshalToSizedBuffer writes to the buffer's head instead of its tail,Medium,https://github.com/jaegertracing/jaeger/issues/9628,
-encode/starlette#3357,encode/starlette,3357,TrustedHostMiddleware Doesn't handle IPv6 properly,Hard,https://github.com/encode/starlette/issues/3357,
-prometheus/client_golang#1477,prometheus/client_golang,1477,A potential goroutine memory leak ,Hard,https://github.com/prometheus/client_golang/issues/1477,
-fluxcd/flux2#5951,fluxcd/flux2,5951,"Feature: Add a ""not equals"" condition to --status-selector",Medium,https://github.com/fluxcd/flux2/issues/5951,
-Textualize/rich#3176,Textualize/rich,3176,[BUG] Chunks of text go missing when writing Asian text (wrapping issue),Hard,https://github.com/Textualize/rich/issues/3176,
-kubernetes/kubernetes#142129,kubernetes/kubernetes,142129,Start localhost nodeport proxy only when nodeport address contains 127.0.0.1,Medium,https://github.com/kubernetes/kubernetes/issues/142129,
-pingcap/tidb#71261,pingcap/tidb,71261,Flaky test: TestStmtHints in pkg/bindinfo/tests,Easy,https://github.com/pingcap/tidb/issues/71261,
-gofiber/fiber#4635,gofiber/fiber,4635,🧹 [Maintenance]: share the route parameter delimiter set between router and client,Hard,https://github.com/gofiber/fiber/issues/4635,
-pallets/flask#5774,pallets/flask,5774,`stream_with_context` does not work with async routes,Medium,https://github.com/pallets/flask/issues/5774,
-traefik/traefik#13901,traefik/traefik,13901,aliasHeadersStrategy breaks 'traefik healthcheck --ping',Medium,https://github.com/traefik/traefik/issues/13901,
-kubernetes-sigs/kustomize#5979,kubernetes-sigs/kustomize,5979,Malformed resources YAML entry silently resolves to wrong directory (../../shared/prod) instead of erroring,Medium,https://github.com/kubernetes-sigs/kustomize/issues/5979,
-gohugoio/hugo#15253,gohugoio/hugo,15253,config/allconfig: Improve resilience of hugo mod init,Medium,https://github.com/gohugoio/hugo/issues/15253,
-goreleaser/goreleaser#6924,goreleaser/goreleaser,6924,docker and flatpak: inherited environment overrides project settings,Hard,https://github.com/goreleaser/goreleaser/issues/6924,
-sharkdp/bat#3148,sharkdp/bat,3148,bat does not colorize puppet code block inside markdown,Medium,https://github.com/sharkdp/bat/issues/3148,
-kubernetes/minikube#23773,kubernetes/minikube,23773,Minikube uses inverted  style for the pause and unpause commands,Medium,https://github.com/kubernetes/minikube/issues/23773,
-tqdm/tqdm#1125,tqdm/tqdm,1125,tqdm.reset() crashes when disable=True,Medium,https://github.com/tqdm/tqdm/issues/1125,
+jaegertracing/jaeger#9524,jaegertracing/jaeger,9524,"[Bug]: es-index-cleaner reads --index-prefix as a regular expression, so a prefix with regex characters panics or matches nothing",Easy,https://github.com/jaegertracing/jaeger/issues/9524,Easy
+open-policy-agent/opa#9187,open-policy-agent/opa,9187,sprintf's float formater casts .0 decimals to int64 and fails to format (since 1.20.0),Medium,https://github.com/open-policy-agent/opa/issues/9187,Easy
+kubernetes-sigs/metrics-server#1267,kubernetes-sigs/metrics-server,1267,Multiple Vulnerabilities found in metrics-server v0.6.3,Easy,https://github.com/kubernetes-sigs/metrics-server/issues/1267,Easy
+tokio-rs/tokio#8042,tokio-rs/tokio,8042,x86_64-pc-cygwin: tokio::process stdout/stderr stop after the first chunk,Hard,https://github.com/tokio-rs/tokio/issues/8042,Hard
+pylint-dev/pylint#11028,pylint-dev/pylint,11028,`IndexError: list index out of range` with empty len() in boolean context,Hard,https://github.com/pylint-dev/pylint/issues/11028,Hard
+kubernetes-sigs/metrics-server#1329,kubernetes-sigs/metrics-server,1329,Make sure metrics server works with SidecarContainers feature,Hard,https://github.com/kubernetes-sigs/metrics-server/issues/1329,Hard
+home-assistant/core#188568,home-assistant/core,188568,[aw] quality-scale-reviewer exceeded daily AI credits budget,Easy,https://github.com/home-assistant/core/issues/188568,Easy
+BurntSushi/ripgrep#3453,BurntSushi/ripgrep,3453,[ignore] Include depth in WithPath error.,Easy,https://github.com/BurntSushi/ripgrep/issues/3453,Medium
+spf13/cobra#2257,spf13/cobra,2257,Completions modify os.Args,Medium,https://github.com/spf13/cobra/issues/2257,Medium
+numpy/numpy#32491,numpy/numpy,32491,"ENH: make ""no"" and ""equiv"" casting consistent for Python scalars in ufuncs and copyto",Hard,https://github.com/numpy/numpy/issues/32491,Hard
+BurntSushi/ripgrep#2956,BurntSushi/ripgrep,2956,Can't source zsh completions directly,Medium,https://github.com/BurntSushi/ripgrep/issues/2956,Medium
+astral-sh/ruff#28989,astral-sh/ruff,28989,SLF001 false positives in __new__,Medium,https://github.com/astral-sh/ruff/issues/28989,Easy
+eslint/eslint#21255,eslint/eslint,21255,Bug: prototype collusion in new-cap rule,Medium,https://github.com/eslint/eslint/issues/21255,Easy
+mochajs/mocha#6297,mochajs/mocha,6297,🛠️ Repo: `--watch` dir-add test flakes waiting for the first mkdir rerun,Easy,https://github.com/mochajs/mocha/issues/6297,Easy
+spf13/cobra#2060,spf13/cobra,2060,Completion should not complete the --help/-h and --version/-v flags if DisableFlagParsing==true ,Easy,https://github.com/spf13/cobra/issues/2060,Easy
+kubernetes-sigs/kubespray#13177,kubernetes-sigs/kubespray,13177,Bump: etcd to v3.6.10,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13177,Easy
+kubernetes-sigs/external-dns#6270,kubernetes-sigs/external-dns,6270,nodesExternalTrafficPolicyTypeLocal produces wrong node IP set when multiple pods share a node,Medium,https://github.com/kubernetes-sigs/external-dns/issues/6270,Medium
+jaegertracing/jaeger#9689,jaegertracing/jaeger,9689,[Bug]: ES/OS backward-compat suite expects an attribute range filter to be refused over an index without the numeric sub-field,Hard,https://github.com/jaegertracing/jaeger/issues/9689,Hard
+starship/starship#7639,starship/starship,7639,Swift module is slow because swift --version is slow,Medium,https://github.com/starship/starship/issues/7639,Medium
+kubernetes-sigs/external-dns#6565,kubernetes-sigs/external-dns,6565,Upgrade Go runtime to 1.26.2 or later to remediate CVE-2026-33810,Medium,https://github.com/kubernetes-sigs/external-dns/issues/6565,Medium
+kubernetes-sigs/external-dns#6670,kubernetes-sigs/external-dns,6670,"pdns provider: PowerDNS API calls have no request timeout, so an unresponsive API server hangs the reconcile loop forever",Medium,https://github.com/kubernetes-sigs/external-dns/issues/6670,Medium
+jaegertracing/jaeger#8947,jaegertracing/jaeger,8947,Remove support for Elasticsearch v6,Hard,https://github.com/jaegertracing/jaeger/issues/8947,Hard
+goreleaser/goreleaser#6937,goreleaser/goreleaser,6937,exec: command debug fields bypass secret redaction,Hard,https://github.com/goreleaser/goreleaser/issues/6937,Hard
+sveltejs/svelte#18438,sveltejs/svelte,18438,Componentizing svelte boundary causes many unexpected remote functions bugs,Medium,https://github.com/sveltejs/svelte/issues/18438,Medium
+goreleaser/goreleaser#6979,goreleaser/goreleaser,6979,aur: binary-mode package command ignores the download alias,Hard,https://github.com/goreleaser/goreleaser/issues/6979,Hard
+sharkdp/fd#1407,sharkdp/fd,1407,[BUG] - complete: nosort: invalid option name,Easy,https://github.com/sharkdp/fd/issues/1407,Easy
+vuejs/core#15673,vuejs/core,15673,[Vapor] a child's `flush: 'sync'` watcher re-reads a prop after the `v-if` guarding it turns false,Hard,https://github.com/vuejs/core/issues/15673,Hard
+goreleaser/goreleaser#6638,goreleaser/goreleaser,6638,homebrew_casks: documented private-repo download pattern broken by Homebrew 5.1.14 env scrubbing,Easy,https://github.com/goreleaser/goreleaser/issues/6638,Easy
+celery/celery#10400,celery/celery,10400,Control command can't handle preload options,Easy,https://github.com/celery/celery/issues/10400,Easy
+jaegertracing/jaeger#9104,jaegertracing/jaeger,9104,[Bug]: gRPC storage v2: configured Timeout is never applied to client calls,Medium,https://github.com/jaegertracing/jaeger/issues/9104,Medium
+caddyserver/caddy#7518,caddyserver/caddy,7518,Index out of range error when using {block},Medium,https://github.com/caddyserver/caddy/issues/7518,Medium
+sqlalchemy/sqlalchemy#13706,sqlalchemy/sqlalchemy,13706,Add Redis ADBC to the external dialects documentation,Easy,https://github.com/sqlalchemy/sqlalchemy/issues/13706,Easy
+celery/celery#10320,celery/celery,10320,Make default worker_concurrency cgroup-aware on Linux (opt-in via --concurrency=auto),Hard,https://github.com/celery/celery/issues/10320,Medium
+python-poetry/poetry#10635,python-poetry/poetry,10635,Error message for incorrect configs is unclear,Medium,https://github.com/python-poetry/poetry/issues/10635,Easy
+kubernetes-sigs/kubespray#13215,kubernetes-sigs/kubespray,13215,Support Kubernetes 1.36,Hard,https://github.com/kubernetes-sigs/kubespray/issues/13215,Hard
+uber-go/zap#1034,uber-go/zap,1034,feat: Custom `interface{}` object Encoder,Hard,https://github.com/uber-go/zap/issues/1034,Hard
+scikit-learn/scikit-learn#34511,scikit-learn/scikit-learn,34511,Inconsistent `_check_initialized` method: only present on gradient boosting estimators,Easy,https://github.com/scikit-learn/scikit-learn/issues/34511,Easy
+vuejs/core#15257,vuejs/core,15257,[Vapor] compiler: generated template HTML omits the space between quoted attributes (HTML parse error per spec),Medium,https://github.com/vuejs/core/issues/15257,Medium
+tokio-rs/tokio#8209,tokio-rs/tokio,8209,Add `poll_to_block` to `tokio_test::task::Spawn` to advance futures as far as possible,Medium,https://github.com/tokio-rs/tokio/issues/8209,Medium
+gohugoio/hugo#15066,gohugoio/hugo,15066,Aliases with .htm extension are published to the wrong path,Medium,https://github.com/gohugoio/hugo/issues/15066,Medium
+BurntSushi/ripgrep#3194,BurntSushi/ripgrep,3194,Line buffering appears broken in 15.0.0,Easy,https://github.com/BurntSushi/ripgrep/issues/3194,Easy
+goreleaser/goreleaser#6815,goreleaser/goreleaser,6815,Undocumented: aur_sources fails if source isn't enabled,Easy,https://github.com/goreleaser/goreleaser/issues/6815,Easy
+jaegertracing/jaeger#8966,jaegertracing/jaeger,8966,esmapping-generator: OpenSearch template rendering works but is undiscoverable and mislabeled,Hard,https://github.com/jaegertracing/jaeger/issues/8966,Medium
+kubernetes-sigs/kubespray#13236,kubernetes-sigs/kubespray,13236,Bump: containerd to v2.3.0 (first annual LTS),Medium,https://github.com/kubernetes-sigs/kubespray/issues/13236,Medium
+tqdm/tqdm#1102,tqdm/tqdm,1102,It is not correct to take the average of speed; tqdm needs to use two EMAs.,Hard,https://github.com/tqdm/tqdm/issues/1102,Hard
+apache/airflow#75419,apache/airflow,75419,"SnowflakeHook: autocommit=False and final COMMIT silently skipped when any session_parameters is set (e.g. QUERY_TAG), since 6.12.2",Medium,https://github.com/apache/airflow/issues/75419,Medium
+python-pillow/Pillow#9851,python-pillow/Pillow,9851,Reading n_frames corrupts subsequent loading of mixed RGB/P LZW TIFF frames,Easy,https://github.com/python-pillow/Pillow/issues/9851,Easy
+statsmodels/statsmodels#10546,statsmodels/statsmodels,10546,BUG: ARDL/UECM bounds_test asymptotic critical values use k = number of variables including y (off by one),Medium,https://github.com/statsmodels/statsmodels/issues/10546,Medium
+kubernetes-sigs/controller-runtime#3322,kubernetes-sigs/controller-runtime,3322,Feature: Able to set WithContextFunc in WebhookBuilder,Easy,https://github.com/kubernetes-sigs/controller-runtime/issues/3322,Easy
+prometheus/alertmanager#5404,prometheus/alertmanager,5404,Api silences add parameter like alerts,Hard,https://github.com/prometheus/alertmanager/issues/5404,Easy
+tqdm/tqdm#1213,tqdm/tqdm,1213,VS Code now support ipywidgets,Easy,https://github.com/tqdm/tqdm/issues/1213,Easy
+pandas-dev/pandas#69037,pandas-dev/pandas,69037,BUG: rolling().skew()/.kurt() return NaN once an earlier window's nobs hits 0,Medium,https://github.com/pandas-dev/pandas/issues/69037,Hard
+networkx/networkx#8802,networkx/networkx,8802,Wrong description for communicability and communicability_exp,Easy,https://github.com/networkx/networkx/issues/8802,Easy
+urfave/cli#2285,urfave/cli,2285,Dynamic fish completions breaks fish completions,Medium,https://github.com/urfave/cli/issues/2285,Easy
+gin-gonic/gin#4473,gin-gonic/gin,4473,"Instead of using hardcoded ""127.0.0.1"" use a const for it named localhostIP",Easy,https://github.com/gin-gonic/gin/issues/4473,Easy
+gohugoio/hugo#15142,gohugoio/hugo,15142,check.sh can fail after installing staticcheck when Go bin is not on PATH,Easy,https://github.com/gohugoio/hugo/issues/15142,Easy
+celery/celery#10322,celery/celery,10322,make_aware() silently mishandles spring-forward DST gap — crontab tasks scheduled in a non-existent local time are skipped or run with wrong UTC offset,Medium,https://github.com/celery/celery/issues/10322,Medium
+kubernetes-sigs/kubespray#13277,kubernetes-sigs/kubespray,13277,Worker node kubelet crash-loop after upgrade: lineinfile task writes `server:` at wrong YAML indentation in kubelet.conf,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13277,Easy
+kubernetes-sigs/kubebuilder#5821,kubernetes-sigs/kubebuilder,5821,Add missing test coverage for the --ssa workflow,Medium,https://github.com/kubernetes-sigs/kubebuilder/issues/5821,Medium
+go-chi/chi#484,go-chi/chi,484,rewrite of compressor breaks DX (for me),Easy,https://github.com/go-chi/chi/issues/484,Medium
+kubernetes-sigs/cluster-api#14003,kubernetes-sigs/cluster-api,14003,Expose 'defer' field of cloud-init write_files in kubeadmConfigSpec.files,Hard,https://github.com/kubernetes-sigs/cluster-api/issues/14003,Hard
+urfave/cli#2373,urfave/cli,2373,completion subcommands appear in non-deterministic order in help output,Medium,https://github.com/urfave/cli/issues/2373,Medium
+operator-framework/operator-sdk#6578,operator-framework/operator-sdk,6578,Dockerhub rate limiting causes `run bundle` to fail,Medium,https://github.com/operator-framework/operator-sdk/issues/6578,Medium
+tokio-rs/tokio#8607,tokio-rs/tokio,8607,Default worker count misses CPU limits set outside the container's cgroup namespace (ECS EC2),Easy,https://github.com/tokio-rs/tokio/issues/8607,Easy
+kubernetes-sigs/kubebuilder#5922,kubernetes-sigs/kubebuilder,5922,create webhook test: also assert the domain is preserved when external flags are not re-supplied,Easy,https://github.com/kubernetes-sigs/kubebuilder/issues/5922,Easy
+python-poetry/poetry#10423,python-poetry/poetry,10423,Discovered shell 'bash' doesn't have an activator in virtual environment,Easy,https://github.com/python-poetry/poetry/issues/10423,Easy
+sveltejs/svelte#18621,sveltejs/svelte,18621,Private `$state` field: ++/-- through a non-this receiver emits invalid JavaScript,Medium,https://github.com/sveltejs/svelte/issues/18621,Easy
+go-chi/chi#587,go-chi/chi,587,Possible regression in 1.5.2: middleware got instantiated and invoked twice,Easy,https://github.com/go-chi/chi/issues/587,Easy
+goreleaser/goreleaser#6947,goreleaser/goreleaser,6947,winget: package_identifier templates are validated without rendering,Hard,https://github.com/goreleaser/goreleaser/issues/6947,Hard
+mochajs/mocha#6265,mochajs/mocha,6265,🐛 Bug: `--parallel` worker death loses spec file path on synthetic failure,Medium,https://github.com/mochajs/mocha/issues/6265,Medium
+pallets/werkzeug#3105,pallets/werkzeug,3105,duplicate rule check needs to consider more,Medium,https://github.com/pallets/werkzeug/issues/3105,Medium
+python-pillow/Pillow#9963,python-pillow/Pillow,9963,"Image.copy() aliases mutable .info values (e.g. list-valued ""Comment"" in IM/IPTC) between original and copy",Easy,https://github.com/python-pillow/Pillow/issues/9963,Easy
+matplotlib/matplotlib#32521,matplotlib/matplotlib,32521,[Bug]: Recent date conversion error in CI,Easy,https://github.com/matplotlib/matplotlib/issues/32521,Easy
+kubernetes-sigs/kubespray#13252,kubernetes-sigs/kubespray,13252,cilium_operator_image_repo references wrong image name for offline registry sync (`cilium/operator` vs chart-required `cilium/operator-generic`),Easy,https://github.com/kubernetes-sigs/kubespray/issues/13252,Easy
+tqdm/tqdm#966,tqdm/tqdm,966,How to use tqdm to log progress bars in cloudwatch logs?,Medium,https://github.com/tqdm/tqdm/issues/966,Medium
+gohugoio/hugo#15112,gohugoio/hugo,15112,Add css.ChromaStyles,Hard,https://github.com/gohugoio/hugo/issues/15112,Hard
+prometheus/client_golang#1666,prometheus/client_golang,1666,Flaky test: `TestSummaryDecay `,Medium,https://github.com/prometheus/client_golang/issues/1666,Medium
+statsmodels/statsmodels#10256,statsmodels/statsmodels,10256,Possible bug in PCA GLS implementation,Medium,https://github.com/statsmodels/statsmodels/issues/10256,Hard
+clap-rs/clap#6236,clap-rs/clap,6236,Confusing `Usage: <...>` suggestion when using an argument together with an argument from a conflicting argument group,Medium,https://github.com/clap-rs/clap/issues/6236,Medium
+containerd/containerd#13534,containerd/containerd,13534,ImageVolumeMountFailed using erofs in v2.3.1,Medium,https://github.com/containerd/containerd/issues/13534,Medium
+caddyserver/caddy#8141,caddyserver/caddy,8141,ECH: `retry_configs` are never sent when ECH is rejected,Medium,https://github.com/caddyserver/caddy/issues/8141,Medium
+gorilla/mux#464,gorilla/mux,464,Serve React Router,Medium,https://github.com/gorilla/mux/issues/464,Medium
+pingcap/tidb#70711,pingcap/tidb,70711,planner: scalar subquery registry leaks across statement and optimistic replay boundaries,Medium,https://github.com/pingcap/tidb/issues/70711,Medium
+gohugoio/hugo#15040,gohugoio/hugo,15040,modules: Mount .mjs and .cjs config files from modules into assets/_jsconfig/,Hard,https://github.com/gohugoio/hugo/issues/15040,Hard
+urfave/cli#1883,urfave/cli,1883,How do I define Usage for BoolWithInverseFlag?,Medium,https://github.com/urfave/cli/issues/1883,Easy
+prometheus/client_golang#1617,prometheus/client_golang,1617,Consider supporting constant native histograms,Hard,https://github.com/prometheus/client_golang/issues/1617,Hard
+vuejs/core#15792,vuejs/core,15792,isShallow() returns false for shallow collection proxies (shallowReactive(new Map())),Easy,https://github.com/vuejs/core/issues/15792,Easy
+starship/starship#7561,starship/starship,7561,Add support for build.gradle.kts files in package module,Easy,https://github.com/starship/starship/issues/7561,Easy
+moby/moby#53939,moby/moby,53939,Docker Swarm published ports refused over IPv6 when docker_gwbridge has IPv6 enabled,Easy,https://github.com/moby/moby/issues/53939,Easy
+kubernetes-sigs/metrics-server#1704,kubernetes-sigs/metrics-server,1704,"""Failed to scrape node"" errors after node termination or newly created",Easy,https://github.com/kubernetes-sigs/metrics-server/issues/1704,Easy
+scikit-image/scikit-image#8303,scikit-image/scikit-image,8303,SIFT crashes with ValueError when sigma_in exceeds sigma_min,Easy,https://github.com/scikit-image/scikit-image/issues/8303,Easy
+statsmodels/statsmodels#10307,statsmodels/statsmodels,10307,BUG: fit(use_t=True) silently ignored with nonrobust covariance in several discrete models,Easy,https://github.com/statsmodels/statsmodels/issues/10307,Easy
+goreleaser/goreleaser#7040,goreleaser/goreleaser,7040,docs(blog): keep blob destinations in the first YAML document,Hard,https://github.com/goreleaser/goreleaser/issues/7040,Hard
+ansible/ansible#87020,ansible/ansible,87020,Tree plugin deprecation notice,Medium,https://github.com/ansible/ansible/issues/87020,Medium
+mkdocs/mkdocs#3259,mkdocs/mkdocs,3259,Repo Link missing in readthedocs theme if custom repo_name used,Easy,https://github.com/mkdocs/mkdocs/issues/3259,Easy
+gohugoio/hugo#14817,gohugoio/hugo,14817,commands: Improve description of noHTTPcache and ignoreCache flags,Easy,https://github.com/gohugoio/hugo/issues/14817,Easy
+scrapy/scrapy#7820,scrapy/scrapy,7820,Settings imports module for every component-dict key incl. None — ModuleNotFoundError on removed/disabled modules (2.17 regression),Easy,https://github.com/scrapy/scrapy/issues/7820,Easy
+pytest-dev/pytest#15005,pytest-dev/pytest,15005,pytest.approx returns False for in-tolerance finite Decimal values above the float range,Medium,https://github.com/pytest-dev/pytest/issues/15005,Medium
+jesseduffield/lazygit#5302,jesseduffield/lazygit,5302,Fails to add to .git/info/exclude when .git/info directory is missing,Easy,https://github.com/jesseduffield/lazygit/issues/5302,Easy
+tokio-rs/tokio#8567,tokio-rs/tokio,8567,Taskdump duplicates a notification while block_in_place returns,Medium,https://github.com/tokio-rs/tokio/issues/8567,Easy
+kubernetes-sigs/metrics-server#1816,kubernetes-sigs/metrics-server,1816,Storage readiness check is loose,Hard,https://github.com/kubernetes-sigs/metrics-server/issues/1816,Hard
+axios/axios#10818,axios/axios,10818,fix(http): timeout not honored during TCP connect phase when maxRedirects=0,Medium,https://github.com/axios/axios/issues/10818,Medium
+gofiber/fiber#4423,gofiber/fiber,4423,🐛 [Bug]: Logger middleware invokes ErrorHandler with MethodNotAllowed during fasthttp parser error recovery,Easy,https://github.com/gofiber/fiber/issues/4423,Easy
+Textualize/rich#3115,Textualize/rich,3115,[BUG] Rich markdown printed to console only shows a single link in a column/ table cell,Medium,https://github.com/Textualize/rich/issues/3115,Medium
+vitessio/vitess#21109,vitessio/vitess,21109,Feature Request: Allow ERS callers to require a minimum GTID set on the new primary,Hard,https://github.com/vitessio/vitess/issues/21109,Hard
+kubernetes-sigs/kubespray#13455,kubernetes-sigs/kubespray,13455,CI: run Ansible controller unprivileged,Hard,https://github.com/kubernetes-sigs/kubespray/issues/13455,Hard
+kubernetes-sigs/kubespray#13351,kubernetes-sigs/kubespray,13351,[plugins/modules/kube.py] Remove dangling 'list' from mutually_exclusive — references non-existent parameter,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13351,Medium
+sharkdp/fd#1592,sharkdp/fd,1592,"debian package installs fd under the name fd, not fdfind",Easy,https://github.com/sharkdp/fd/issues/1592,Easy
+gorilla/mux#238,gorilla/mux,238,Mux not properly parsing ampersand in url query paramters,Medium,https://github.com/gorilla/mux/issues/238,Medium
+jesseduffield/lazygit#5837,jesseduffield/lazygit,5837,"Crash when switch to fullscreen mode, with `delta` as custom pager on Windows.",Medium,https://github.com/jesseduffield/lazygit/issues/5837,Hard
+pingcap/tidb#71070,pingcap/tidb,71070,Flaky test: TestLoadDataLowPrioritySetsKVLowPriority in pkg/executor/test/loaddatatest,Easy,https://github.com/pingcap/tidb/issues/71070,Easy
+kubernetes-sigs/metrics-server#1275,kubernetes-sigs/metrics-server,1275,The RoleBinding k8s namespace should be the same namespace as a role ,Easy,https://github.com/kubernetes-sigs/metrics-server/issues/1275,Medium
+coredns/coredns#8521,coredns/coredns,8521,plugin/https: Make HTTP/2 max concurrent streams configurable,Hard,https://github.com/coredns/coredns/issues/8521,Hard
+pingcap/tidb#70932,pingcap/tidb,70932,ADD [UNIQUE] INDEX ... GLOBAL can leave an incomplete global index on a partitioned table after EXCHANGE PARTITION ... WITHOUT VALIDATION duplicates a primary key,Medium,https://github.com/pingcap/tidb/issues/70932,Medium
+coredns/coredns#8252,coredns/coredns,8252,plugin/hosts: data race between A/AAAA lookups and hosts-file reload,Easy,https://github.com/coredns/coredns/issues/8252,Medium
+gohugoio/hugo#15171,gohugoio/hugo,15171,Remove -embedded from the default exec.allow,Easy,https://github.com/gohugoio/hugo/issues/15171,Easy
+vuejs/core#15264,vuejs/core,15264,Vapor: two v-on listeners for the same event on a component are merged into an array and thrown at withModifiers,Easy,https://github.com/vuejs/core/issues/15264,Easy
+urfave/cli#2326,urfave/cli,2326,Expose Flag.SchemaType() for typed flag introspection,Medium,https://github.com/urfave/cli/issues/2326,Medium
+mochajs/mocha#6272,mochajs/mocha,6272,🛠️ Repo: Not testing against Node 26,Easy,https://github.com/mochajs/mocha/issues/6272,Easy
+etcd-io/etcd#21775,etcd-io/etcd,21775,In Antithesis Dockerfile build replace contents of MustVerifyIfEnabled function with Unreachable assertion,Easy,https://github.com/etcd-io/etcd/issues/21775,Easy
+hashicorp/terraform#38968,hashicorp/terraform,38968,Failing `TestPlan_WithPolicyUnknown` test,Medium,https://github.com/hashicorp/terraform/issues/38968,Easy
+tokio-rs/tokio#8056,tokio-rs/tokio,8056,regression in `spawn_blocking` caused by #7757 causes tests to hang,Medium,https://github.com/tokio-rs/tokio/issues/8056,Medium
+python-pillow/Pillow#9817,python-pillow/Pillow,9817,Oversized JPEG 2000 box length leaks `OverflowError` from `Image.open()`,Easy,https://github.com/python-pillow/Pillow/issues/9817,Easy
+eslint/eslint#21303,eslint/eslint,21303,Ecosystem tests failure,Easy,https://github.com/eslint/eslint/issues/21303,Easy
+traefik/traefik#13824,traefik/traefik,13824,Support Dragonfly for ratelimit,Easy,https://github.com/traefik/traefik/issues/13824,Easy
+pallets/werkzeug#3271,pallets/werkzeug,3271,deprecate `UserAgent`,Medium,https://github.com/pallets/werkzeug/issues/3271,Medium
+prometheus/node_exporter#3333,prometheus/node_exporter,3333,Darwin network metrics reset at 4GB,Easy,https://github.com/prometheus/node_exporter/issues/3333,Medium
+sharkdp/bat#3513,sharkdp/bat,3513,support shebang line recognition for tclsh and expect,Hard,https://github.com/sharkdp/bat/issues/3513,Hard
+BurntSushi/ripgrep#2767,BurntSushi/ripgrep,2767,ignore: WalkBuilder::build_parallel() example does not compile,Easy,https://github.com/BurntSushi/ripgrep/issues/2767,Easy
+statsmodels/statsmodels#10109,statsmodels/statsmodels,10109,DOC: Broken links to https://stats.oecd.org/glossary/,Easy,https://github.com/statsmodels/statsmodels/issues/10109,Easy
+kubernetes-sigs/kubebuilder#5574,kubernetes-sigs/kubebuilder,5574,helm/v2-alpha: .github/workflows/test-chart.yml trying to install different image than the one build,Medium,https://github.com/kubernetes-sigs/kubebuilder/issues/5574,Medium
+celery/celery#10211,celery/celery,10211,"chain(group([t1, t2]), group(), group()) crashes with AttributeError on NoneType",Medium,https://github.com/celery/celery/issues/10211,Easy
+jestjs/jest#15756,jestjs/jest,15756,[Bug]: Jest snapshots still being generated with goo.gl links.,Easy,https://github.com/jestjs/jest/issues/15756,Hard
+kubernetes/minikube#23788,kubernetes/minikube,23788,"Remove HelmInstall, HelmVersion and related tests",Hard,https://github.com/kubernetes/minikube/issues/23788,Hard
+tqdm/tqdm#1231,tqdm/tqdm,1231,"Using generator with process_map crashes, despite passing `total` parameter to tqdm_class",Easy,https://github.com/tqdm/tqdm/issues/1231,Easy
+urfave/cli#1875,urfave/cli,1875,Shell completion is suggesting aliases,Medium,https://github.com/urfave/cli/issues/1875,Medium
+tektoncd/pipeline#10314,tektoncd/pipeline,10314,Release Rekor UUIDs appear shortened,Easy,https://github.com/tektoncd/pipeline/issues/10314,Easy
+celery/celery#10760,celery/celery,10760,`saferepr` drops the closing bracket when the last element is truncated (affects task `argsrepr/kwargsrepr` ),Medium,https://github.com/celery/celery/issues/10760,Medium
+psf/black#4843,psf/black,4843,`black==25.11.0` removing `%% [markdown]` comments,Medium,https://github.com/psf/black/issues/4843,Medium
+gohugoio/hugo#15046,gohugoio/hugo,15046,Strange behaviour while rendering uglyURLs = true,Easy,https://github.com/gohugoio/hugo/issues/15046,Easy
+tokio-rs/tokio#8175,tokio-rs/tokio,8175,Inconsistent cancel safety documentation,Hard,https://github.com/tokio-rs/tokio/issues/8175,Hard
+hashicorp/nomad#28093,hashicorp/nomad,28093,nodes can't stop allocations if they've changed node pools,Medium,https://github.com/hashicorp/nomad/issues/28093,Medium
+pallets/werkzeug#3189,pallets/werkzeug,3189,uri_to_iri and iri_to_uri drop an empty username or password,Easy,https://github.com/pallets/werkzeug/issues/3189,Medium
+python-pillow/Pillow#9917,python-pillow/Pillow,9917,JPEG `qtables` iteration failure causes a NULL dereference in `Image.save()`,Easy,https://github.com/python-pillow/Pillow/issues/9917,Easy
+encode/httpx#3411,encode/httpx,3411,Zstandard data is incomplete on HEAD requests,Medium,https://github.com/encode/httpx/issues/3411,Medium
+goreleaser/goreleaser#6880,goreleaser/goreleaser,6880,Docker v2 overwrites AMD64 variants in build contexts,Medium,https://github.com/goreleaser/goreleaser/issues/6880,Medium
+encode/httpx#3111,encode/httpx,3111,0.27.0: replacing `app=app` with `transport=ASGITransport(app)` doesn't type check,Easy,https://github.com/encode/httpx/issues/3111,Hard
+gofiber/fiber#4403,gofiber/fiber,4403,📝 [Proposal]: skip group/prefix middleware when no child route matches,Hard,https://github.com/gofiber/fiber/issues/4403,Hard
+caddyserver/caddy#8208,caddyserver/caddy,8208,fastcgi: a response with `Location` and no `Status` is sent as 200 instead of 302,Easy,https://github.com/caddyserver/caddy/issues/8208,Easy
+Textualize/rich#3729,Textualize/rich,3729,[BUG] Incorrect type hint for `RichHandler.tracebacks_code_width`,Easy,https://github.com/Textualize/rich/issues/3729,Easy
+caddyserver/caddy#8171,caddyserver/caddy,8171,"fastcgi transport: dial errors are not wrapped as DialError, so lb_try_duration never retries non-GET requests",Easy,https://github.com/caddyserver/caddy/issues/8171,Easy
+jaegertracing/jaeger#9460,jaegertracing/jaeger,9460,Move the structured-filter validator out of jaeger-idl into jaeger,Easy,https://github.com/jaegertracing/jaeger/issues/9460,Easy
+caddyserver/caddy#8157,caddyserver/caddy,8157,reverseproxy: weighted_round_robin panics when there are fewer weights than upstreams and one is down,Easy,https://github.com/caddyserver/caddy/issues/8157,Easy
+docker/compose#13772,docker/compose,13772,Add stop hook support for external providers,Hard,https://github.com/docker/compose/issues/13772,Hard
+pingcap/tidb#70759,pingcap/tidb,70759,Prepared statement incorrectly materializes a single-reference CTE after unrelated DDL,Medium,https://github.com/pingcap/tidb/issues/70759,Medium
+docker/compose#13850,docker/compose,13850,[BUG] Docs about 'docker compose ps --format json' is wrong,Medium,https://github.com/docker/compose/issues/13850,Medium
+tqdm/tqdm#1161,tqdm/tqdm,1161,Poor time estimation for concurrent processing,Easy,https://github.com/tqdm/tqdm/issues/1161,Easy
+cert-manager/cert-manager#9119,cert-manager/cert-manager,9119,issuing controller panics (nil deref) on a CertificateRequest with FailureTime but no Ready condition,Medium,https://github.com/cert-manager/cert-manager/issues/9119,Easy
+Textualize/textual#5728,Textualize/textual,5728,`OptionList` not fully updating on options being cleared (since v2.0.0),Medium,https://github.com/Textualize/textual/issues/5728,Medium
+pingcap/tidb#70673,pingcap/tidb,70673,objstore: KS3 concurrent uploader overrides the configured part size,Medium,https://github.com/pingcap/tidb/issues/70673,Medium
+Textualize/rich#3881,Textualize/rich,3881,[BUG] PromptBase.on_validate_error should explicitly enable markup,Easy,https://github.com/Textualize/rich/issues/3881,Easy
+kubernetes-sigs/controller-runtime#3422,kubernetes-sigs/controller-runtime,3422,`IndexField()` unintentionally blocks until informer is synced,Easy,https://github.com/kubernetes-sigs/controller-runtime/issues/3422,Easy
+jestjs/jest#16291,jestjs/jest,16291,Update several subpackages from glob 10.5.0 to glob 13,Medium,https://github.com/jestjs/jest/issues/16291,Medium
+kubernetes-sigs/kubespray#13364,kubernetes-sigs/kubespray,13364,Unneeded bpf fstab entry added when using Cilium,Easy,https://github.com/kubernetes-sigs/kubespray/issues/13364,Easy
+kubernetes-sigs/cluster-api#14021,kubernetes-sigs/cluster-api,14021,ClusterClass metadata patches silently drop topology-declared labels/annotations,Easy,https://github.com/kubernetes-sigs/cluster-api/issues/14021,Easy
+matplotlib/matplotlib#32186,matplotlib/matplotlib,32186,[Bug]: GIF frames become skewed when using PillowWriter in matplotlib 3.11.1,Medium,https://github.com/matplotlib/matplotlib/issues/32186,Medium
+grpc/grpc-go#8860,grpc/grpc-go,8860,metadata.FromOutgoingContext is too slow,Medium,https://github.com/grpc/grpc-go/issues/8860,Medium
+mochajs/mocha#6362,mochajs/mocha,6362,"🛠️ Repo: flaky test: ""--exit ... should not force exit after root suite completion""",Easy,https://github.com/mochajs/mocha/issues/6362,Easy
+kubernetes-sigs/controller-runtime#3518,kubernetes-sigs/controller-runtime,3518,Envtest Fails to Stop Control Plane on Windows,Easy,https://github.com/kubernetes-sigs/controller-runtime/issues/3518,Easy
+docker/compose#13785,docker/compose,13785,[BUG] Network's IPAM options not working,Easy,https://github.com/docker/compose/issues/13785,Medium
+python-poetry/poetry#10315,python-poetry/poetry,10315,Re-locking fails with transitive dependency from alternative source,Easy,https://github.com/python-poetry/poetry/issues/10315,Easy
+caddyserver/caddy#7992,caddyserver/caddy,7992,admin: host allow-list rejects hosts that differ only in letter case (checkHost),Easy,https://github.com/caddyserver/caddy/issues/7992,Easy
+pallets/click#3822,pallets/click,3822,`click.Path` should be generic on `path_type`,Medium,https://github.com/pallets/click/issues/3822,Medium
+cilium/cilium#48948,cilium/cilium,48948,cilium connectivity perf fails on 60s measurement,Medium,https://github.com/cilium/cilium/issues/48948,Hard
+minio/minio#20781,minio/minio,20781,List-part API call returns incorrect Size field for multi-part upload when compression is enabled,Easy,https://github.com/minio/minio/issues/20781,Easy
+labstack/echo#2531,labstack/echo,2531,Unsafe attachments can corrupt user's local files,Easy,https://github.com/labstack/echo/issues/2531,Easy
+spf13/viper#1851,spf13/viper,1851,"Make features.BindStruct a Variable or an Option, Instead of Build Constraints",Easy,https://github.com/spf13/viper/issues/1851,Easy
+jaegertracing/jaeger#9628,jaegertracing/jaeger,9628,TracesData.MarshalToSizedBuffer writes to the buffer's head instead of its tail,Medium,https://github.com/jaegertracing/jaeger/issues/9628,Medium
+encode/starlette#3357,encode/starlette,3357,TrustedHostMiddleware Doesn't handle IPv6 properly,Hard,https://github.com/encode/starlette/issues/3357,Hard
+prometheus/client_golang#1477,prometheus/client_golang,1477,A potential goroutine memory leak ,Hard,https://github.com/prometheus/client_golang/issues/1477,Hard
+fluxcd/flux2#5951,fluxcd/flux2,5951,"Feature: Add a ""not equals"" condition to --status-selector",Medium,https://github.com/fluxcd/flux2/issues/5951,Medium
+Textualize/rich#3176,Textualize/rich,3176,[BUG] Chunks of text go missing when writing Asian text (wrapping issue),Hard,https://github.com/Textualize/rich/issues/3176,Medium
+kubernetes/kubernetes#142129,kubernetes/kubernetes,142129,Start localhost nodeport proxy only when nodeport address contains 127.0.0.1,Medium,https://github.com/kubernetes/kubernetes/issues/142129,Hard
+pingcap/tidb#71261,pingcap/tidb,71261,Flaky test: TestStmtHints in pkg/bindinfo/tests,Easy,https://github.com/pingcap/tidb/issues/71261,Easy
+gofiber/fiber#4635,gofiber/fiber,4635,🧹 [Maintenance]: share the route parameter delimiter set between router and client,Hard,https://github.com/gofiber/fiber/issues/4635,Hard
+pallets/flask#5774,pallets/flask,5774,`stream_with_context` does not work with async routes,Medium,https://github.com/pallets/flask/issues/5774,Medium
+traefik/traefik#13901,traefik/traefik,13901,aliasHeadersStrategy breaks 'traefik healthcheck --ping',Medium,https://github.com/traefik/traefik/issues/13901,Hard
+kubernetes-sigs/kustomize#5979,kubernetes-sigs/kustomize,5979,Malformed resources YAML entry silently resolves to wrong directory (../../shared/prod) instead of erroring,Medium,https://github.com/kubernetes-sigs/kustomize/issues/5979,Medium
+gohugoio/hugo#15253,gohugoio/hugo,15253,config/allconfig: Improve resilience of hugo mod init,Medium,https://github.com/gohugoio/hugo/issues/15253,Medium
+goreleaser/goreleaser#6924,goreleaser/goreleaser,6924,docker and flatpak: inherited environment overrides project settings,Hard,https://github.com/goreleaser/goreleaser/issues/6924,Hard
+sharkdp/bat#3148,sharkdp/bat,3148,bat does not colorize puppet code block inside markdown,Medium,https://github.com/sharkdp/bat/issues/3148,Medium
+kubernetes/minikube#23773,kubernetes/minikube,23773,Minikube uses inverted  style for the pause and unpause commands,Medium,https://github.com/kubernetes/minikube/issues/23773,Hard
+tqdm/tqdm#1125,tqdm/tqdm,1125,tqdm.reset() crashes when disable=True,Medium,https://github.com/tqdm/tqdm/issues/1125,Medium
