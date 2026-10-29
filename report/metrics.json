@@ -9,21 +9,21 @@
       "test_accuracy": 0.4155
     },
     "LogisticRegression": {
-      "test_accuracy": 0.4718,
-      "test_precision_macro": 0.4448,
-      "test_recall_macro": 0.4454,
-      "test_f1_macro": 0.4442,
-      "test_f1_weighted": 0.4728,
-      "test_cost": 0.6834,
+      "test_accuracy": 0.4743,
+      "test_precision_macro": 0.4472,
+      "test_recall_macro": 0.4474,
+      "test_f1_macro": 0.4465,
+      "test_f1_weighted": 0.475,
+      "test_cost": 0.6796,
       "hard_called_easy": 0.2606,
-      "train_s": 2.2238,
-      "infer_ms_each": 0.248,
-      "test_roc_auc_ovr": 0.6195,
-      "cv_f1_grouped": 0.3984,
-      "cv_f1_std": 0.02,
-      "cv_train_f1": 0.7258,
-      "overfit_gap": 0.3274,
-      "f1_95ci": "[0.408, 0.479]"
+      "train_s": 1.1004,
+      "infer_ms_each": 0.1384,
+      "test_roc_auc_ovr": 0.6194,
+      "cv_f1_grouped": 0.3988,
+      "cv_f1_std": 0.0204,
+      "cv_train_f1": 0.7257,
+      "overfit_gap": 0.3269,
+      "f1_95ci": "[0.41, 0.481]"
     },
     "DecisionTree": {
       "test_accuracy": 0.423,
@@ -33,8 +33,8 @@
       "test_f1_weighted": 0.3872,
       "test_cost": 0.7021,
       "hard_called_easy": 0.1127,
-      "train_s": 1.7769,
-      "infer_ms_each": 0.2414,
+      "train_s": 0.8925,
+      "infer_ms_each": 0.1303,
       "test_roc_auc_ovr": 0.5533,
       "cv_f1_grouped": 0.1653,
       "cv_f1_std": 0.0324,
@@ -43,37 +43,37 @@
       "f1_95ci": "[0.336, 0.409]"
     },
     "RandomForest": {
-      "test_accuracy": 0.4919,
-      "test_precision_macro": 0.5283,
-      "test_recall_macro": 0.4324,
-      "test_f1_macro": 0.4374,
-      "test_f1_weighted": 0.4757,
-      "test_cost": 0.6383,
+      "test_accuracy": 0.4944,
+      "test_precision_macro": 0.5301,
+      "test_recall_macro": 0.4345,
+      "test_f1_macro": 0.4393,
+      "test_f1_weighted": 0.478,
+      "test_cost": 0.6358,
       "hard_called_easy": 0.3451,
-      "train_s": 4.5226,
-      "infer_ms_each": 0.3587,
-      "test_roc_auc_ovr": 0.6116,
-      "cv_f1_grouped": 0.3891,
-      "cv_f1_std": 0.0183,
-      "cv_train_f1": 0.9825,
-      "overfit_gap": 0.5934,
-      "f1_95ci": "[0.398, 0.48]"
+      "train_s": 1.5924,
+      "infer_ms_each": 0.1769,
+      "test_roc_auc_ovr": 0.6121,
+      "cv_f1_grouped": 0.3893,
+      "cv_f1_std": 0.019,
+      "cv_train_f1": 0.9826,
+      "overfit_gap": 0.5932,
+      "f1_95ci": "[0.401, 0.481]"
     },
     "SVM(linear)": {
       "test_accuracy": 0.4981,
-      "test_precision_macro": 0.3326,
+      "test_precision_macro": 0.3327,
       "test_recall_macro": 0.4039,
       "test_f1_macro": 0.3646,
-      "test_f1_weighted": 0.4498,
-      "test_cost": 0.6421,
-      "hard_called_easy": 0.3944,
-      "train_s": 6.1195,
-      "infer_ms_each": 0.2732,
-      "test_roc_auc_ovr": 0.6199,
+      "test_f1_weighted": 0.4499,
+      "test_cost": 0.6395,
+      "hard_called_easy": 0.3873,
+      "train_s": 2.7095,
+      "infer_ms_each": 0.1324,
+      "test_roc_auc_ovr": 0.62,
       "cv_f1_grouped": 0.3378,
-      "cv_f1_std": 0.0182,
-      "cv_train_f1": 0.5249,
-      "overfit_gap": 0.1871,
+      "cv_f1_std": 0.0185,
+      "cv_train_f1": 0.5252,
+      "overfit_gap": 0.1874,
       "f1_95ci": "[0.341, 0.386]"
     },
     "KNN(cosine)": {
@@ -84,13 +84,13 @@
       "test_f1_weighted": 0.394,
       "test_cost": 0.7584,
       "hard_called_easy": 0.3944,
-      "train_s": 1.9453,
-      "infer_ms_each": 0.4566,
-      "test_roc_auc_ovr": 0.5385,
-      "cv_f1_grouped": 0.3476,
-      "cv_f1_std": 0.016,
+      "train_s": 0.8112,
+      "infer_ms_each": 0.2146,
+      "test_roc_auc_ovr": 0.5381,
+      "cv_f1_grouped": 0.3474,
+      "cv_f1_std": 0.0157,
       "cv_train_f1": 0.9995,
-      "overfit_gap": 0.6518,
+      "overfit_gap": 0.6521,
       "f1_95ci": "[0.311, 0.374]"
     },
     "GradientBoosting": {
@@ -101,8 +101,8 @@
       "test_f1_weighted": 0.4124,
       "test_cost": 0.7297,
       "hard_called_easy": 0.4296,
-      "train_s": 16.4781,
-      "infer_ms_each": 0.1468,
+      "train_s": 11.0574,
+      "infer_ms_each": 0.1347,
       "test_roc_auc_ovr": 0.5702,
       "cv_f1_grouped": 0.2897,
       "cv_f1_std": 0.0471,
@@ -111,21 +111,21 @@
       "f1_95ci": "[0.319, 0.383]"
     },
     "MLP(64)": {
-      "test_accuracy": 0.433,
-      "test_precision_macro": 0.3857,
-      "test_recall_macro": 0.383,
-      "test_f1_macro": 0.3826,
-      "test_f1_weighted": 0.4266,
-      "test_cost": 0.7447,
-      "hard_called_easy": 0.3732,
-      "train_s": 54.7324,
-      "infer_ms_each": 0.1447,
-      "test_roc_auc_ovr": 0.5706,
-      "cv_f1_grouped": 0.3884,
-      "cv_f1_std": 0.0273,
-      "cv_train_f1": 0.9993,
-      "overfit_gap": 0.6109,
-      "f1_95ci": "[0.348, 0.416]"
+      "test_accuracy": 0.4393,
+      "test_precision_macro": 0.3974,
+      "test_recall_macro": 0.3934,
+      "test_f1_macro": 0.394,
+      "test_f1_weighted": 0.4342,
+      "test_cost": 0.7372,
+      "hard_called_easy": 0.3662,
+      "train_s": 36.4708,
+      "infer_ms_each": 0.1321,
+      "test_roc_auc_ovr": 0.5711,
+      "cv_f1_grouped": 0.3879,
+      "cv_f1_std": 0.026,
+      "cv_train_f1": 0.9994,
+      "overfit_gap": 0.6115,
+      "f1_95ci": "[0.359, 0.431]"
     },
     "LogisticRegression (tuned)": {
       "test_accuracy": 0.418,
@@ -135,10 +135,10 @@
       "test_f1_weighted": 0.4268,
       "test_cost": 0.7735,
       "hard_called_easy": 0.2183,
-      "train_s": 1.8477,
-      "infer_ms_each": 0.1593,
+      "train_s": 0.8915,
+      "infer_ms_each": 0.1298,
       "test_roc_auc_ovr": 0.6057,
-      "cv_f1_grouped": 0.4014,
+      "cv_f1_grouped": 0.401,
       "cv_f1_std": NaN,
       "cv_train_f1": NaN,
       "overfit_gap": NaN,
@@ -148,15 +148,15 @@
   },
   "merge": {
     "LogisticRegression": {
-      "cv_ap_grouped": 0.8837,
+      "cv_ap_grouped": 0.8838,
       "test_ap": 0.9403,
       "test_roc_auc": 0.755,
       "test_base_rate": 0.8646
     },
     "RandomForest": {
-      "cv_ap_grouped": 0.8885,
-      "test_ap": 0.9394,
-      "test_roc_auc": 0.744,
+      "cv_ap_grouped": 0.8884,
+      "test_ap": 0.9392,
+      "test_roc_auc": 0.7434,
       "test_base_rate": 0.8646
     },
     "GradientBoosting": {
@@ -179,12 +179,12 @@
       "test_mae_logh": 1.6853
     },
     "Linear": {
-      "test_r2": -3.9902,
+      "test_r2": -3.9899,
       "test_mae_logh": 2.5588,
-      "test_rmse_logh": 3.3163,
-      "cv_r2_grouped": -2.3887,
+      "test_rmse_logh": 3.3162,
+      "cv_r2_grouped": -2.3876,
       "nonzero_coefs": 2033,
-      "coef_l2": 609.2487
+      "coef_l2": 609.0337
     },
     "Ridge a=1": {
       "test_r2": -0.8846,
@@ -195,7 +195,7 @@
       "coef_l2": 36.6965
     },
     "Ridge a=10": {
-      "test_r2": -0.7186,
+      "test_r2": -0.7185,
       "test_mae_logh": 1.5698,
       "test_rmse_logh": 1.9461,
       "cv_r2_grouped": 0.0763,
@@ -240,7 +240,7 @@
       "test_rmse_logh": 1.9338,
       "cv_r2_grouped": 0.0428,
       "nonzero_coefs": 9,
-      "coef_l2": 0.814
+      "coef_l2": 0.8141
     },
     "best": "Ridge a=10",
     "beats_repo_median": false
@@ -260,12 +260,12 @@
       "Hard": 0.202
     },
     "eval_plot_rule": "argmax(p / class_prior) for the confusion matrix; the app shows the most probable class plus all probabilities",
-    "trained": "2026-10-28T12:04:51.220766"
+    "trained": "2026-10-29T06:59:58.704507"
   },
   "label_sensitivity": {
-    "0.35/0.75": 0.419,
-    "0.4/0.8": 0.432,
-    "0.45/0.85": 0.421
+    "0.35/0.75": 0.418,
+    "0.4/0.8": 0.431,
+    "0.45/0.85": 0.42
   },
   "rag_eval": {
     "n": 11,
