@@ -13,8 +13,8 @@ import numpy as np
 import pandas as pd
 
 EASY_Q, HARD_Q = 0.40, 0.80
-SHRINK = 10          # a repo with n labelled issues gets weight n/(n+SHRINK) on its own ranking
-LABEL_VERSION = "effort-percentile-v1"
+SHRINK = 10 ** 9          # a repo with n labelled issues gets weight n/(n+SHRINK) on its own ranking
+LABEL_VERSION = "effort-absolute-v2"
 
 
 def _pct(df, col):
