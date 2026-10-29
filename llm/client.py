@@ -2,6 +2,9 @@
 Failures never crash the app: complete() returns None and the error goes to data/llm_errors.log."""
 import json, os, re, time
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 _LAST = {"error": None}
 
@@ -44,11 +47,19 @@ def complete(prompt, max_tokens=500, system=None):
     try:
         if p == "mock":
             return _mock(prompt)
+        if p == "ollama":
+            from openai import OpenAI
+            base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+            client = OpenAI(base_url=base_url, api_key="ollama", timeout=float(os.getenv("LLM_TIMEOUT", "60")))
+            msgs = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
+            model = os.getenv("LLM_MODEL", "llama3.2:1b")
+            r = client.chat.completions.create(model=model, messages=msgs, max_tokens=max_tokens)
+            return r.choices[0].message.content
         if p == "openai":
             from openai import OpenAI
             client = OpenAI(timeout=float(os.getenv("LLM_TIMEOUT", "60")))
             msgs = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
-            model = os.getenv("LLM_MODEL", "gpt-4o-mini")
+            model = os.getenv("LLM_MODEL") or "gpt-4o-mini"
             try:     # newer models want max_completion_tokens (and spend some of it on reasoning), older ones max_tokens
                 r = client.chat.completions.create(model=model, messages=msgs, max_completion_tokens=max(max_tokens, 800))
             except Exception as e:
@@ -60,7 +71,7 @@ def complete(prompt, max_tokens=500, system=None):
             import anthropic
             kw = {"system": system} if system else {}
             m = anthropic.Anthropic(timeout=float(os.getenv("LLM_TIMEOUT", "60"))).messages.create(
-                model=os.getenv("LLM_MODEL", "claude-sonnet-4-5"), max_tokens=max_tokens, messages=[{"role": "user", "content": prompt}], **kw)
+                model=os.getenv("LLM_MODEL") or "claude-haiku-5-5", max_tokens=max_tokens, messages=[{"role": "user", "content": prompt}], **kw)
             return m.content[0].text
     except Exception as e:
         _log(f"{p} failed after {time.time()-t0:.1f}s: {type(e).__name__}: {str(e)[:300]}")

@@ -2,13 +2,20 @@
 File format (see data/eval/rag_questions.template.json):
   [{"repo": "owner/name", "question": "...", "must_include": ["make test"], "answerable": true}, ...]
 Pass = every must_include string appears in the answer or in the retrieved sources.  answerable=false => must say NOT FOUND."""
-import json, time
+import json, os, time
 from llm.rag import RepoRAG, fetch_docs, NOT_FOUND
 from ml.common import save_metrics
 
 
+PLACEHOLDERS = {"owner/name", "real/repo"}
+
+
 def main(path="data/eval/rag_questions.json", use_llm=True):
     qs = [q for q in json.load(open(path)) if not q.get("template")]
+    fake = [q["question"] for q in qs if q["repo"].lower() in PLACEHOLDERS or q["question"].strip().lower() == "your question"
+            or any("exact text" in m.lower() for m in q.get("must_include", []))]
+    if fake:
+        raise SystemExit(f"{path} still contains template placeholders (e.g. {fake[0]!r}). Replace them with real repos and questions first.")
     if not qs:
         raise SystemExit("No real questions yet: copy rag_questions.template.json to rag_questions.json and fill it in.")
     cache, rows = {}, []
@@ -30,5 +37,6 @@ def main(path="data/eval/rag_questions.json", use_llm=True):
             "mean_groundedness": round(sum(r["grounded"] for r in ans) / max(len(ans), 1), 3),
             "refusal_correct": round(sum(r["pass"] for r, q in zip(rows, qs) if not q.get("answerable", True)) / max(sum(1 for q in qs if not q.get("answerable", True)), 1), 3),
             "backend": cache[qs[0]["repo"]].backend, "mode": rows[0]["mode"], "mean_seconds": round(sum(r["sec"] for r in rows) / len(rows), 2)}
-    print(summ); save_metrics("rag_eval", summ)
+    key = "rag_eval_heldout" if "heldout" in os.path.basename(path).lower() else "rag_eval"
+    print(summ); save_metrics(key, summ)
     return summ
