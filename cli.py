@@ -16,7 +16,7 @@ def _profile(skills, level, hours, weeks, k, avoid, llm, uncertain=True):
 
 # ---------------- setup, data ----------------
 @app.command("status")
-def status_cmd(llm: bool = typer.Option(False, "--llm", help="also test the LLM connection")):
+def status_cmd(llm: bool = typer.Option(True, "--llm/--no-llm", help="test the LLM connection (default: True)")):
     """Where is the project? Checks data, models, evidence and tools against targets."""
     from dotenv import load_dotenv; load_dotenv()
     import sqlite3
@@ -233,6 +233,31 @@ def outcome_cmd(issue_id: str, status: str = typer.Argument(..., help="started |
 @app.command("outcomes")
 def outcomes_cmd():
     from core import outcomes; console.print(outcomes.summary())
+
+
+@app.command("solve-agent")
+def solve_agent_cmd(ref: str = typer.Argument(..., help="owner/repo#123 or issue URL")):
+    """Autonomous in-process AI agent: analyzes an issue, plans the fix, and writes code (no API key/Ollama required)."""
+    from ml.predict import parse_ref
+    from llm.local_agent import LocalIssueAgent
+    import sqlite3
+    
+    full_repo, num = parse_ref(ref)
+    
+    title, body = f"Issue #{num}", ""
+    if os.path.exists("data/issuescout.db"):
+        c = sqlite3.connect("data/issuescout.db")
+        row = c.execute("select title, body from issues where repo=? and number=?", (full_repo, num)).fetchone()
+        if row:
+            title, body = row[0], row[1] or ""
+            
+    console.print(f"[bold cyan]Local AI Agent starting for {full_repo}#{num}...[/bold cyan]")
+    console.print(f"[bold]Title:[/bold] {title}\n")
+    
+    agent = LocalIssueAgent()
+    solution = agent.analyze(full_repo, title, body)
+    console.print("\n[bold green]=== AI AGENT PLAN & CODE FIX ===[/bold green]\n")
+    console.print(solution)
 
 
 @app.command("report")
