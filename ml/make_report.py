@@ -31,7 +31,7 @@ def main():
           f"beats repo-median baseline: {M.get('time_to_close', {}).get('beats_repo_median')}", "",
           "## 6. Repository clustering", _read("report/cluster_profiles.csv") if os.path.exists("report/cluster_profiles.csv") else "_run `python cli.py cluster`_", "",
           "## 7. CSP benchmark", _read("report/csp_benchmark.md"), "## 8. A* benchmark", _read("report/astar_benchmark.md"),
-          "## 9. RAG evaluation", json.dumps(M.get("rag_eval", "not run"), indent=1), "## 10. LLM evaluation", json.dumps(M.get("llm_eval", "not run"), indent=1), ""]
+          "## 9. RAG evaluation", json.dumps({"tuned-on set": M.get("rag_eval", "not run"), "held-out set": M.get("rag_eval_heldout", "not run")}, indent=1), "## 10. LLM evaluation", json.dumps(M.get("llm_eval", "not run"), indent=1), ""]
     from core import outcomes
     L += ["## 11. Real-world outcomes (your own attempts)", json.dumps(outcomes.summary(), indent=1), "",
           "## Figures"]
