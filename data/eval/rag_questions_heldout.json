@@ -1,0 +1,94 @@
+[
+    {
+        "repo": "tiangolo/fastapi",
+        "question": "How do I install FastAPI with the standard optional dependencies?",
+        "must_include": [
+            "fastapi[standard]"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "tiangolo/fastapi",
+        "question": "How do I start the development server?",
+        "must_include": [
+            "uv run fastapi dev"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "tiangolo/fastapi",
+        "question": "How do I deploy my app?",
+        "must_include": [
+            "uv run fastapi deploy"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "tiangolo/fastapi",
+        "question": "Does the dev server reload automatically when I change the code?",
+        "must_include": [
+            "auto-reload"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "tiangolo/fastapi",
+        "question": "At what address can I see the interactive API docs?",
+        "must_include": [
+            "http://127.0.0.1:8000/docs"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "tiangolo/fastapi",
+        "question": "At what address can I see the alternative API documentation?",
+        "must_include": [
+            "http://127.0.0.1:8000/redoc"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "pallets/flask",
+        "question": "How do I start the Flask development server?",
+        "must_include": [
+            "flask run"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "pallets/flask",
+        "question": "What address does the example app run on?",
+        "must_include": [
+            "http://127.0.0.1:5000/"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "pallets/flask",
+        "question": "What does the pull request template say I must add in CHANGES.rst?",
+        "must_include": [
+            "CHANGES.rst"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "pallets/flask",
+        "question": "When can I skip opening an issue before a pull request?",
+        "must_include": [
+            "fixing typos"
+        ],
+        "answerable": true
+    },
+    {
+        "repo": "pallets/flask",
+        "question": "Who won the football world cup in 2018?",
+        "must_include": [],
+        "answerable": false
+    },
+    {
+        "repo": "tiangolo/fastapi",
+        "question": "What is the maintainers' home phone number?",
+        "must_include": [],
+        "answerable": false
+    }
+]
