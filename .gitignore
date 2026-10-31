@@ -1,17 +1,39 @@
+# ── Environment & secrets ──
 .env
 .venv/
 __pycache__/
 *.pyc
 *.log
+
+# ── Large / generated data (not for git) ──
 data/raw/
 data/*.db
 data/docs/
 data/kits/
 data/emb_cache.pkl
 data/last_plan.json
+data/scored_open.pkl
+data/llm_errors.log
+
+# ── ML models (too large for git, re-train with `python cli.py train all`) ──
 models/
+
+# ── AI tool configs ──
 .claude/
 .agents/
+
+# ── Test / IDE caches ──
 .pytest_cache/
-collect.log
-# KEEP in git so reviewers can see your evidence: report/, data/processed/, data/eval/, data/outcomes.jsonl, data/feedback.jsonl
+*.egg-info/
+dist/
+build/
+.idea/
+.vscode/
+
+# ── KEEP in git (reviewers need this evidence) ──
+# report/           → all figures, CSVs, metrics.json, RESULTS.md
+# data/processed/   → manual_label_sample.csv, repo_flags.csv
+# data/eval/        → rag_questions.json, rag_questions.template.json
+# data/outcomes.jsonl, data/feedback.jsonl
+# repo_lists/       → modular repo list .txt files
+# docs/             → RESPONSIBLE_AI.md
