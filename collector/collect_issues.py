@@ -2,6 +2,7 @@ import os, re
 import datetime as dt
 from collector.github_client import GitHubClient
 from collector.db import conn, upsert
+from collector.merge_repos import load_repos
 
 gh = GitHubClient()
 FMT = "%Y-%m-%dT%H:%M:%SZ"
@@ -95,7 +96,7 @@ def collect_repo(c, full, closed_pages=None, open_pages=None, pr_pages=None):
 
 def main(repos_file="repos.txt", closed_pages=None, open_pages=None, pr_pages=None):
     c = conn()
-    repos = [l.strip() for l in open(repos_file) if l.strip() and not l.startswith("#")]
+    repos = load_repos(repos_file)
     failed = []
     for n, full in enumerate(repos, 1):
         try:

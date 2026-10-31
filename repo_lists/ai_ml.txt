@@ -1,0 +1,8 @@
+# High-Activity Python & AI Repositories
+huggingface/transformers
+vllm-project/vllm
+gradio-app/gradio
+langchain-ai/langchain
+ollama/ollama
+astral-sh/uv
+fastapi/fastapi

@@ -1,0 +1,154 @@
+# CNCF / Go
+kubernetes/kubernetes
+kubernetes/minikube
+kubernetes-sigs/kind
+kubernetes-sigs/kustomize
+kubernetes-sigs/controller-runtime
+kubernetes-sigs/kubebuilder
+prometheus/prometheus
+prometheus/client_golang
+etcd-io/etcd
+containerd/containerd
+helm/helm
+argoproj/argo-cd
+cilium/cilium
+coredns/coredns
+cert-manager/cert-manager
+jaegertracing/jaeger
+open-telemetry/opentelemetry-go
+grpc/grpc-go
+# Go libraries
+spf13/cobra
+gin-gonic/gin
+go-chi/chi
+uber-go/zap
+sirupsen/logrus
+urfave/cli
+# Python
+psf/requests
+pallets/flask
+tiangolo/fastapi
+encode/httpx
+pytest-dev/pytest
+scikit-learn/scikit-learn
+pandas-dev/pandas
+# Extra repos. Names are from memory: any that no longer exist just print "missing" and are skipped.
+# Go / cloud native
+hashicorp/terraform
+hashicorp/consul
+hashicorp/vault
+hashicorp/nomad
+grafana/grafana
+grafana/loki
+prometheus/alertmanager
+prometheus/node_exporter
+istio/istio
+traefik/traefik
+caddyserver/caddy
+gohugoio/hugo
+junegunn/fzf
+jesseduffield/lazygit
+charmbracelet/bubbletea
+spf13/viper
+stretchr/testify
+gorilla/mux
+labstack/echo
+gofiber/fiber
+moby/moby
+docker/cli
+docker/compose
+fluxcd/flux2
+tektoncd/pipeline
+knative/serving
+operator-framework/operator-sdk
+rook/rook
+longhorn/longhorn
+kubernetes-sigs/kubespray
+kubernetes-sigs/cluster-api
+kubernetes-sigs/external-dns
+kubernetes-sigs/metrics-server
+kubernetes/ingress-nginx
+kubernetes/dashboard
+kubernetes/kops
+kubernetes/client-go
+open-policy-agent/opa
+falcosecurity/falco
+nats-io/nats-server
+vitessio/vitess
+cockroachdb/cockroach
+pingcap/tidb
+minio/minio
+ent/ent
+sqlc-dev/sqlc
+goreleaser/goreleaser
+golangci/golangci-lint
+cli/cli
+# Python
+psf/black
+astral-sh/ruff
+pallets/click
+pallets/jinja
+pallets/werkzeug
+python-poetry/poetry
+pypa/pip
+sqlalchemy/sqlalchemy
+pydantic/pydantic
+aio-libs/aiohttp
+celery/celery
+scrapy/scrapy
+ansible/ansible
+home-assistant/core
+apache/airflow
+numpy/numpy
+matplotlib/matplotlib
+scipy/scipy
+encode/starlette
+Textualize/rich
+Textualize/textual
+tqdm/tqdm
+mkdocs/mkdocs
+sphinx-doc/sphinx
+pylint-dev/pylint
+python-pillow/Pillow
+networkx/networkx
+scikit-image/scikit-image
+statsmodels/statsmodels
+# JavaScript / TypeScript
+expressjs/express
+vuejs/core
+sveltejs/svelte
+prettier/prettier
+eslint/eslint
+axios/axios
+vitejs/vite
+mochajs/mocha
+jestjs/jest
+# Rust
+BurntSushi/ripgrep
+sharkdp/bat
+sharkdp/fd
+clap-rs/clap
+tokio-rs/tokio
+serde-rs/serde
+starship/starship
+alacritty/alacritty
+# added from repos_extra.txt
+
+
+# added from repos_extra.txt
+
+
+# added from repos_extra.txt
+
+
+# added from repos_extra.txt
+
+
+# added from repos_extra.txt
+
+
+# added from repos_extra.txt
+
+
+# added from repos_extra.txt
+

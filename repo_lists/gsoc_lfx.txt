@@ -1,0 +1,11 @@
+# High-Impact GSoC & LFX Mentorship Repositories
+kubernetes/kubernetes
+pytorch/pytorch
+apache/airflow
+scikit-learn/scikit-learn
+prometheus/prometheus
+pallets/flask
+tiangolo/fastapi
+psf/requests
+encode/httpx
+pandas-dev/pandas

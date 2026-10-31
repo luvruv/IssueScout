@@ -308,12 +308,12 @@ with tabs[3]:
     with col_r2:
         with st.container(border=True):
             st.subheader("Corpus Expansion")
-            st.caption("Append pre-curated open source repositories to expand your collection.")
-            if os.path.exists("repos_extra.txt"):
-                if st.button("Append ~90 extra repos (`repos_extra.txt`)", width="stretch"):
-                    cmd = [sys.executable, "cli.py", "add-repos", "repos_extra.txt"]
+            st.caption("Sync pre-curated open source repositories from `repo_lists/` into your active `repos.txt`.")
+            if os.path.exists("repo_lists"):
+                if st.button("Sync from `repo_lists/` directory", width="stretch"):
+                    cmd = [sys.executable, "cli.py", "add-repos", "repo_lists"]
                     res = subprocess.run(cmd, capture_output=True, text=True)
-                    st.success("Appended extra repos!")
+                    st.success("Synchronized all repos from `repo_lists/`!")
                     st.rerun()
             
             st.divider()

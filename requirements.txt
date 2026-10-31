@@ -17,3 +17,4 @@ rich
 pytest
 openai
 anthropic
+llama-cpp-python

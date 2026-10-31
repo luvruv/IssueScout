@@ -1,6 +1,7 @@
 import re
 from collector.github_client import GitHubClient
 from collector.db import conn, upsert
+from collector.merge_repos import load_repos
 
 gh = GitHubClient()
 
@@ -15,10 +16,8 @@ def contributors_count(full):
 
 def main(repos_file="repos.txt"):
     c = conn()
-    for line in open(repos_file):
-        full = line.strip()
-        if not full or full.startswith("#"):
-            continue
+    repos = load_repos(repos_file)
+    for full in repos:
         r = gh.get(f"/repos/{full}")["body"]
         if not r:
             print("missing:", full)

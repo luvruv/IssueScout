@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Whole pipeline, in order. Run from the project root (Git Bash on Windows is fine).  bash scripts/run_all.sh
 set -e
-python cli.py add-repos repos_extra.txt          # once: appends ~90 repos to repos.txt
+python cli.py add-repos repo_lists              # syncs repos from repo_lists/ into repos.txt
 python cli.py collect --closed-pages 6 --open-pages 3 --pr-pages 6    # SLOW: hours. cached + resumable: just run again
 python cli.py features                           # labels + manual-label sample
 python cli.py eda

@@ -65,8 +65,8 @@ def collect_cmd(repos: str = "repos.txt", closed_pages: int = typer.Option(0, he
 
 
 @app.command("add-repos")
-def add_repos_cmd(src: str = typer.Argument("repos_extra.txt", help="Source file with extra repositories")):
-    """Append repos_extra.txt to repos.txt (no duplicates)."""
+def add_repos_cmd(src: str = typer.Argument("repo_lists", help="Source file (.txt) or directory of .txt files to append")):
+    """Append repos from a file or entire repo_lists/ directory to repos.txt (no duplicates)."""
     from collector import merge_repos; merge_repos.main(src)
 
 
