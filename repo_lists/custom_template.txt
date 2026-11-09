@@ -1,0 +1,8 @@
+# Custom Repository Collection List
+# Add GitHub repositories in 'owner/repo' format (one per line):
+# Empty lines and lines starting with '#' are ignored.
+#
+# Examples:
+# vercel/next.js
+# tailwindlabs/tailwindcss
+# facebook/react

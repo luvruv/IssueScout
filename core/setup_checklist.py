@@ -91,3 +91,4 @@ def extract_setup_checklist(repo: str) -> Dict[str, Any]:
         "lint_cmds": lint_cmds,
         "sources": sources
     }
+

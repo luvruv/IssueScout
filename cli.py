@@ -65,9 +65,20 @@ def collect_cmd(repos: str = "repos.txt", closed_pages: int = typer.Option(0, he
 
 
 @app.command("add-repos")
-def add_repos_cmd(src: str = typer.Argument("repo_lists", help="Source file (.txt) or directory of .txt files to append")):
-    """Append repos from a file or entire repo_lists/ directory to repos.txt (no duplicates)."""
-    from collector import merge_repos; merge_repos.main(src)
+def add_repos_cmd(src: str = typer.Argument("repo_lists", help="Source file (.txt) or directory of .txt files to append"),
+                  dst: str = typer.Option("repos.txt", "--dst", help="Destination repos file")):
+    """Append repos from a file or entire directory to repos.txt (or custom destination)."""
+    from collector import merge_repos; merge_repos.main(src, dst)
+
+
+@app.command("create-repo-list")
+def create_repo_list_cmd(name: str = typer.Argument(..., help="Name of the new list (e.g. my_targets)"),
+                         repos: str = typer.Option(..., "--repos", help="Comma-separated repository names (e.g. 'owner/repo1,owner/repo2')")):
+    """Create a new modular repository list file (.txt) in repo_lists/."""
+    from collector.merge_repos import create_repo_list
+    repo_list = [r.strip() for r in repos.split(",") if r.strip()]
+    path = create_repo_list(name, repo_list)
+    console.print(f"[bold green]Created new repository list:[/bold green] {path} ({len(repo_list)} repos)")
 
 
 @app.command("features")

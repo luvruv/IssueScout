@@ -292,7 +292,7 @@ with tabs[2]:
 # ==========================================
 with tabs[3]:
     st.header("Tracked Repositories (`repos.txt`)")
-    st.write("Manage the curated repository corpus mined for training samples and open issue recommendations.")
+    st.write("Manage active repository lists, create custom modular packs in `repo_lists/`, and merge them for training and mining.")
 
     repo_file = "repos.txt"
     current_content = ""
@@ -300,36 +300,81 @@ with tabs[3]:
         with open(repo_file, "r", encoding="utf-8") as f:
             current_content = f.read()
 
-    col_r1, col_r2 = st.columns([2, 1])
+    col_r1, col_r2 = st.columns([1, 1])
     with col_r1:
         with st.container(border=True):
-            st.subheader("Edit `repos.txt`")
-            new_content = st.text_area("Repository list (one `owner/repo` per line)", value=current_content, height=360)
-            if st.button("Save changes to `repos.txt`", type="primary"):
+            st.subheader("Active Master Corpus (`repos.txt`)")
+            st.caption("The primary list mined during `collect` and used for ML feature extraction.")
+            new_content = st.text_area("Master repository list (one `owner/repo` per line)", value=current_content, height=280)
+            if st.button("Save changes to `repos.txt`", type="primary", width="stretch"):
                 with open(repo_file, "w", encoding="utf-8") as f:
                     f.write(new_content)
                 st.success("Successfully updated `repos.txt`!")
+                st.rerun()
+
+        with st.container(border=True):
+            st.subheader("Create Custom Repo List")
+            st.caption("Save a new modular list inside `repo_lists/` for specialized tasks (e.g. GSoC, AI, Web).")
+            new_list_name = st.text_input("List Name (e.g., `my_gsoc_targets`)", key="new_list_name")
+            new_list_repos = st.text_area("Repositories (one per line)", placeholder="owner/repo\nexample/project", height=140, key="new_list_repos")
+            if st.button("Create List in `repo_lists/`", width="stretch"):
+                if new_list_name and new_list_repos:
+                    from collector.merge_repos import create_repo_list
+                    repo_items = [r.strip() for r in new_list_repos.splitlines() if r.strip()]
+                    out_path = create_repo_list(new_list_name, repo_items)
+                    st.success(f"Created `{out_path}` with {len(repo_items)} repositories!")
+                    st.rerun()
+                else:
+                    st.warning("Please provide both a list name and repository entries.")
 
     with col_r2:
         with st.container(border=True):
-            st.subheader("Corpus Expansion")
-            st.caption("Sync pre-curated open source repositories from `repo_lists/` into your active `repos.txt`.")
-            if os.path.exists("repo_lists"):
-                if st.button("Sync from `repo_lists/` directory", width="stretch"):
-                    cmd = [sys.executable, "cli.py", "add-repos", "repo_lists"]
-                    res = subprocess.run(cmd, capture_output=True, text=True)
-                    st.success("Synchronized all repos from `repo_lists/`!")
-                    st.rerun()
+            st.subheader("Modular Packs (`repo_lists/`)")
+            st.caption("Available specialized packs you can merge into your active corpus.")
+            available_packs = sorted(glob.glob("repo_lists/*.txt"))
+            pack_names = [os.path.basename(p) for p in available_packs]
+            
+            if pack_names:
+                selected_pack = st.selectbox("Select modular pack to inspect or merge:", pack_names)
+                if selected_pack:
+                    pack_path = os.path.join("repo_lists", selected_pack)
+                    with open(pack_path, "r", encoding="utf-8", errors="ignore") as pf:
+                        pack_content = pf.read()
+                    
+                    st.code(pack_content[:500] + ("\n... [truncated]" if len(pack_content) > 500 else ""), language="text")
+                    
+                    b_col1, b_col2 = st.columns(2)
+                    with b_col1:
+                        if st.button(f"Merge `{selected_pack}` into `repos.txt`", type="primary", width="stretch"):
+                            from collector.merge_repos import main as merge_main
+                            merge_main(pack_path, "repos.txt")
+                            st.success(f"Merged `{selected_pack}` into `repos.txt`!")
+                            st.rerun()
+                    with b_col2:
+                        if st.button(f"Delete `{selected_pack}`", width="stretch"):
+                            if os.path.exists(pack_path):
+                                os.remove(pack_path)
+                                st.success(f"Removed `{selected_pack}`!")
+                                st.rerun()
+            else:
+                st.info("No `.txt` files found in `repo_lists/`. Create one on the left!")
+
+            st.divider()
+            if st.button("Merge ALL `repo_lists/*.txt` into `repos.txt`", width="stretch"):
+                from collector.merge_repos import main as merge_main
+                merge_main("repo_lists", "repos.txt")
+                st.success("Successfully synchronized all lists into `repos.txt`!")
+                st.rerun()
             
             st.divider()
-            st.subheader("Mining Statistics")
+            st.subheader("Corpus Database Statistics")
             if os.path.exists("data/issuescout.db"):
                 import sqlite3
                 c = sqlite3.connect("data/issuescout.db")
                 n_repos = c.execute("select count(*) from repos").fetchone()[0]
                 n_solved = c.execute("select count(*) from issues where pr_merged=1").fetchone()[0]
                 n_open = c.execute("select count(*) from issues where state='open'").fetchone()[0]
-                st.metric("Total Repositories", f"{n_repos:,}")
+                st.metric("Total Repositories Mined", f"{n_repos:,}")
                 st.metric("Ground-Truth Solved Issues", f"{n_solved:,}")
                 st.metric("Open Issue Pool", f"{n_open:,}")
 

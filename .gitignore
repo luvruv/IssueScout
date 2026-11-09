@@ -14,8 +14,9 @@ data/emb_cache.pkl
 data/last_plan.json
 data/scored_open.pkl
 data/llm_errors.log
+data/*.tmp
 
-# ── ML models (too large for git, re-train with `python cli.py train all`) ──
+# ── ML models (re-train with `python cli.py train all`) ──
 models/
 
 # ── AI tool configs ──
@@ -30,11 +31,10 @@ build/
 .idea/
 .vscode/
 
-# ── KEEP in git (reviewers need this evidence) ──
+# ── KEEP in git (evidence & evaluation datasets) ──
 # report/           → all figures, CSVs, metrics.json, RESULTS.md
 # data/processed/   → manual_label_sample.csv, repo_flags.csv
-# data/eval/        → rag_questions.json, rag_questions.template.json
+# data/eval/        → rag_questions.json, rag_questions.template.json, rag_questions_heldout.json
 # data/outcomes.jsonl, data/feedback.jsonl
-# repo_lists/       → modular repo list .txt files
-# docs/             → RESPONSIBLE_AI.md
-# c:\Users\jaind\.gemini\antigravity\brain\f5b58a4f-f4fd-4c0b-886c-faca47b8e3ba\project_architecture.md
+# repo_lists/       → modular repo list .txt files (ai_ml.txt, gsoc_lfx.txt, custom_template.txt)
+# docs/             → PROJECT_ARCHITECTURE.md, RESPONSIBLE_AI.md

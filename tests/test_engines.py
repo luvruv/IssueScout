@@ -42,3 +42,4 @@ def test_setup_checklist_extraction():
     assert len(s["install_cmds"]) > 0
     assert len(s["test_cmds"]) > 0
     assert len(s["lint_cmds"]) > 0
+
