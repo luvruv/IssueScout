@@ -159,6 +159,9 @@ python cli.py web
 | `ask` | RAG Q&A over a repo's contributor docs |
 | `prepare` | Build a first-PR kit for one issue |
 | `solve-agent` | Local AI agent — analyzes issue and writes code fix |
+| `responsiveness` | Maintainer reply speed, review health, and SLA breakdown |
+| `check-claim` | Detect if an issue is available vs already claimed by someone |
+| `setup` | Extract automated terminal setup commands from contributor guides |
 | `eval-rag` | Evaluate RAG accuracy on test questions |
 | `eval-llm` | LLM evaluation: JSON validity, agreement, guardrails |
 | `outcome` | Log what happened with an issue you tried |
@@ -166,7 +169,7 @@ python cli.py web
 | `report` | Collect all results into `report/RESULTS.md` |
 | `serve` | Start the FastAPI backend on port 8000 |
 | `web` | Launch the Streamlit dashboard |
-| `test` | Run all 13 unit tests |
+| `test` | Run all 17 unit tests |
 
 ---
 
@@ -349,6 +352,12 @@ Start with `python cli.py serve` → `http://localhost:8000/docs`
 | `/prepare` | POST | Generate first-PR kit |
 | `/ask` | POST | RAG Q&A on contributor docs |
 | `/path` | POST | A\* learning path to a target issue |
+| `/repo/responsiveness` | GET | Maintainer reply speed & review SLA |
+| `/issue/claim` | GET | Issue claim & assignee detector |
+| `/repo/setup` | GET | Automated terminal setup checklist |
+| `/issues/live` | POST | Live on-demand issue search & ML enrichment |
+| `/auth/github/url` | GET | GitHub OAuth authorization URL |
+| `/auth/profile` | GET | Auto-inferred developer profile from GitHub |
 | `/feedback` | POST | Submit user feedback |
 | `/outcome` | POST | Log issue outcome |
 | `/outcomes` | GET | Outcome summary |

@@ -260,6 +260,20 @@ flowchart TD
 - Appends to `data/outcomes.jsonl`
 - `summary()` → counts by status
 
+#### [`core/responsiveness.py`](file:///c:/Users/jaind/SEM%20V/ML/IssueScout/core/responsiveness.py)
+**What it does:** Calculates maintainer reply speed and review SLAs.
+- Categorizes repos: `Lightning (<12h)`, `Active (<48h)`, `Moderate (<7d)`, `Slow (>7d)`.
+- Prevents contributors from picking issues in dead or unresponsive repositories.
+
+#### [`core/claim_detector.py`](file:///c:/Users/jaind/SEM%20V/ML/IssueScout/core/claim_detector.py)
+**What it does:** Issue claim & duplicate work detector.
+- Detects if an issue is `AVAILABLE`, `IN_DISCUSSION`, `LIKELY_CLAIMED`, or `ASSIGNED`.
+- Scans issue assignees, comment intentions, and pull request references.
+
+#### [`core/setup_checklist.py`](file:///c:/Users/jaind/SEM%20V/ML/IssueScout/core/setup_checklist.py)
+**What it does:** Automated developer environment setup extractor.
+- Parses `CONTRIBUTING.md`, `README.md`, and `Makefile` for exact terminal commands (clone, install/venv, test, lint).
+
 ---
 
 ### Interface Layer

@@ -118,6 +118,12 @@ with tabs[0]:
                 st.subheader(f"Sprint Step #{idx}: {item['repo']} #{item['number']}")
                 st.markdown(f"**{item['title']}**")
                 
+                # Check claim status and maintainer responsiveness
+                from core.claim_detector import detect_issue_claim_status
+                from core.responsiveness import calculate_maintainer_responsiveness
+                claim_info = detect_issue_claim_status(item['repo'], item['number'])
+                resp_info = calculate_maintainer_responsiveness(item['repo'])
+                
                 c1, c2, c3, c4 = st.columns(4)
                 diff = item["difficulty"]
                 c1.metric("Predicted Difficulty", diff, help="Supervised classification based on title, body, and repo structure")
@@ -126,12 +132,11 @@ with tabs[0]:
                 c2.metric("Merge Probability", f"{item['p_merge']:.0%}", help="Empirical Bayesian estimation that a submitted PR is accepted")
                 c2.caption("Maintainer acceptance likelihood")
                 
-                c3.metric("Estimated Effort", f"{item['est_hours']} hrs", help="Expected resolution time")
-                c3.caption("Heuristic effort weighting")
+                c3.metric("Claim Status", claim_info['badge'], help=claim_info['reason'])
+                c3.caption(claim_info['status'])
                 
-                reply_val = f"{item['reply_days']} days" if item['reply_days'] is not None else "Fast"
-                c4.metric("Maintainer Reply", reply_val, help="Historical median time for maintainers to respond to issues")
-                c4.caption("First response latency")
+                c4.metric("Maintainer Speed", resp_info['badge'], help=resp_info['response_summary'])
+                c4.caption(resp_info['tier_label'])
                 
                 st.progress(
                     min(1.0, max(0.01, item["probs"]["Easy"])),
@@ -448,11 +453,39 @@ with tabs[5]:
             with st.spinner("Extracting issue metadata and running inference..."):
                 r = predict_issue(pref)
                 with st.container(border=True):
-                    c_pred, c_conf = st.columns([1, 2])
+                    c_pred, c_conf, c_claim, c_speed = st.columns(4)
                     with c_pred:
                         st.metric("Predicted Difficulty", r['predicted'])
                     with c_conf:
                         st.metric("Model Confidence", f"{r['confidence']:.0%}")
+
+                    # Claim and Responsiveness
+                    from ml.predict import parse_ref
+                    from core.claim_detector import detect_issue_claim_status
+                    from core.responsiveness import calculate_maintainer_responsiveness
+                    from core.setup_checklist import extract_setup_checklist
+                    
+                    full_rp, i_num = parse_ref(pref)
+                    c_data = detect_issue_claim_status(full_rp, i_num)
+                    r_data = calculate_maintainer_responsiveness(full_rp)
+                    s_data = extract_setup_checklist(full_rp)
+
+                    with c_claim:
+                        st.metric("Claim Status", c_data['badge'])
+                        st.caption(c_data['reason'][:40] + "...")
+                    with c_speed:
+                        st.metric("Maintainer Speed", r_data['badge'])
+                        st.caption(r_data['tier_label'])
+
+                    with st.expander(f"Automated Setup Checklist for `{full_rp}`", expanded=False):
+                        st.markdown("**1. Clone & Navigate:**")
+                        st.code(s_data['clone_cmd'], language="bash")
+                        st.markdown("**2. Install Environment:**")
+                        st.code("\n".join(s_data['install_cmds']), language="bash")
+                        st.markdown("**3. Run Tests:**")
+                        st.code("\n".join(s_data['test_cmds']), language="bash")
+                        st.markdown("**4. Linters / Pre-commit:**")
+                        st.code("\n".join(s_data['lint_cmds']), language="bash")
 
                     st.subheader("Class Probability Distribution")
                     st.bar_chart(pd.Series(r["probabilities"]))

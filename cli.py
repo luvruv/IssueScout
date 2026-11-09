@@ -260,6 +260,44 @@ def solve_agent_cmd(ref: str = typer.Argument(..., help="owner/repo#123 or issue
     console.print(solution)
 
 
+@app.command("responsiveness")
+def responsiveness_cmd(repo: str = typer.Argument(..., help="owner/repo (e.g. pallets/flask)")):
+    """Analyze maintainer reply speed, review health, and SLA before picking an issue."""
+    from core.responsiveness import calculate_maintainer_responsiveness
+    r = calculate_maintainer_responsiveness(repo)
+    console.print(f"[bold cyan]{repo}[/bold cyan] Maintainer Activity:")
+    console.print(f"  Tier: {r['badge']} ({r['tier_label']})")
+    console.print(f"  Summary: {r['response_summary']}")
+
+
+@app.command("check-claim")
+def check_claim_cmd(ref: str = typer.Argument(..., help="owner/repo#123 or issue URL")):
+    """Detect if someone is already actively working on an issue (prevents wasted effort)."""
+    from ml.predict import parse_ref
+    from core.claim_detector import detect_issue_claim_status
+    repo, num = parse_ref(ref)
+    c = detect_issue_claim_status(repo, num)
+    console.print(f"[bold]{repo}#{num}[/bold] Claim Status: [bold]{c['badge']}[/bold]")
+    console.print(f"  Reason: {c['reason']}")
+    if c['signals']:
+        console.print(f"  Signals: {', '.join(c['signals'])}")
+
+
+@app.command("setup")
+def setup_cmd(repo: str = typer.Argument(..., help="owner/repo (e.g. pallets/flask)")):
+    """Extract automated terminal setup commands (clone, venv, test, lint) from contributor docs."""
+    from core.setup_checklist import extract_setup_checklist
+    s = extract_setup_checklist(repo)
+    console.print(f"[bold green]=== Quickstart Checklist for {repo} ===[/bold green]")
+    console.print(f"\n[bold]1. Clone & Navigate:[/bold]\n  {s['clone_cmd']}")
+    console.print(f"\n[bold]2. Install Dependencies:[/bold]")
+    for cmd in s['install_cmds']: console.print(f"  $ {cmd}")
+    console.print(f"\n[bold]3. Run Tests:[/bold]")
+    for cmd in s['test_cmds']: console.print(f"  $ {cmd}")
+    console.print(f"\n[bold]4. Run Linters / Pre-commit:[/bold]")
+    for cmd in s['lint_cmds']: console.print(f"  $ {cmd}")
+
+
 @app.command("report")
 def report_cmd():
     """Collect all results into report/RESULTS.md."""
